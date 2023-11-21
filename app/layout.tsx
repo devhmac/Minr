@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={inter.className}>
         <main className="max-w-10xl mx-auto">
           <Nav />
