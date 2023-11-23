@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
-        <main className="max-w-10xl mx-auto">
+        <main className="max-w-10xl mx-auto text-secondary">
           <Nav />
           {children}
         </main>
