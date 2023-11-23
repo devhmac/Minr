@@ -15,6 +15,7 @@ module.exports = {
         },
         secondary: "rgba(255,255,255, 0.9)",
         mediumEmph: "rgba(255,255,255, 0.6)",
+        lowEmph: "rgba(255,255,255, 0.3)",
         "gray-200": "#EAECF0",
         "gray-300": "D0D5DD",
         "gray-500": "#667085",
