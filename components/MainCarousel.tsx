@@ -17,9 +17,9 @@ const MainCarousel = () => {
     <div className="hero-carousel">
       <Carousel
         showThumbs={false}
-        autoPlay
+        // autoPlay
         infiniteLoop
-        interval={3000}
+        // interval={3000}
         showArrows={false}
         showStatus={false}
       >
@@ -29,7 +29,7 @@ const MainCarousel = () => {
             alt={img.alt}
             width={484}
             height={484}
-            className="object-contain "
+            className="object-contain"
             key={img.imgUrl}
           />
         ))}

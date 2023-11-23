@@ -10,7 +10,7 @@ const Page = () => {
           <div className="flex flex-col justify-center">
             {/* <p className="small-text">Smart Shopping</p> */}
             <h1 className="head-text text-center">
-              Product growth and pricing analytics all in one Place with{" "}
+              Product growth and pricing analytics all in one place with{" "}
               <span className="text-primary">Minr</span>
             </h1>
             <p className="mt-6 text-mediumEmph text-center">
