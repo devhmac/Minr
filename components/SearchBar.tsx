@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const isValidAmazonLink = (url: string) => {
   try {
@@ -19,29 +21,33 @@ const isValidAmazonLink = (url: string) => {
 };
 
 const SearchBar = () => {
-  const [searchPrompt, setSearchPrompt] = useState<string>();
+  const [searchPrompt, setSearchPrompt] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isValidLink = "";
+    const isValidLink = isValidAmazonLink(searchPrompt);
+    isValidLink ? toast("wow its good") : toast("baaad link");
   };
 
   return (
-    <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={searchPrompt}
-        onChange={(e) => {
-          setSearchPrompt(e.target.value);
-        }}
-        placeholder="Enter your Product Link"
-        className="searchbar-input"
-      />
-      <button type="submit" className="searchbar-btn">
-        Search
-      </button>
-    </form>
+    <>
+      <ToastContainer className="center" />
+      <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={searchPrompt}
+          onChange={(e) => {
+            setSearchPrompt(e.target.value);
+          }}
+          placeholder="Enter your Product Link"
+          className="searchbar-input"
+        />
+        <button type="submit" className="searchbar-btn">
+          Search
+        </button>
+      </form>
+    </>
   );
 };
 
