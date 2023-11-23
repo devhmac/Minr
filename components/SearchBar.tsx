@@ -32,7 +32,6 @@ const SearchBar = () => {
 
   return (
     <>
-      <ToastContainer className="center" />
       <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
         <input
           type="text"

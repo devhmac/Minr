@@ -21,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark bg-[#121212]">
       <body className={inter.className}>
-        <main className="max-w-10xl mx-auto text-secondary">
+        <main className="max-w-10xl mx-auto text-secondary ">
           <Nav />
           {children}
         </main>

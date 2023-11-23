@@ -1,11 +1,13 @@
 import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 const Page = () => {
   return (
     <>
-      <section className="px-6 border-2 md:px-20 py-24 border-red-500 text-secondary">
+      <section className="px-6 border-2-[] md:px-20 py-24 text-secondary">
+        <ToastContainer />
         <div className="flex max-xl:flex-col gap-16">
           <div className="flex flex-col justify-center">
             {/* <p className="small-text">Smart Shopping</p> */}
