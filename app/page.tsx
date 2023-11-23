@@ -1,3 +1,4 @@
+import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
 import React from "react";
 
@@ -18,7 +19,7 @@ const Page = () => {
             </p>
             <SearchBar />
           </div>
-          HeroCarousel
+          <MainCarousel />
         </div>
       </section>
 
