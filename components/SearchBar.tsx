@@ -27,7 +27,14 @@ const SearchBar = () => {
     event.preventDefault();
 
     const isValidLink = isValidAmazonLink(searchPrompt);
-    isValidLink ? toast("wow its good") : toast("baaad link");
+    isValidLink
+      ? toast("wow its good")
+      : toast.error("baaad link", {
+          position: "top-center",
+          closeOnClick: true,
+          pauseOnHover: true,
+          // className: "border-2px border-red-200",
+        });
   };
 
   return (
