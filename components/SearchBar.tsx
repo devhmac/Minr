@@ -1,4 +1,5 @@
 "use client";
+import { scrapeProduct } from "@/lib/actions/actions";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -25,7 +26,7 @@ const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isValidLink = isValidAmazonLink(searchPrompt);
@@ -42,6 +43,7 @@ const SearchBar = () => {
     try {
       setIsloading(true);
       //scrape linked product
+      const product = await scrapeProduct(searchPrompt);
     } catch (error) {
       console.log(error);
     } finally {

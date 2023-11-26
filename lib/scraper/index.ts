@@ -1,12 +1,11 @@
 import axios from "axios";
+import * as cheerio from "cheerio";
 
-export async function scrapeAmazonUrl(url: string) {
+export async function scrapeUrl(url: string) {
   if (!url) return;
 
-  const username = process.env.BRIGHT_DATA_USERNAME;
-  const password = process.env.BRIGHT_DATA_PASSWORD;
-
-  // curl --proxy brd.superproxy.io:22225 --proxy-user brd-customer-hl_fbdf08d9-zone-minr:kc3szvyropmu -k https://lumtest.com/myip.json
+  const username = String(process.env.BRIGHT_DATA_USERNAME);
+  const password = String(process.env.BRIGHT_DATA_PASSWORD);
   const port = 22225;
   const session_id = (1000000 * Math.random()) | 0;
 
@@ -22,7 +21,15 @@ export async function scrapeAmazonUrl(url: string) {
 
   try {
     // fetching product page
-    const response = await axios.get(url);
+    const response = await axios.get(url, options);
+
+    const $ = cheerio.load(response.data);
+
+    //grab product info
+
+    const title = $(`#productTitle`).text();
+    const currPrice = $(".a-price").text();
+    console.log({ title, currPrice });
   } catch (error: any) {
     throw new Error(`Failed to scrape on Error: ${error.message}`);
   }
