@@ -1,4 +1,5 @@
 "use client";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,11 +23,13 @@ const isValidAmazonLink = (url: string) => {
 
 const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState<string>("");
+  const [isLoading, setIsloading] = useState<boolean>(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isValidLink = isValidAmazonLink(searchPrompt);
+
     isValidLink
       ? toast("wow its good")
       : toast.error("baaad link", {
@@ -35,11 +38,20 @@ const SearchBar = () => {
           pauseOnHover: true,
           // className: "border-2px border-red-200",
         });
+
+    try {
+      setIsloading(true);
+      //scrape linked product
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsloading(false);
+    }
   };
 
   return (
     <>
-      <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
+      <form className="flex flex-wrap gap-4 mt-12 " onSubmit={handleSubmit}>
         <input
           type="text"
           value={searchPrompt}
@@ -47,10 +59,14 @@ const SearchBar = () => {
             setSearchPrompt(e.target.value);
           }}
           placeholder="Enter your Product Link"
-          className="searchbar-input"
+          className="searchbar-input "
         />
-        <button type="submit" className="searchbar-btn">
-          Search
+        <button
+          type="submit"
+          className="searchbar-btn"
+          disabled={searchPrompt === ""}
+        >
+          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
         </button>
       </form>
     </>
