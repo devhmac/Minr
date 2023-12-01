@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { extractPrice } from "../utils/extractPrice";
+import { extractCurr, extractPrice } from "../utils/extractPrice";
 
 export async function scrapeUrl(url: string) {
   if (!url) return;
@@ -28,11 +28,13 @@ export async function scrapeUrl(url: string) {
 
     //grab product info
 
-    const title = $(`#productTitle`).text();
+    const title = $(`#productTitle`).text().trim();
+
     const currPrice = extractPrice(
       $(".priceToPay span.a-price-whole"),
       $(".a.size.base.a-color-price"),
-      $(".a-button-selected .a-color-base")
+      $(".a-button-selected .a-color-base"),
+      $("span .a-price")
     );
 
     const originalPrice = extractPrice(
@@ -43,7 +45,38 @@ export async function scrapeUrl(url: string) {
       $(".a-size-base.a-color-price")
     );
 
-    console.log({ title, currPrice, originalPrice });
+    const outOfStock =
+      $("#availability-span").text().trim().toLowerCase() ===
+      "current unavailable";
+
+    const images =
+      $("#imgBlkFront").attr("data-a-dynamic-image") ||
+      $("#landingImage").attr("data-a-dynamic-image") ||
+      "{}";
+
+    const imageUrls = Object.keys(JSON.parse(images));
+
+    const currency = extractCurr($(".a-price-symbol"));
+
+    const discount = $(".savingsPercentage ").text().replace(/[-%]/g, "");
+
+    // ALSO WANT - stars, # reviews and category
+
+    const scrapedData = {
+      url,
+      currency: currency || "$",
+      title,
+      image: imageUrls[0],
+      currentPrice: Number(currPrice),
+      originalPrice: Number(originalPrice),
+      priceHistory: [],
+      discountRate: Number(discount),
+      reviewsCount: 50,
+      stars: 4,
+      category: "default",
+      outOfStock,
+    };
+    console.log(scrapedData);
   } catch (error: any) {
     throw new Error(`Failed to scrape on Error: ${error.message}`);
   }
