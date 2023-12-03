@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 let isConnected = false;
 
 export const dbConnect = async () => {
+  console.log("initializing mongo connection...");
   mongoose.set("strictQuery", true);
 
   if (!process.env.MONGODB_URI) return console.log("no MONGODB_URI defined");
