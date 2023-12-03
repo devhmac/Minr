@@ -4,8 +4,12 @@ import { PriceHistoryItem, Product } from "@/types";
 export function extractPrice(...elements: any) {
   for (const element of elements) {
     const priceText = element.text().trim();
+
     // remove all non digit characters (and keep .), we just want price
-    if (priceText) return priceText.replace(/[^\d.]/g, "");
+    if (priceText) {
+      console.log(priceText.replace(/[^\d.]/g, ""));
+      return priceText.replace(/[^\d.]/g, "");
+    }
   }
   return "";
 }
@@ -13,4 +17,27 @@ export function extractPrice(...elements: any) {
 export function extractCurr(element: any) {
   const currText = element.text().trim()[0];
   return currText ? currText : "";
+}
+
+export function extractDescription($: any) {
+  // these are possible elements holding description of the product
+  const selectors = [
+    ".a-unordered-list .a-list-item",
+    ".a-expander-content p",
+    // Add more selectors here if needed
+  ];
+
+  for (const selector of selectors) {
+    const elements = $(selector);
+    if (elements.length > 0) {
+      const textContent = elements
+        .map((_: any, element: any) => $(element).text().trim())
+        .get()
+        .join("\n");
+      return textContent;
+    }
+  }
+
+  // If no matching elements were found, return an empty string
+  return "";
 }
