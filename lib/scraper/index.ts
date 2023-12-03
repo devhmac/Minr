@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { extractCurr, extractPrice } from "../utils/extractPrice";
+import { extractCurr, extractPrice } from "../utils/extractFunctions";
 
 export async function scrapeUrl(url: string) {
   if (!url) return;
@@ -23,7 +23,6 @@ export async function scrapeUrl(url: string) {
   try {
     // fetching product page
     const response = await axios.get(url, options);
-
     const $ = cheerio.load(response.data);
 
     //grab product info
@@ -31,10 +30,13 @@ export async function scrapeUrl(url: string) {
     const title = $(`#productTitle`).text().trim();
 
     const currPrice = extractPrice(
+      // $(".priceToPay span.a-price-whole"),
+      // $(".a.size.base.a-color-price"),
+      // $(".a-button-selected .a-color-base"),
+      // $("span .a-price")
       $(".priceToPay span.a-price-whole"),
       $(".a.size.base.a-color-price"),
-      $(".a-button-selected .a-color-base"),
-      $("span .a-price")
+      $(".a-button-selected .a-color-base")
     );
 
     const originalPrice = extractPrice(
@@ -46,7 +48,7 @@ export async function scrapeUrl(url: string) {
     );
 
     const outOfStock =
-      $("#availability-span").text().trim().toLowerCase() ===
+      $("#availability span").text().trim().toLowerCase() ===
       "current unavailable";
 
     const images =

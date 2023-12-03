@@ -1,3 +1,5 @@
+import { PriceHistoryItem, Product } from "@/types";
+
 // immediately spread multiple elements into function
 export function extractPrice(...elements: any) {
   for (const element of elements) {
