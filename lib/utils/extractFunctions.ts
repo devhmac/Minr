@@ -41,3 +41,30 @@ export function extractDescription($: any) {
   // If no matching elements were found, return an empty string
   return "";
 }
+
+export const getLowestPrice = (priceList: PriceHistoryItem[]) => {
+  let lowest = priceList[0];
+  priceList.forEach((item, i) => {
+    if (item.price < lowest.price) {
+      lowest = priceList[i];
+    }
+  });
+  return lowest.price;
+};
+
+export const getHighestPrice = (priceList: PriceHistoryItem[]) => {
+  let highest = priceList[0];
+
+  priceList.forEach((item, i) => {
+    if (item.price > highest.price) {
+      highest = priceList[i];
+    }
+  });
+  return highest.price;
+};
+
+export const getAveragePrice = (priceList: PriceHistoryItem[]) => {
+  const priceSum = priceList.reduce((acc, curr) => acc + curr.price, 0);
+  const average = priceSum / priceList.length || 0;
+  return average;
+};
