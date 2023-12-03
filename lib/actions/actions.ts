@@ -1,10 +1,15 @@
 "use server";
 
 import { PriceHistoryItem } from "@/types";
+import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
 import { dbConnect } from "../mongoose";
 import { scrapeUrl } from "../scraper";
-import { getHighestPrice, getLowestPrice } from "../utils/extractFunctions";
+import {
+  getAveragePrice,
+  getHighestPrice,
+  getLowestPrice,
+} from "../utils/extractFunctions";
 
 export async function scrapeProduct(productUrl: string) {
   if (!productUrl) return;
@@ -18,9 +23,10 @@ export async function scrapeProduct(productUrl: string) {
     let product = scrapedProduct;
     const existingProduct = await Product.findOne({ url: scrapedProduct.url });
 
-    // if product already exists we need to update it
+    // if product already exists we need to create an updated version
     if (existingProduct) {
       //update the price history on the prod with the new current price
+
       const updatedPriceHistory: any = [
         ...existingProduct.priceHistory,
         { price: scrapedProduct.currentPrice },
@@ -31,9 +37,20 @@ export async function scrapeProduct(productUrl: string) {
         priceHistory: updatedPriceHistory,
         lowestPrice: getLowestPrice(updatedPriceHistory),
         highestPrice: getHighestPrice(updatedPriceHistory),
-        averagePrice: getAveragePrice(),
+        averagePrice: getAveragePrice(updatedPriceHistory),
       };
     }
+
+    const newProduct = await Product.findOneAndUpdate(
+      {
+        url: scrapedProduct.url,
+      },
+      product,
+      //update or if none, add new
+      { upsert: true, new: true }
+    );
+
+    revalidatePath(`/products/${newProduct._id}`);
   } catch (error) {
     throw new Error(`Failed to create/update product: ${error}`);
   }
