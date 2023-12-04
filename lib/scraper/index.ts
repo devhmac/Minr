@@ -69,14 +69,16 @@ export async function scrapeUrl(url: string) {
     const description = extractDescription($);
 
     // ALSO WANT - stars, # reviews and category
-
+    console.log("dont forget to delete these test values");
     const scrapedData = {
       url,
       currency: currency || "$",
       title,
       image: imageUrls[0],
-      currentPrice: Number(currPrice) || Number(originalPrice),
-      originalPrice: Number(originalPrice) || Number(currPrice),
+      currentPrice: 10,
+      originalPrice: 10,
+      // currentPrice: Number(currPrice) || Number(originalPrice),
+      // originalPrice: Number(originalPrice) || Number(currPrice),
       priceHistory: [],
       discountRate: Number(discount),
       reviewsCount: 50,
@@ -84,9 +86,12 @@ export async function scrapeUrl(url: string) {
       category: "default",
       outOfStock,
       description,
-      lowerPrice: Number(currPrice) || Number(originalPrice),
-      highestPrice: Number(originalPrice) || Number(currPrice),
-      averagePrice: Number(currPrice) || Number(originalPrice),
+      lowerPrice: 10,
+      highestPrice: 10,
+      averagePrice: 10,
+      // lowerPrice: Number(currPrice) || Number(originalPrice),
+      // highestPrice: Number(originalPrice) || Number(currPrice),
+      // averagePrice: Number(currPrice) || Number(originalPrice),
     };
     // console.log(scrapedData);
     return scrapedData;
