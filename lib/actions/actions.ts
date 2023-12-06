@@ -55,3 +55,14 @@ export async function scrapeProduct(productUrl: string) {
     throw new Error(`Failed to create/update product: ${error}`);
   }
 }
+
+export const getProductFromDB = async (productId: string) => {
+  try {
+    dbConnect();
+    const product = await Product.findOne({ _id: productId });
+
+    !product ? null : product;
+  } catch (error) {
+    throw new Error(`Failed to get product ${error}`);
+  }
+};

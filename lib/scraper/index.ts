@@ -75,10 +75,9 @@ export async function scrapeUrl(url: string) {
       currency: currency || "$",
       title,
       image: imageUrls[0],
-      currentPrice: 10,
-      originalPrice: 10,
-      // currentPrice: Number(currPrice) || Number(originalPrice),
-      // originalPrice: Number(originalPrice) || Number(currPrice),
+      currentPrice: 20, //Number(currPrice) || Number(originalPrice),
+      originalPrice: 10, //Number(originalPrice) || Number(currPrice),
+
       priceHistory: [],
       discountRate: Number(discount),
       reviewsCount: 50,
@@ -86,12 +85,9 @@ export async function scrapeUrl(url: string) {
       category: "default",
       outOfStock,
       description,
-      lowerPrice: 10,
-      highestPrice: 10,
-      averagePrice: 10,
-      // lowerPrice: Number(currPrice) || Number(originalPrice),
-      // highestPrice: Number(originalPrice) || Number(currPrice),
-      // averagePrice: Number(currPrice) || Number(originalPrice),
+      lowerPrice: 10, //Number(currPrice) || Number(originalPrice),
+      highestPrice: 10, //Number(originalPrice) || Number(currPrice),
+      averagePrice: 10, //Number(currPrice) || Number(originalPrice),
     };
     // console.log(scrapedData);
     return scrapedData;
