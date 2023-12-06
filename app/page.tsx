@@ -2,8 +2,11 @@ import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
 import React from "react";
 import { ToastContainer } from "react-toastify";
+import { getAllProducts } from "@/lib/actions/actions";
 
-const Page = () => {
+const Page = async () => {
+  const allProducts = await getAllProducts();
+
   return (
     <>
       <section className="px-6 border-2-[] md:px-20 py-24 text-secondary">
@@ -29,8 +32,8 @@ const Page = () => {
         <h2 className="section-text"> Trending</h2>
 
         <div className="flex flex-wrap gap-x-8 gap-7-16 text-mediumEmph">
-          {["Iphone", "Headphones", "Computer"].map((item) => {
-            return <div>{item}</div>;
+          {allProducts?.map((item) => {
+            return <div>{item.title}</div>;
           })}
         </div>
       </section>

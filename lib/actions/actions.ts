@@ -1,6 +1,6 @@
 "use server";
 
-import { PriceHistoryItem } from "@/types";
+import { PriceHistoryItem, Product as ProductType } from "@/types";
 import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
 import { dbConnect } from "../mongoose";
@@ -70,7 +70,7 @@ export const getProductFromDB = async (productId: string) => {
 export const getAllProducts = async () => {
   try {
     dbConnect();
-    const products = await Product.find();
+    const products: ProductType[] = await Product.find();
     return products;
   } catch (error) {
     throw new Error(`Failed to get products ${error}`);
