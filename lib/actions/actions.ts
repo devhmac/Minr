@@ -66,3 +66,13 @@ export const getProductFromDB = async (productId: string) => {
     throw new Error(`Failed to get product ${error}`);
   }
 };
+
+export const getAllProducts = async () => {
+  try {
+    dbConnect();
+    const products = await Product.find();
+    return products;
+  } catch (error) {
+    throw new Error(`Failed to get products ${error}`);
+  }
+};

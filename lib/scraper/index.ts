@@ -85,7 +85,7 @@ export async function scrapeUrl(url: string) {
       category: "default",
       outOfStock,
       description,
-      lowerPrice: 10, //Number(currPrice) || Number(originalPrice),
+      lowestPrice: 10, //Number(currPrice) || Number(originalPrice),
       highestPrice: 10, //Number(originalPrice) || Number(currPrice),
       averagePrice: 10, //Number(currPrice) || Number(originalPrice),
     };
