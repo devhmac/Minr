@@ -81,3 +81,14 @@ export const getAllProducts = async () => {
     throw new Error(`Failed to get products ${error}`);
   }
 };
+
+export const getProductById = async (id: string) => {
+  try {
+    dbConnect();
+
+    const product = await Product.findOne({ _id: id });
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
