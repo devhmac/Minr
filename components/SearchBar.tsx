@@ -1,6 +1,8 @@
 "use client";
-import { scrapeProduct } from "@/lib/actions/actions";
+import { scrapeAndSaveProduct } from "@/lib/actions/actions";
+import { Product } from "@/types";
 import { Loader2 } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -46,7 +48,9 @@ const SearchBar = () => {
     try {
       setIsloading(true);
       //scrape linked product
-      const product = await scrapeProduct(searchPrompt);
+      const productId: string = await scrapeAndSaveProduct(searchPrompt);
+      setSearchPrompt("");
+      // redirect(`/products/${productId}`);
     } catch (error) {
       console.log(error);
     } finally {

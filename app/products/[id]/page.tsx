@@ -1,7 +1,10 @@
 import React from "react";
+type Props = {
+  params: { id: string };
+};
 
-const page = () => {
-  return <div>prod details baby</div>;
+const page = ({ params: { id } }: Props) => {
+  return <div>{id}</div>;
 };
 
 export default page;

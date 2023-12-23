@@ -10,8 +10,9 @@ import {
   getHighestPrice,
   getLowestPrice,
 } from "../utils/extractFunctions";
+import { redirect } from "next/navigation";
 
-export async function scrapeProduct(productUrl: string) {
+export async function scrapeAndSaveProduct(productUrl: string) {
   if (!productUrl) return;
 
   try {
@@ -39,6 +40,8 @@ export async function scrapeProduct(productUrl: string) {
         highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
       };
+
+      return existingProduct._id;
     }
 
     const newProduct = await Product.findOneAndUpdate(
@@ -51,6 +54,8 @@ export async function scrapeProduct(productUrl: string) {
     );
 
     revalidatePath(`/products/${newProduct._id}`);
+
+    return newProduct._id;
   } catch (error) {
     throw new Error(`Failed to create/update product: ${error}`);
   }
