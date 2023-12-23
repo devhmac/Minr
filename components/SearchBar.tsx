@@ -2,7 +2,8 @@
 import { scrapeAndSaveProduct } from "@/lib/actions/actions";
 import { Product } from "@/types";
 import { Loader2 } from "lucide-react";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,6 +26,8 @@ const isValidAmazonLink = (url: string) => {
 };
 
 const SearchBar = () => {
+  const router = useRouter();
+
   const [searchPrompt, setSearchPrompt] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
 
@@ -50,6 +53,8 @@ const SearchBar = () => {
       //scrape linked product
       const productId: string = await scrapeAndSaveProduct(searchPrompt);
       setSearchPrompt("");
+
+      router.push(`/products/${productId}`);
       // redirect(`/products/${productId}`);
     } catch (error) {
       console.log(error);
