@@ -41,7 +41,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         averagePrice: getAveragePrice(updatedPriceHistory),
       };
 
-      return existingProduct._id;
+      return existingProduct._id.toString();
     }
 
     const newProduct = await Product.findOneAndUpdate(
@@ -55,7 +55,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
     revalidatePath(`/products/${newProduct._id}`);
 
-    return newProduct._id;
+    return newProduct._id.toString();
   } catch (error) {
     throw new Error(`Failed to create/update product: ${error}`);
   }
