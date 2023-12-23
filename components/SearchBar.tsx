@@ -31,14 +31,17 @@ const SearchBar = () => {
 
     const isValidLink = isValidAmazonLink(searchPrompt);
 
-    isValidLink
-      ? toast("wow its good")
-      : toast.error("baaad link", {
+    !isValidLink &&
+      // ? toast("wow its good")
+      toast.error(
+        "Sorry, the link was invalid. Please try again with a valid Amazon link",
+        {
           position: "top-center",
           closeOnClick: true,
           pauseOnHover: true,
           // className: "border-2px border-red-200",
-        });
+        }
+      );
 
     try {
       setIsloading(true);
