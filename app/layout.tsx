@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Minr",
-  description: "A Full Stack Price Crawler",
+  description: "A Full Stack Prouct Analytics Crawler",
 };
 
 export default function RootLayout({

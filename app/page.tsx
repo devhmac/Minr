@@ -3,6 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { getAllProducts } from "@/lib/actions/actions";
+import Image from "next/image";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -16,7 +17,16 @@ const Page = async () => {
             {/* <p className="small-text">Smart Shopping</p> */}
             <h1 className="head-text text-center">
               Product growth and pricing analytics all in one place with{" "}
-              <span className="text-primary">Minr</span>
+              <span className="text-primary ">
+                Minr{" "}
+                <Image
+                  className="inline pb-3"
+                  src="/minr_logo.png"
+                  height={50}
+                  width={50}
+                  alt="Minr Logo"
+                />
+              </span>
             </h1>
             <p className="mt-6 text-mediumEmph text-center">
               Empower your growth with A self-serve platform for your online
