@@ -11,9 +11,9 @@ const Page = async () => {
 
   return (
     <>
-      <section className="px-6 border-2-[] md:px-20 py-24 text-secondary">
+      <section className="px-6 md:px-20 py-24 text-secondary">
         <ToastContainer />
-        <div className="flex max-xl:flex-col max-xl:flex-col-reverse gap-16">
+        <div className="flex max-xl:flex-col-reverse xl:gap-16">
           <div className="flex flex-col justify-center">
             <h1 className="head-text text-center">
               Product growth and pricing analytics all in one place with{" "}
