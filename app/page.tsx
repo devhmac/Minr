@@ -47,7 +47,11 @@ const Page = async () => {
 
         <div className="flex flex-wrap gap-x-8 gap-7-16 text-mediumEmph">
           {allProducts?.map((item, i) => {
-            return <div key={i}>{item.title}</div>;
+            return (
+              <a key={i} href={`/products/${item._id}`}>
+                {item.title}
+              </a>
+            );
           })}
         </div>
       </section>
