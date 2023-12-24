@@ -193,7 +193,7 @@
 
   /* SEARCHBAR INPUT */
   .searchbar-input {
-    @apply flex-1 min-w-[200px] w-full p-3 border border-lowEmph rounded-lg shadow-xs text-base text-[#121212] focus:outline-none;
+    @apply flex-1 min-w-[200px] w-full p-3 border border-lowEmph rounded-lg shadow-xs text-base text-[#121212] placeholder-zinc-500 focus:outline-none bg-secondary;
   }
 
   .searchbar-btn {
