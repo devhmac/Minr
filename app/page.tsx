@@ -1,9 +1,10 @@
 import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
-import React from "react";
+import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { getAllProducts } from "@/lib/actions/actions";
 import Image from "next/image";
+import ProductLineChart from "@/components/ProductLineChart";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -12,9 +13,8 @@ const Page = async () => {
     <>
       <section className="px-6 border-2-[] md:px-20 py-24 text-secondary">
         <ToastContainer />
-        <div className="flex max-xl:flex-col gap-16">
+        <div className="flex max-xl:flex-col max-xl:flex-col-reverse gap-16">
           <div className="flex flex-col justify-center">
-            {/* <p className="small-text">Smart Shopping</p> */}
             <h1 className="head-text text-center">
               Product growth and pricing analytics all in one place with{" "}
               <span className="text-primary ">
@@ -34,7 +34,8 @@ const Page = async () => {
             </p>
             <SearchBar />
           </div>
-          <MainCarousel />
+          {/* <MainCarousel /> */}
+          <ProductLineChart />
         </div>
       </section>
 

@@ -9,13 +9,14 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#CE93D8",
+          DEFAULT: "#8884d8",
           orange: "#D48D3B",
           green: "#3E9242",
         },
         secondary: "rgba(255,255,255, 0.9)",
         mediumEmph: "rgba(255,255,255, 0.6)",
         lowEmph: "rgba(255,255,255, 0.3)",
+        lowestEmph: "rgba(255,255,255, 0.15)",
         "gray-200": "#EAECF0",
         "gray-300": "D0D5DD",
         "gray-500": "#667085",
