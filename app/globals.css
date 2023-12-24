@@ -71,7 +71,7 @@
   }
 
   .head-text {
-    @apply mt-4 text-6xl leading-[72px] font-bold tracking-[-1.2px] text-secondary subpixel-antialiased;
+    @apply mt-4 text-4xl sm:text-6xl sm:leading-[72px] font-bold tracking-[-1.2px] text-secondary subpixel-antialiased;
   }
 
   .section-text {
