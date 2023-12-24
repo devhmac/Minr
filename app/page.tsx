@@ -46,8 +46,8 @@ const Page = async () => {
         <h2 className="section-text"> Trending</h2>
 
         <div className="flex flex-wrap gap-x-8 gap-7-16 text-mediumEmph">
-          {allProducts?.map((item) => {
-            return <div>{item.title}</div>;
+          {allProducts?.map((item, i) => {
+            return <div key={i}>{item.title}</div>;
           })}
         </div>
       </section>
