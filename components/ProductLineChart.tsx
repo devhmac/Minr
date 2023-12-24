@@ -2,40 +2,17 @@
 import React from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 
-const data = [
-  {
-    average: 400,
-    today: 240,
-  },
-  {
-    average: 300,
-    today: 139,
-  },
-  {
-    average: 200,
-    today: 980,
-  },
-  {
-    average: 278,
-    today: 390,
-  },
-  {
-    average: 189,
-    today: 480,
-  },
-  {
-    average: 239,
-    today: 380,
-  },
-  {
-    average: 349,
-    today: 430,
-  },
-];
+// will have to change this later once I decide on actually data titles
+type Props = {
+  data: {
+    average: number;
+    today: number;
+  }[];
+};
 
-// max-w-3xl h-[500px]
+const ProductLineChart = (props: Props) => {
+  const { data } = props;
 
-const ProductLineChart = () => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart

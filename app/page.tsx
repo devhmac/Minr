@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { getAllProducts } from "@/lib/actions/actions";
 import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
+import data from "@/lib/static/exampleData";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -36,7 +37,7 @@ const Page = async () => {
           </div>
           {/* <MainCarousel /> */}
           <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border border-lowestEmph rounded-[30px] mx-auto max-w-[250px] h-[150px] sm:max-w-xl sm:h-[200px] xl:max-w-3xl xl:h-[500px]">
-            <ProductLineChart />
+            <ProductLineChart data={data} />
           </div>
         </div>
       </section>
