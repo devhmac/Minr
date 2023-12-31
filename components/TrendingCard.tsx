@@ -12,7 +12,7 @@ const TrendingCard = ({ product }: Props) => {
     <Link
       href={`/products/${product._id}`}
       title={product.title}
-      className="product-card border-2 border-lowestEmph rounded-md items-center p-2 bg-[#ffffff0d] hover:bg-primary hover:shadow hover:shadow-lowestEmph hover:bg-opacity-70"
+      className="product-card border-2 border-[#ffffff0d] bg-lower rounded-md items-center p-2 bg-[#ffffff0d] hover:bg-primary hover:shadow hover:shadow-lowestEmph hover:bg-opacity-70"
     >
       <div className="product-card_img-container bg-white h-full w-full ">
         {product.discountRate > 0 ? (
@@ -34,8 +34,8 @@ const TrendingCard = ({ product }: Props) => {
           {product.title}
         </h3>
         <div className="flex justify-between">
-          <p>Category Placeholder</p>
-          <p>
+          <p>Category</p>
+          <p className="text-secondary">
             <span>{product.currency}</span>
             {product.currentPrice}
           </p>
