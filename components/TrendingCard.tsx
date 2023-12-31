@@ -14,6 +14,11 @@ const TrendingCard = ({ product }: Props) => {
       className="product-card border-2 border-lowestEmph rounded-md items-center p-2 bg-[#ffffff0d] hover:bg-primary hover:shadow hover:shadow-lowestEmph hover:bg-opacity-70"
     >
       <div className="product-card_img-container bg-white h-full w-full ">
+        {product.discountRate > 0 ? (
+          <p className="absolute bg-primary text-secondary justify-center py-1 px-1.5 rounded-md left-1/2 -translate-x-1/2 border-gray-200 border">
+            {product.discountRate}% Off
+          </p>
+        ) : null}
         <Image
           src={product.image}
           alt="product image"
@@ -32,11 +37,8 @@ const TrendingCard = ({ product }: Props) => {
           <p>
             <span>{product.currency}</span>
             {product.currentPrice}
-            <span>/{product.discountRate}%</span>
           </p>
         </div>
-
-        {/* <p className="text-sm">{product.description}</p> */}
       </div>
     </Link>
   );
