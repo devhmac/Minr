@@ -7,6 +7,7 @@ import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
 import TrendingCard from "@/components/TrendingCard";
+import Product from "@/lib/models/product.model";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
