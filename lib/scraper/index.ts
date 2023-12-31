@@ -62,7 +62,7 @@ export async function scrapeUrl(url: string) {
 
     const imageUrls = Object.keys(JSON.parse(images));
 
-    const currency = extractCurr($(".a-price-symbol"));
+    const currency = String(extractCurr($(".a-price-symbol")));
 
     const discount = $(".savingsPercentage ").text().replace(/[-%]/g, "");
 
