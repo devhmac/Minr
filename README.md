@@ -5,3 +5,7 @@ tailwind
 axios
 cheerio - parse html
 brightdata
+
+challenges
+
+- URL based state changes on the product side can create dublicates of a specific product, if someone copies the url with a different photo selected for example

@@ -49,9 +49,13 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         url: scrapedProduct.url,
       },
       product,
+
       //update or if none, add new
       { upsert: true, new: true }
     );
+
+    console.log("What we're attempting to update", product);
+    console.log("new product", newProduct);
 
     revalidatePath(`/products/${newProduct._id}`);
 
