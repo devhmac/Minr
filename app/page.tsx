@@ -43,10 +43,10 @@ const Page = async () => {
         </div>
       </section>
 
-      <section className="trending-section">
+      <section className="trending-section ">
         <h2 className="section-text"> Trending</h2>
 
-        <div className="flex flex-wrap gap-x-8 gap-y-8 text-mediumEmph">
+        <div className="flex flex-wrap gap-x-8 gap-y-8 text-mediumEmph  justify-center ">
           {allProducts?.map((item, i) => {
             return <TrendingCard product={item} />;
           })}

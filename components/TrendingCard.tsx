@@ -11,21 +11,23 @@ const TrendingCard = ({ product }: Props) => {
   return (
     <Link
       href={`/products/${product._id}`}
-      className="border border-lowestEmph rounded-[15px] w-[300px]"
+      className="product-card border border-lowestEmph rounded-[15px]  items-center pt-3"
     >
-      <div className="product-card_img-container flex items-center bg-white ">
+      <div className="product-card_img-container bg-white max-h-[250px] max-w-[250px] ">
         <Image
           src={product.image}
           alt="product image"
           width="200"
           height="200"
-          className="h-full w-full bg-transparent max-h-[250px]"
+          className="h-full w-full bg-transparent max-h-[250px] max-w-[250px] object-contain"
         />
       </div>
-      <div className="flex flex-col justify-center">
-        <p className="text-l leading-5 truncate font-semibold">
+
+      <div className="flex flex-col gap-2">
+        <h3 className="text-l leading-5 truncate font-semibold w-[280px]">
           {product.title}
-        </p>
+        </h3>
+        <p>{product.currentPrice}</p>
 
         {/* <p className="text-sm">{product.description}</p> */}
       </div>
