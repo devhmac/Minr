@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const productSchema = new Schema(
   {
     url: { type: String, required: true, unique: true },
-    currenct: { type: String, required: true },
+    currency: { type: String, required: true },
     image: { type: String, required: true },
     title: { type: String, required: true },
     currentPrice: { type: Number, required: true },
