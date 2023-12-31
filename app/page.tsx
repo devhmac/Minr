@@ -37,18 +37,18 @@ const Page = async () => {
             <SearchBar />
           </div>
           {/* <MainCarousel /> */}
-          <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border border-lowestEmph rounded-[30px] mx-auto max-w-[250px] h-[150px] sm:max-w-xl sm:h-[200px] xl:max-w-3xl xl:h-[500px]">
+          <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border-2 border-lowestEmph rounded-[30px] mx-auto max-w-[250px] h-[150px] sm:max-w-xl sm:h-[200px] xl:max-w-3xl xl:h-[500px]">
             <ProductLineChart data={data} />
           </div>
         </div>
       </section>
 
-      <section className="trending-section ">
-        <h2 className="section-text"> Trending</h2>
+      <section className="trending-section">
+        <h2 className="section-text text-center"> Trending Products</h2>
 
-        <div className="flex flex-wrap gap-x-8 gap-y-8 text-mediumEmph  justify-center ">
+        <div className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center ">
           {allProducts?.map((item, i) => {
-            return <TrendingCard product={item} />;
+            return <TrendingCard key={i} product={item} />;
           })}
         </div>
       </section>

@@ -12,7 +12,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
 
   if (!product) redirect("/");
-
+  console.log(product);
   return (
     <div>
       <div>{product.title}</div>
@@ -22,6 +22,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         height={400}
         width={400}
       />
+      <p> bro:{JSON.stringify(product)}</p>
     </div>
   );
 };
