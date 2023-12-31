@@ -6,6 +6,7 @@ import { getAllProducts } from "@/lib/actions/actions";
 import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
+import TrendingCard from "@/components/TrendingCard";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -45,13 +46,9 @@ const Page = async () => {
       <section className="trending-section">
         <h2 className="section-text"> Trending</h2>
 
-        <div className="flex flex-wrap gap-x-8 gap-7-16 text-mediumEmph">
+        <div className="flex flex-wrap gap-x-8 gap-y-8 text-mediumEmph">
           {allProducts?.map((item, i) => {
-            return (
-              <a key={i} href={`/products/${item._id}`}>
-                {item.title}
-              </a>
-            );
+            return <TrendingCard product={item} />;
           })}
         </div>
       </section>
