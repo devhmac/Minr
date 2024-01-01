@@ -1,6 +1,7 @@
 import { getProductById } from "@/lib/actions/actions";
 import { Product } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -22,7 +23,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         height={400}
         width={400}
       />
-      <p> bro:{JSON.stringify(product)}</p>
+      {/* <p> bro:{JSON.stringify(product)}</p> */}
+      <Link className="searchbar-btn" href={product.url}>
+        To Amazon Product
+      </Link>
     </div>
   );
 };
