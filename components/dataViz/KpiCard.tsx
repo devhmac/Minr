@@ -8,7 +8,7 @@ type Props = {
 
 export default ({ title, price, currency }: Props) => (
   <Card
-    className="max-w-xs mx-auto"
+    className="max-w-xs mx-auto min-w-[127px] tremor-light"
     decoration="bottom"
     decorationColor="indigo"
   >
