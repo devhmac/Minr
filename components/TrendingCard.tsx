@@ -25,7 +25,7 @@ const TrendingCard = ({ product }: Props) => {
           alt="product image"
           width="200"
           height="200"
-          className="h-full w-full bg-transparent max-h-[200px] max-w-[250px] object-contain"
+          className="h-full w-full bg-transparent max-h-[200px] max-w-[250px] object-contain rounded-md "
         />
       </div>
 
