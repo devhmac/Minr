@@ -4,8 +4,15 @@ toastr
 tailwind
 axios
 cheerio - parse html
+<<<<<<< Updated upstream
 brightdata
 
 challenges
 
 - URL based state changes on the product side can create dublicates of a specific product, if someone copies the url with a different photo selected for example
+=======
+brightdata - scraping bot anti-detection
+recharts
+mongodb
+mongoose
+>>>>>>> Stashed changes
