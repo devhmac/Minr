@@ -1,4 +1,5 @@
 import ProductLineChart from "@/components/ProductLineChart";
+import KpiCard from "@/components/dataViz/KpiCard";
 import { getProductById } from "@/lib/actions/actions";
 import data from "@/lib/static/exampleData";
 import { Product } from "@/types";
@@ -31,10 +32,22 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               className="h-full w-full bg-transparent max-h-[300px] max-w-[300px] object-contain rounded-md"
             />
           </div>
-          <div className="flex flex-row justify-between">
-            <p>stat 1</p>
-            <p>stat 2</p>
-            <p>stat 3</p>
+          <div className="flex flex-row justify-between mt-2 gap-2 ">
+            <KpiCard
+              title={"Current Price"}
+              price={product.currentPrice}
+              currency={product.currency}
+            />
+            <KpiCard
+              title={"Current Price"}
+              price={product.currentPrice}
+              currency={product.currency}
+            />
+            <KpiCard
+              title={"Current Price"}
+              price={product.currentPrice}
+              currency={product.currency}
+            />
           </div>
         </div>
         {/* <p> bro:{JSON.stringify(product)}</p> */}
