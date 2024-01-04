@@ -22,8 +22,8 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
       <div className="flex flex-col lg:flex-row justify-center gap-6">
         <div className="justify-center items-center sm:px-auto py-5 sm:pt-5 pb-5  w-1/2 border-2 border-lowestEmph rounded-[30px] mx-auto sm:max-w-xl  lg:max-w-md lg:h-[400px]">
-          {/* <div className="flex flex-col w-auto max-w-[500px] mx-auto lg:max-w-3xl lg:max-h-[400px] bg-red-300"> */}
-          <div className=" flex relative justify-center items-center product-card_img-container bg-white max-h-[300px] max-w-[300px] mx-auto">
+          <div className="flex flex-col w-auto max-w-[500px] mx-auto lg:max-w-3xl lg:max-h-[400px] bg-red-300 items-center bg-white rounded-md mx-5">
+            {/* <div className=" flex relative justify-center items-center product-card_img-container bg-white max-h-[300px] max-w-[300px] mx-auto"> */}
             <Image
               src={product.image}
               alt="Picture of Product"
