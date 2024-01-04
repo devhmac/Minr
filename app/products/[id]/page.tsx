@@ -19,44 +19,44 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   return (
     <section className="px-6 md:px-20 py-24">
       <h3 className="text-secondary text-semibold">{product.title}</h3>
-
       <div className="flex flex-col lg:flex-row justify-center items-center gap-6">
-        <div className="justify-center items-center sm:px-auto py-5 sm:pt-5 pb-5  w-1/2 sm:max-w-xl  lg:max-w-md lg:h-[400px]">
+        <div className="justify-center items-center sm:px-auto sm:pt-5 pb-5  w-1/3 sm:max-w-xl lg:h-[400px]">
           {/* <div className="flex flex-col w-auto max-w-[500px] mx-auto lg:max-w-3xl lg:max-h-[400px] bg-red-300 items-center bg-white rounded-md mx-5"> */}
           {/* <div className="flex  items-center justify-center"> */}
-          <div className=" flex relative justify-center items-center product-card_img-container bg-white max-h-full max-w-auto ">
+          <div className="justify-center items-center product-card_img-container bg-white h-full max-w-auto ">
             <Image
               src={product.image}
               alt="Picture of Product"
               height={200}
               width={200}
-              className="h-auto w-full bg-transparent max-h-[300px] max-w-[300px] object-contain rounded-md"
+              className="h-auto w-full bg-transparent max-h-[400px] max-w-[300px] object-contain rounded-md"
             />
           </div>
           {/* </div> */}
-          <div className="flex flex-row justify-between items-center mt-5 gap-2  ">
-            <KpiCard
-              title={"Current Price"}
-              price={product.currentPrice}
-              currency={product.currency}
-            />
-            <KpiCard
-              title={"Average Price"}
-              price={product.averagePrice}
-              currency={product.currency}
-            />
-            <KpiCard
-              title={"Current Price"}
-              price={product.currentPrice}
-              currency={product.currency}
-            />
-          </div>
         </div>
+
         {/* <p> bro:{JSON.stringify(product)}</p> */}
 
         <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border-2 border-lowestEmph rounded-[30px] mx-auto h-[150px] sm:max-w-xl sm:h-[200px] lg:max-w-3xl lg:h-[400px]">
           <ProductLineChart data={data} />
         </div>
+      </div>
+      <div className="flex flex-row justify-between items-center mt-5 gap-2 flex-wrap ">
+        <KpiCard
+          title={"Current Price"}
+          price={product.currentPrice}
+          currency={product.currency}
+        />
+        <KpiCard
+          title={"Average Price"}
+          price={product.averagePrice}
+          currency={product.currency}
+        />
+        <KpiCard
+          title={"Lowest Price"}
+          price={product.lowestPrice}
+          currency={product.currency}
+        />
       </div>
       <div className="flex justify-end">
         <Link className="mx-2" href={product.url}>
