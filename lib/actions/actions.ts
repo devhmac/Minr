@@ -26,13 +26,15 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
     // if product already exists we need to create an updated version
     if (existingProduct) {
+      console.log("------EXISTING PRODUCT FOUND-----");
+      console.log("------Current Price History", existingProduct.priceHistory);
       //update the price history on the prod with the new current price
 
       const updatedPriceHistory: any = [
         ...existingProduct.priceHistory,
         { price: scrapedProduct.currentPrice },
       ];
-
+      console.log("------new Price History", updatedPriceHistory);
       product = {
         ...scrapedProduct,
         priceHistory: updatedPriceHistory,
@@ -41,7 +43,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         averagePrice: getAveragePrice(updatedPriceHistory),
       };
 
-      return existingProduct._id.toString();
+      // return existingProduct._id.toString();
     }
 
     const newProduct = await Product.findOneAndUpdate(

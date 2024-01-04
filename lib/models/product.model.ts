@@ -12,7 +12,7 @@ const productSchema = new Schema(
     priceHistory: [
       {
         price: { type: Number, required: true },
-        date: { type: Date, default: Date.now() },
+        date: { type: Date, default: Date.now },
       },
     ],
     lowestPrice: { type: Number },
@@ -22,13 +22,8 @@ const productSchema = new Schema(
     description: { type: String },
     category: { type: String },
     reviewsCount: { type: Number },
-    outOfStock: { type: Boolean, default: false },
-    stars: { type: Number },
-    users: [
-      {
-        email: { type: String, default: true },
-      },
-    ],
+    isOutOfStock: { type: Boolean, default: false },
+    users: [{ email: { type: String, required: true } }],
     default: [],
   },
   { timestamps: true }
