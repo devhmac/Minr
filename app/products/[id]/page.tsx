@@ -41,7 +41,8 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           <ProductLineChart data={data} />
         </div>
       </div>
-      <div className="flex flex-row justify-between items-center mt-5 gap-2 flex-wrap ">
+      <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
+        {/* flex flex-row justify-around items-center mt-5 gap-2 flex-wrap  */}
         <KpiCard
           title={"Current Price"}
           price={product.currentPrice}
