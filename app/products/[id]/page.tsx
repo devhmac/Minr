@@ -46,21 +46,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
       </div>
       <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
         {/* flex flex-row justify-around items-center mt-5 gap-2 flex-wrap  */}
-        <KpiCard
-          title={"Current Price"}
-          price={product.currentPrice}
-          currency={product.currency}
-        />
-        <KpiCard
-          title={"Average Price"}
-          price={product.averagePrice}
-          currency={product.currency}
-        />
-        <KpiCard
-          title={"Lowest Price"}
-          price={product.lowestPrice}
-          currency={product.currency}
-        />
         <ComparisonKpiCard
           title={"Current Price"}
           price={product.currentPrice}
@@ -68,10 +53,23 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           comparisonText={"vs Average"}
           currency={product.currency}
         />
+        {/* <KpiCard
+          title={"Current Price"}
+          price={product.currentPrice}
+          currency={product.currency}
+        /> */}
+        <KpiCard
+          title={"Highest Price"}
+          price={product.highestPrice}
+          currency={product.currency}
+        />
+        <KpiCard
+          title={"Lowest Price"}
+          price={product.lowestPrice}
+          currency={product.currency}
+        />
       </div>
-      <div className="w-xl h-xl">
-        <ExampleModule />
-      </div>
+      <div className="w-xl h-xl"></div>
       <div className="flex justify-end">
         <Link className="mx-2" href={product.url}>
           Amazon

@@ -8,38 +8,6 @@ import {
   Grid,
 } from "@tremor/react";
 
-const categories = [
-  {
-    title: "Sales",
-    metric: "$ 12,699",
-    metricPrev: "$ 9,456",
-    delta: "34.3%",
-    deltaType: "moderateIncrease",
-  },
-  {
-    title: "Profit",
-    metric: "$ 40,598",
-    metricPrev: "$ 45,564",
-    delta: "10.9%",
-    deltaType: "moderateDecrease",
-  },
-  {
-    title: "Customers",
-    metric: "1,072",
-    metricPrev: "856",
-    delta: "25.3%",
-    deltaType: "moderateIncrease",
-  },
-];
-
-const item = {
-  title: "Customers",
-  metric: "1,072",
-  metricPrev: "856",
-  delta: "25.3%",
-  deltaType: "moderateIncrease",
-};
-
 type Props = {
   price: number;
   comparisonPrice: number;
@@ -56,12 +24,19 @@ const ComparisonKpiCard = ({
   title,
 }: Props) => {
   let delta = ((comparisonPrice - price) / comparisonPrice) * 100;
-  let deltaType = delta >= 0 ? "moderateIncrease" : "moderateDecrease";
+  let deltaType =
+    delta > 0 ? "increase" : delta === 0 ? "unchanged" : "moderateDecrease";
   return (
-    <Card>
+    <Card
+      className="max-w-[240px] min-w-[127px] "
+      decoration="top"
+      decorationColor="indigo"
+    >
       <Flex alignItems="start">
         <Text>{title}</Text>
-        <BadgeDelta deltaType={deltaType}>{delta}</BadgeDelta>
+        <BadgeDelta className="rotate-180" deltaType={deltaType}>
+          {delta}
+        </BadgeDelta>
       </Flex>
       <Flex
         justifyContent="start"
