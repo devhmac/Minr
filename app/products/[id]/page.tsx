@@ -1,4 +1,5 @@
 import ProductLineChart from "@/components/ProductLineChart";
+import ExampleModule from "@/components/dataViz/ExampleModule";
 import KpiCard from "@/components/dataViz/KpiCard";
 import { getProductById } from "@/lib/actions/actions";
 import data from "@/lib/static/exampleData";
@@ -58,6 +59,9 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           price={product.lowestPrice}
           currency={product.currency}
         />
+      </div>
+      <div className="w-xl h-xl">
+        <ExampleModule />
       </div>
       <div className="flex justify-end">
         <Link className="mx-2" href={product.url}>
