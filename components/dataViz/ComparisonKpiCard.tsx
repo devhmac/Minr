@@ -56,20 +56,26 @@ const ComparisonKpiCard = ({
   title,
 }: Props) => {
   let delta = ((comparisonPrice - price) / comparisonPrice) * 100;
-
+  let deltaType = delta >= 0 ? "moderateIncrease" : "moderateDecrease";
   return (
-    <Card key={item.title}>
+    <Card>
       <Flex alignItems="start">
-        <Text>{item.title}</Text>
-        <BadgeDelta deltaType={item.deltaType}>{item.delta}</BadgeDelta>
+        <Text>{title}</Text>
+        <BadgeDelta deltaType={deltaType}>{delta}</BadgeDelta>
       </Flex>
       <Flex
         justifyContent="start"
         alignItems="baseline"
         className="truncate space-x-3"
       >
-        <Metric>{item.metric}</Metric>
-        <Text className="truncate">from {item.metricPrev}</Text>
+        <Metric>
+          {currency}
+          {price}
+        </Metric>
+        <Text className="truncate">
+          {comparisonText} {currency}
+          {comparisonPrice}
+        </Text>
       </Flex>
     </Card>
   );
