@@ -2,6 +2,7 @@ import ProductLineChart from "@/components/ProductLineChart";
 import ComparisonKpiCard from "@/components/dataViz/ComparisonKpiCard";
 import ExampleModule from "@/components/dataViz/ExampleModule";
 import KpiCard from "@/components/dataViz/KpiCard";
+import { ScrapeTracker } from "@/components/dataViz/ScrapeTracker";
 import { getProductById } from "@/lib/actions/actions";
 import data from "@/lib/static/exampleData";
 import { Product } from "@/types";
@@ -26,7 +27,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         <div className="justify-center items-center sm:px-auto sm:pt-5 pb-5  w-1/3 sm:max-w-xl lg:h-[400px]">
           {/* <div className="flex flex-col w-auto max-w-[500px] mx-auto lg:max-w-3xl lg:max-h-[400px] bg-red-300 items-center bg-white rounded-md mx-5"> */}
           {/* <div className="flex  items-center justify-center"> */}
-          <div className="justify-center items-center product-card_img-container bg-white h-full max-w-auto ">
+          <div className="justify-center items-center product-card_img-container bg-white h-full max-h-[400px] max-w-auto overflow-hidden ">
             <Image
               src={product.image}
               alt="Picture of Product"
@@ -69,7 +70,9 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           currency={product.currency}
         />
       </div>
-      <div className="w-xl h-xl"></div>
+      <div className="w-xl h-xl">
+        <ScrapeTracker />
+      </div>
       <div className="flex justify-end">
         <Link className="mx-2" href={product.url}>
           Amazon

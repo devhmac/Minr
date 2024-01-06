@@ -23,7 +23,8 @@ const ComparisonKpiCard = ({
   currency,
   title,
 }: Props) => {
-  let delta = ((comparisonPrice - price) / comparisonPrice) * 100;
+  let delta = ((comparisonPrice - price) / comparisonPrice) * -100;
+  // let delta = (price / comparisonPrice) * 100;
   let deltaType =
     delta > 0 ? "increase" : delta === 0 ? "unchanged" : "moderateDecrease";
   return (
@@ -34,9 +35,7 @@ const ComparisonKpiCard = ({
     >
       <Flex alignItems="start">
         <Text>{title}</Text>
-        <BadgeDelta className="rotate-180" deltaType={deltaType}>
-          {delta}
-        </BadgeDelta>
+        <BadgeDelta deltaType={deltaType}>{delta}%</BadgeDelta>
       </Flex>
       <Flex
         justifyContent="start"
