@@ -40,7 +40,23 @@ const item = {
   deltaType: "moderateIncrease",
 };
 
-export default function ExampleModule() {
+type Props = {
+  price: number;
+  comparisonPrice: number;
+  comparisonText: string;
+  currency: string;
+  title: string;
+};
+
+const ComparisonKpiCard = ({
+  price,
+  comparisonPrice,
+  comparisonText,
+  currency,
+  title,
+}: Props) => {
+  let delta = ((comparisonPrice - price) / comparisonPrice) * 100;
+
   return (
     <Card key={item.title}>
       <Flex alignItems="start">
@@ -57,4 +73,6 @@ export default function ExampleModule() {
       </Flex>
     </Card>
   );
-}
+};
+
+export default ComparisonKpiCard;

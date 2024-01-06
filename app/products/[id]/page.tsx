@@ -1,4 +1,5 @@
 import ProductLineChart from "@/components/ProductLineChart";
+import ComparisonKpiCard from "@/components/dataViz/ComparisonKpiCard";
 import ExampleModule from "@/components/dataViz/ExampleModule";
 import KpiCard from "@/components/dataViz/KpiCard";
 import { getProductById } from "@/lib/actions/actions";
@@ -17,6 +18,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
   if (!product) redirect("/");
   // console.log(product);
+
   return (
     <section className="px-6 md:px-20 py-24">
       <h3 className="text-secondary text-semibold">{product.title}</h3>
@@ -57,6 +59,13 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         <KpiCard
           title={"Lowest Price"}
           price={product.lowestPrice}
+          currency={product.currency}
+        />
+        <ComparisonKpiCard
+          title={"Current Price"}
+          price={product.currentPrice}
+          comparisonPrice={product.averagePrice}
+          comparisonText={"vs Average"}
           currency={product.currency}
         />
       </div>
