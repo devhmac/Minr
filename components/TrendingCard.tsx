@@ -31,8 +31,9 @@ const TrendingCard = ({ product }: Props) => {
             className="h-full w-full bg-transparent max-h-[200px] max-w-[250px] object-contain rounded-md "
           />
         </div>
-
+        {/* <div className="h-[200px] w-auto"> */}
         <ProductLineChart data={data} />
+        {/* </div> */}
       </div>
       <div className="flex flex-col gap-2">
         <h3 className="text-secondary text-l leading-5 truncate font-semibold w-[200px]">
