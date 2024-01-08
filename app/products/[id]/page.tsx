@@ -70,9 +70,9 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           currency={product.currency}
         />
       </div>
-      <div className="w-xl h-xl">
+      {/* <div className="w-xl h-xl">
         <ScrapeTracker />
-      </div>
+      </div> */}
       <div className="flex justify-end">
         <Link className="mx-2" href={product.url}>
           Amazon
