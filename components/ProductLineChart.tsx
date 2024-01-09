@@ -20,7 +20,8 @@ import {
 type Props = {
   data: {
     price: number;
-    date: string;
+    average: number;
+    date: string | null;
   }[];
 };
 
@@ -46,6 +47,23 @@ const ProductLineChart = (props: Props) => {
               return (
                 <div className="rounded-lg border  p-2 shadow-sm">
                   <div className="grid grid-cols-2 gap-2">
+                    {payload[0].payload.date ? (
+                      <div className="flex flex-col">
+                        <span className="text-[0.70rem] uppercase text-muted-foreground">
+                          Date
+                        </span>
+                        <span className="font-bold">{`${payload[0].payload.date}`}</span>
+                      </div>
+                    ) : null}
+
+                    <div className="flex flex-col">
+                      <span className="text-[0.70rem] uppercase text-muted-foreground">
+                        Price
+                      </span>
+                      <span className="font-bold text-muted-foreground">
+                        {`$${payload[1].value}`}
+                      </span>
+                    </div>
                     <div className="flex flex-col">
                       <span className="text-[0.70rem] uppercase text-muted-foreground">
                         Average
@@ -53,12 +71,6 @@ const ProductLineChart = (props: Props) => {
                       <span className="font-bold text-muted-foreground">
                         {`$${payload[0].value}`}
                       </span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[0.70rem] uppercase text-muted-foreground">
-                        Date
-                      </span>
-                      <span className="font-bold">{`${payload[0].payload.date}`}</span>
                     </div>
                   </div>
                 </div>
@@ -68,7 +80,7 @@ const ProductLineChart = (props: Props) => {
             return null;
           }}
         />
-        {/* <Line
+        <Line
           type="monotone"
           strokeWidth={2}
           stroke="#8884d8"
@@ -81,7 +93,7 @@ const ProductLineChart = (props: Props) => {
               opacity: 0.25,
             } as React.CSSProperties
           }
-        /> */}
+        />
 
         <Line
           type="monotone"
