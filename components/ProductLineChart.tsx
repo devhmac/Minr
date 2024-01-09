@@ -1,6 +1,13 @@
 "use client";
 import React from "react";
-import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 // will have to change this later once I decide on actually data titles
 // type Props = {
@@ -73,6 +80,7 @@ const ProductLineChart = (props: Props) => {
             } as React.CSSProperties
           }
         /> */}
+
         <Line
           type="monotone"
           dataKey="price"
