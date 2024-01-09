@@ -18,9 +18,22 @@ type Props = {
 const ProductDetails = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
   if (!product) redirect("/");
+
   // console.log(product);
   const { priceHistory } = product;
+  const priceData = {};
+  const chartData = priceHistory.map((val, i) => {
+    let scrape = {
+      price: val.price,
+      date: val.date.toISOString().split("T")[0],
+    };
+    console.log(val.date);
+    return scrape;
+  });
+  console.log(chartData);
+
   console.log(priceHistory);
+
   return (
     <section className="px-6 md:px-20 py-24">
       <h3 className="text-secondary text-semibold">{product.title}</h3>
@@ -43,7 +56,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         {/* <p> bro:{JSON.stringify(product)}</p> */}
 
         <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border-2 border-lowestEmph rounded-[30px] mx-auto h-[150px] sm:max-w-xl sm:h-[200px] lg:max-w-3xl lg:h-[400px]">
-          <ProductLineChart data={data} />
+          <ProductLineChart data={chartData} />
         </div>
       </div>
       <div className="flex flex-wrap justify-center items-center gap-5 mt-5">

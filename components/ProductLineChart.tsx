@@ -3,10 +3,17 @@ import React from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 
 // will have to change this later once I decide on actually data titles
+// type Props = {
+//   data: {
+//     average: number;
+//     today: number;
+//   }[];
+// };
+
 type Props = {
   data: {
-    average: number;
-    today: number;
+    price: number;
+    date: string;
   }[];
 };
 
@@ -42,7 +49,7 @@ const ProductLineChart = (props: Props) => {
                       <span className="text-[0.70rem] uppercase text-muted-foreground">
                         Today
                       </span>
-                      <span className="font-bold">{`$${payload[1].value}`}</span>
+                      {/* <span className="font-bold">{`$${payload[1].value}`}</span> */}
                     </div>
                   </div>
                 </div>
@@ -52,7 +59,7 @@ const ProductLineChart = (props: Props) => {
             return null;
           }}
         />
-        <Line
+        {/* <Line
           type="monotone"
           strokeWidth={2}
           stroke="#8884d8"
@@ -65,10 +72,10 @@ const ProductLineChart = (props: Props) => {
               opacity: 0.25,
             } as React.CSSProperties
           }
-        />
+        /> */}
         <Line
           type="monotone"
-          dataKey="today"
+          dataKey="price"
           stroke="#8884d8"
           strokeWidth={2}
           activeDot={{
