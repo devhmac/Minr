@@ -1,31 +1,31 @@
 const data = [
   {
     average: 400,
-    today: 240,
+    price: 240,
   },
   {
     average: 300,
-    today: 139,
+    price: 139,
   },
   {
     average: 200,
-    today: 980,
+    price: 980,
   },
   {
     average: 278,
-    today: 390,
+    price: 390,
   },
   {
     average: 189,
-    today: 480,
+    price: 480,
   },
   {
     average: 239,
-    today: 380,
+    price: 380,
   },
   {
     average: 349,
-    today: 430,
+    price: 430,
   },
 ];
 
