@@ -46,17 +46,34 @@ const ProductLineChart = (props: Props) => {
             if (active && payload && payload.length) {
               return (
                 <div className="rounded-lg border  p-2 shadow-sm">
-                  <div className="grid grid-cols-2 gap-2">
-                    {payload[0].payload.date ? (
-                      <div className="flex flex-col">
-                        <span className="text-[0.70rem] uppercase text-muted-foreground">
-                          Date
-                        </span>
-                        <span className="font-bold">{`${payload[0].payload.date}`}</span>
-                      </div>
-                    ) : null}
-
+                  <div className="grid grid-cols-1 gap-2">
                     <div className="flex flex-col">
+                      {payload[0].payload.date ? (
+                        <span className="text-[0.9rem] uppercase text-muted-foreground underline underline-offset-2 mb-2">
+                          {payload[0].payload.date}
+                        </span>
+                      ) : null}
+                      <div className="flex flex-row gap-2">
+                        <div className="flex flex-col">
+                          <span className="text-[0.70rem] uppercase text-muted-foreground">
+                            Price
+                          </span>
+                          <span className="font-bold text-muted-foreground">
+                            {`$${payload[1].value}`}
+                          </span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[0.70rem] uppercase text-muted-foreground">
+                            Average
+                          </span>
+                          <span className="font-bold text-muted-foreground">
+                            {`$${payload[0].value}`}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* <div className="flex flex-col">
                       <span className="text-[0.70rem] uppercase text-muted-foreground">
                         Price
                       </span>
@@ -71,7 +88,7 @@ const ProductLineChart = (props: Props) => {
                       <span className="font-bold text-muted-foreground">
                         {`$${payload[0].value}`}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               );
