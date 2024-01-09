@@ -19,7 +19,8 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
   if (!product) redirect("/");
   // console.log(product);
-
+  const { priceHistory } = product;
+  console.log(priceHistory);
   return (
     <section className="px-6 md:px-20 py-24">
       <h3 className="text-secondary text-semibold">{product.title}</h3>
