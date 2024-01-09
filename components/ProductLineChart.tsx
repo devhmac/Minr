@@ -39,6 +39,8 @@ const ProductLineChart = (props: Props) => {
         }}
       >
         <Tooltip
+          formatter={(value, name, props) => [`${value}`, props.payload.date]}
+          labelFormatter={(value) => `Date: ${value}`}
           content={({ active, payload }) => {
             if (active && payload && payload.length) {
               return (
@@ -54,9 +56,9 @@ const ProductLineChart = (props: Props) => {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[0.70rem] uppercase text-muted-foreground">
-                        Today
+                        Date
                       </span>
-                      {/* <span className="font-bold">{`$${payload[1].value}`}</span> */}
+                      <span className="font-bold">{`${payload[0].payload.date}`}</span>
                     </div>
                   </div>
                 </div>
