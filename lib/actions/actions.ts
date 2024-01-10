@@ -34,11 +34,12 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         ...existingProduct.priceHistory,
         {
           price: scrapedProduct.currentPrice,
+          //average: scrapedProduct.averagePrice,
           // sending the new price hist object at get average including current
-          // average: getAveragePrice([
-          //   ...existingProduct.priceHistory,
-          //   { price: scrapedProduct.currentPrice },
-          // ]),
+          average: getAveragePrice([
+            ...existingProduct.priceHistory,
+            { price: scrapedProduct.currentPrice },
+          ]),
         },
       ];
       console.log("------new Price History", updatedPriceHistory);
@@ -56,6 +57,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
       const firstPriceHistory: any = [
         {
           price: scrapedProduct.currentPrice,
+          average: scrapedProduct.currentPrice,
         },
       ];
 
