@@ -14,7 +14,7 @@ const TrendingCard = ({ product }: Props) => {
       title={product.title}
       className="product-card border-2 border-bentoBackground bg-lower rounded-md items-center p-2 bg-bentoBackground hover:bg-primary hover:shadow hover:shadow-lowestEmph hover:bg-opacity-70"
     >
-      <div className="product-card_img-container bg-white h-full w-auto ">
+      <div className="product-card_img-container bg-white h-full w-full ">
         {product.discountRate > 0 ? (
           <p className="absolute bg-primary text-secondary justify-center py-1 px-1.5 rounded-md left-1/2 -translate-x-1/2 border-gray-200 border">
             {product.discountRate}% Off

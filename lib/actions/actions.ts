@@ -34,7 +34,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         ...existingProduct.priceHistory,
         {
           price: scrapedProduct.currentPrice,
-          //average: scrapedProduct.averagePrice,
+          // average: scrapedProduct.averagePrice,
           // sending the new price hist object at get average including current
           average: getAveragePrice([
             ...existingProduct.priceHistory,
@@ -83,7 +83,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
     return newProduct._id.toString();
   } catch (error) {
-    throw new Error(`Failed to create/update product: ${error}`);
+    console.log(`Failed to create/update product: ${error}`);
   }
 }
 
