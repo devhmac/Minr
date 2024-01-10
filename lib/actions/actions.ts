@@ -32,9 +32,17 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
       const updatedPriceHistory: any = [
         ...existingProduct.priceHistory,
-        { price: scrapedProduct.currentPrice },
+        {
+          price: scrapedProduct.currentPrice,
+          // sending the new price hist object at get average including current
+          average: getAveragePrice([
+            ...existingProduct.priceHistory,
+            { price: scrapedProduct.currentPrice },
+          ]),
+        },
       ];
       console.log("------new Price History", updatedPriceHistory);
+
       product = {
         ...scrapedProduct,
         priceHistory: updatedPriceHistory,
