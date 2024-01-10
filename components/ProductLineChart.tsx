@@ -72,23 +72,6 @@ const ProductLineChart = (props: Props) => {
                         </div>
                       </div>
                     </div>
-
-                    {/* <div className="flex flex-col">
-                      <span className="text-[0.70rem] uppercase text-muted-foreground">
-                        Price
-                      </span>
-                      <span className="font-bold text-muted-foreground">
-                        {`$${payload[1].value}`}
-                      </span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[0.70rem] uppercase text-muted-foreground">
-                        Average
-                      </span>
-                      <span className="font-bold text-muted-foreground">
-                        {`$${payload[0].value}`}
-                      </span>
-                    </div> */}
                   </div>
                 </div>
               );
