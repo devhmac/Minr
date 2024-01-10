@@ -34,7 +34,6 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         ...existingProduct.priceHistory,
         {
           price: scrapedProduct.currentPrice,
-          // average: scrapedProduct.averagePrice,
           // sending the new price hist object at get average including current
           average: getAveragePrice([
             ...existingProduct.priceHistory,
@@ -51,9 +50,8 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
       };
-
-      // return existingProduct._id.toString();
     } else {
+      // if no existing product create first price history
       const firstPriceHistory: any = [
         {
           price: scrapedProduct.currentPrice,

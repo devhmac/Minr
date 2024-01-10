@@ -1,6 +1,6 @@
 export type PriceHistoryItem = {
   price: number;
-  // average: number;
+  average: number;
   date: Date;
 };
 
