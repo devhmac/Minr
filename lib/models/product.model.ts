@@ -12,6 +12,7 @@ const productSchema = new Schema(
     priceHistory: [
       {
         price: { type: Number, required: true },
+        average: { type: Number, required: true },
         date: { type: Date, default: Date.now },
       },
     ],
