@@ -23,7 +23,8 @@ const ComparisonKpiCard = ({
   currency,
   title,
 }: Props) => {
-  let delta = ((comparisonPrice - price) / comparisonPrice) * -100;
+  let delta = Math.round(((comparisonPrice - price) / comparisonPrice) * -100);
+
   // let delta = (price / comparisonPrice) * 100;
   let deltaType =
     delta > 0 ? "increase" : delta === 0 ? "unchanged" : "moderateDecrease";
