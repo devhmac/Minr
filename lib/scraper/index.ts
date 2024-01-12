@@ -75,7 +75,7 @@ export async function scrapeUrl(url: string) {
       currency: currency || "$",
       title,
       image: imageUrls[0],
-      currentPrice: 20, //Number(currPrice) || Number(originalPrice),
+      currentPrice: "", //Number(currPrice) || Number(originalPrice),
       originalPrice: 10, //Number(originalPrice) || Number(currPrice),
 
       priceHistory: [],
@@ -89,7 +89,7 @@ export async function scrapeUrl(url: string) {
       highestPrice: 10, //Number(originalPrice) || Number(currPrice),
       averagePrice: 10, //Number(currPrice) || Number(originalPrice),
     };
-    // console.log(scrapedData);
+    console.log(scrapedData);
     return scrapedData;
   } catch (error: any) {
     throw new Error(`Failed to scrape on Error: ${error.message}`);

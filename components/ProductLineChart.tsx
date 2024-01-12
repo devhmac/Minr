@@ -59,7 +59,9 @@ const ProductLineChart = (props: Props) => {
                             Price
                           </span>
                           <span className="font-bold text-muted-foreground">
-                            {`$${payload[1].value}`}
+                            {payload[1] && payload[1].value
+                              ? `$${payload[1].value}`
+                              : "Scrape Err"}
                           </span>
                         </div>
                         <div className="flex flex-col">
@@ -67,7 +69,9 @@ const ProductLineChart = (props: Props) => {
                             Average
                           </span>
                           <span className="font-bold text-muted-foreground">
-                            {`$${payload[0].value}`}
+                            {payload[0] && payload[0].value
+                              ? `$${payload[0].value}`
+                              : "Scrape Err"}
                           </span>
                         </div>
                       </div>
