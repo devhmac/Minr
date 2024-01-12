@@ -5,6 +5,7 @@ import KpiCard from "@/components/dataViz/KpiCard";
 import { ScrapeTracker } from "@/components/dataViz/ScrapeTracker";
 import { getProductById } from "@/lib/actions/actions";
 import data from "@/lib/static/exampleData";
+import { priceHistoryChartEtl } from "@/lib/utils/extractFunctions";
 import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,15 +23,16 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   // console.log(product);
   const { priceHistory } = product;
   const priceData = {};
-  const chartData = priceHistory.map((val, i) => {
-    let scrape = {
-      price: val.price,
-      average: val.average,
-      date: val.date.toISOString().split("T")[0],
-    };
-    console.log(val.date);
-    return scrape;
-  });
+  // const chartData = priceHistory.map((val, i) => {
+  //   let scrape = {
+  //     price: val.price,
+  //     average: val.average,
+  //     date: val.date.toISOString().split("T")[0],
+  //   };
+  //   console.log(val.date);
+  //   return scrape;
+  // });
+  const chartData = priceHistoryChartEtl(priceHistory);
   console.log(chartData);
 
   console.log(priceHistory);
