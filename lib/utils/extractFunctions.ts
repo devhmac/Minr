@@ -45,7 +45,7 @@ export function extractDescription($: any) {
 export const getLowestPrice = (priceList: PriceHistoryItem[]) => {
   let lowest = priceList[0];
   priceList.forEach((item, i) => {
-    if (item.price < lowest.price) {
+    if (item.price && item.price < lowest.price) {
       lowest = priceList[i];
     }
   });
@@ -56,7 +56,7 @@ export const getHighestPrice = (priceList: PriceHistoryItem[]) => {
   let highest = priceList[0];
 
   priceList.forEach((item, i) => {
-    if (item.price > highest.price) {
+    if (item.price && item.price > highest.price) {
       highest = priceList[i];
     }
   });
