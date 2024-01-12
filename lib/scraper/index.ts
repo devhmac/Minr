@@ -75,7 +75,7 @@ export async function scrapeUrl(url: string) {
       currency: currency || "$",
       title,
       image: imageUrls[0],
-      currentPrice: "", //Number(currPrice) || Number(originalPrice),
+      currentPrice: 30, //Number(currPrice) || Number(originalPrice),
       originalPrice: 10, //Number(originalPrice) || Number(currPrice),
 
       priceHistory: [],
