@@ -66,7 +66,7 @@ export const getHighestPrice = (priceList: PriceHistoryItem[]) => {
 export const getAveragePrice = (priceList: PriceHistoryItem[]) => {
   const priceSum = priceList.reduce((acc, curr) => acc + curr.price, 0);
   const average = priceSum / priceList.length || 0;
-  return average.toFixed(2);
+  return parseFloat(average.toFixed(2));
 };
 
 export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
