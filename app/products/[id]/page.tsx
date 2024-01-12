@@ -22,16 +22,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
   // console.log(product);
   const { priceHistory } = product;
-  const priceData = {};
-  // const chartData = priceHistory.map((val, i) => {
-  //   let scrape = {
-  //     price: val.price,
-  //     average: val.average,
-  //     date: val.date.toISOString().split("T")[0],
-  //   };
-  //   console.log(val.date);
-  //   return scrape;
-  // });
+
   const chartData = priceHistoryChartEtl(priceHistory);
   console.log(chartData);
 

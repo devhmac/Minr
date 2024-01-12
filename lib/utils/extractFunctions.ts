@@ -70,29 +70,11 @@ export const getAveragePrice = (priceList: PriceHistoryItem[]) => {
 };
 
 export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
-  let chartData = priceHistory.map((val, i) => {
-    let scrape = {
-      price: val.price,
-      average: val.average,
-      date: val.date.toISOString().split("T")[0],
-    };
-    return scrape;
-  });
+  let chartData = priceHistory.map((val, i) => ({
+    price: val.price,
+    average: val.average,
+    date: val.date.toISOString().split("T")[0],
+  }));
+
   return chartData;
 };
-
-export const getAverage = (priceList: PriceHistoryItem[]) => {
-  const priceSum = priceList.reduce((acc, curr) => acc + curr.price, 0);
-  const average = priceSum / priceList.length || 0;
-  return average;
-};
-
-// const chartData = priceHistory.map((val, i) => {
-//   let scrape = {
-//     price: val.price,
-//     average: val.average,
-//     date: val.date.toISOString().split("T")[0],
-//   };
-//   console.log(val.date);
-//   return scrape;
-// });
