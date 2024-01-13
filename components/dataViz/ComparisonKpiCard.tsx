@@ -29,11 +29,7 @@ const ComparisonKpiCard = ({
   let deltaType =
     delta > 0 ? "increase" : delta === 0 ? "unchanged" : "moderateDecrease";
   return (
-    <Card
-      className="max-w-[240px] min-w-[127px] "
-      decoration="top"
-      decorationColor="indigo"
-    >
+    <Card className="kpiCardSize" decoration="top" decorationColor="indigo">
       <Flex alignItems="start">
         <Text>{title}</Text>
         <BadgeDelta deltaType={deltaType}>{delta}%</BadgeDelta>
