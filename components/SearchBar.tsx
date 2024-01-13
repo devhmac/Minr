@@ -4,7 +4,7 @@ import { Product } from "@/types";
 import { Loader2 } from "lucide-react";
 // import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,8 +28,32 @@ const isValidAmazonLink = (url: string) => {
 const SearchBar = () => {
   const router = useRouter();
 
+  const [isLinkValid, setIsLinkValid] = useState<boolean>(false);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
+
+  const handleInputChange = (url: string) => {
+    setIsLinkValid(isValidAmazonLink(url)!);
+  };
+
+  const debounce = (fn: any, delay: number) => {
+    let timerId: any;
+    return (...args: any) => {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => fn(...args), delay);
+    };
+  };
+
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      console.log("from inside UE", searchPrompt);
+      setIsLinkValid(isValidAmazonLink(searchPrompt)!);
+    }, 500);
+
+    return () => {
+      clearTimeout(debounce);
+    };
+  }, [searchPrompt]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,6 +97,10 @@ const SearchBar = () => {
           value={searchPrompt}
           onChange={(e) => {
             setSearchPrompt(e.target.value);
+            // console.log("state", searchPrompt);
+            // console.log("targetval", e.target.value);
+
+            // handleInputChange(e.target.value);
           }}
           placeholder="Enter your product link to get started..."
           className="searchbar-input "
@@ -81,15 +109,21 @@ const SearchBar = () => {
         <button
           type="submit"
           className="searchbar-btn"
-          disabled={searchPrompt === ""}
+          disabled={searchPrompt === "" || !isLinkValid}
         >
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
         </button>
       </form>
-      <p className="mx-2 text-red-400">
-        <span className="underline">Link invalid:</span> We are currently only
-        scraping valid amazon product links
-      </p>
+      {searchPrompt !== "" && !isLinkValid && (
+        <p
+          className="mx-2 text-red-400 transition-opacity 
+        duration-500 
+        ease-out opacity-100"
+        >
+          <span className="underline">Link invalid:</span> Sorry, we are
+          currently only scraping valid amazon product links
+        </p>
+      )}
     </>
   );
 };
