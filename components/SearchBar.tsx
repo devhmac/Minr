@@ -32,16 +32,10 @@ const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
 
-  // const handleInputChange = (url: string) => {
-  //   setIsLinkValid(isValidAmazonLink(url)!);
-  // };
-
   useEffect(() => {
     const debounce = setTimeout(() => {
-      console.log("from inside UE", searchPrompt);
       if (searchPrompt !== "") {
         setIsLinkValid(isValidAmazonLink(searchPrompt)!);
-        console.log(isValidAmazonLink(searchPrompt)!);
       } else {
         setIsLinkValid(null);
       }
@@ -126,7 +120,6 @@ const SearchBar = () => {
           currently only scraping valid amazon product links
         </p>
       )}
-
     </>
   );
 };
