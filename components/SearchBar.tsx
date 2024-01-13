@@ -28,30 +28,25 @@ const isValidAmazonLink = (url: string) => {
 const SearchBar = () => {
   const router = useRouter();
 
-  const [isLinkValid, setIsLinkValid] = useState<boolean>(false);
+  const [isLinkValid, setIsLinkValid] = useState<boolean | null>(null);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
 
-  const handleInputChange = (url: string) => {
-    setIsLinkValid(isValidAmazonLink(url)!);
-  };
-
-  const debounce = (fn: any, delay: number) => {
-    let timerId: any;
-    return (...args: any) => {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => fn(...args), delay);
-    };
-  };
+  // const handleInputChange = (url: string) => {
+  //   setIsLinkValid(isValidAmazonLink(url)!);
+  // };
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       console.log("from inside UE", searchPrompt);
-      setIsLinkValid(isValidAmazonLink(searchPrompt)!);
+      setIsLinkValid(isValidAmazonLink(searchPrompt)! || searchPrompt === "");
+      console.log(isValidAmazonLink(searchPrompt)! || searchPrompt === "");
+      // setIsLinkValid(searchPrompt === "a" || searchPrompt === "");
     }, 500);
 
     return () => {
       clearTimeout(debounce);
+      // setIsLinkValid(false);
     };
   }, [searchPrompt]);
 
@@ -109,12 +104,13 @@ const SearchBar = () => {
         <button
           type="submit"
           className="searchbar-btn"
-          disabled={searchPrompt === "" || !isLinkValid}
+          disabled={searchPrompt === "" || isLinkValid !== true}
         >
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
         </button>
       </form>
-      {searchPrompt !== "" && !isLinkValid && (
+      {searchPrompt !== "" && isLinkValid === false && (
+        // searchPrompt !== "" &&
         <p
           className="mx-2 text-red-400 transition-opacity 
         duration-500 
