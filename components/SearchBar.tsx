@@ -114,6 +114,7 @@ const SearchBar = () => {
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
         </button>
       </form>
+
       {searchPrompt !== "" && isLinkValid === false && (
         // searchPrompt !== "" &&
         <p
@@ -125,6 +126,7 @@ const SearchBar = () => {
           currently only scraping valid amazon product links
         </p>
       )}
+
     </>
   );
 };
