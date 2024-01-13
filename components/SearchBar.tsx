@@ -87,8 +87,8 @@ const SearchBar = () => {
         </button>
       </form>
       <p className="mx-2 text-red-400">
-        <span className="underline">Link invalid:</span> We are currently only
-        scraping valid amazon product links
+        <span className="underline">Link invalid:</span> Sorry, we are currently
+        only scraping valid amazon product links
       </p>
     </>
   );
