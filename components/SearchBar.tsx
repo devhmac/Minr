@@ -36,8 +36,7 @@ const SearchBar = () => {
 
     const isValidLink = isValidAmazonLink(searchPrompt);
 
-    !isValidLink &&
-      // ? toast("wow its good")
+    if (!isValidLink) {
       toast.error(
         "Sorry, the link was invalid. Please try again with a valid Amazon link",
         {
@@ -47,6 +46,9 @@ const SearchBar = () => {
           // className: "border-2px border-red-200",
         }
       );
+      return;
+    }
+    // ? toast("wow its good")
 
     try {
       setIsloading(true);
@@ -75,6 +77,7 @@ const SearchBar = () => {
           placeholder="Enter your product link to get started..."
           className="searchbar-input "
         />
+
         <button
           type="submit"
           className="searchbar-btn"
@@ -83,6 +86,10 @@ const SearchBar = () => {
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
         </button>
       </form>
+      <p className="mx-2 text-red-400">
+        <span className="underline">Link invalid:</span> We are currently only
+        scraping valid amazon product links
+      </p>
     </>
   );
 };
