@@ -39,10 +39,15 @@ const SearchBar = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       console.log("from inside UE", searchPrompt);
-      setIsLinkValid(isValidAmazonLink(searchPrompt)! || searchPrompt === "");
-      console.log(isValidAmazonLink(searchPrompt)! || searchPrompt === "");
+      if (searchPrompt !== "") {
+        setIsLinkValid(isValidAmazonLink(searchPrompt)!);
+        console.log(isValidAmazonLink(searchPrompt)!);
+      } else {
+        setIsLinkValid(null);
+      }
+
       // setIsLinkValid(searchPrompt === "a" || searchPrompt === "");
-    }, 500);
+    }, 200);
 
     return () => {
       clearTimeout(debounce);
