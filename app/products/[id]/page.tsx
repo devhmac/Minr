@@ -24,9 +24,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const { priceHistory } = product;
 
   const chartData = priceHistoryChartEtl(priceHistory);
-  console.log(chartData);
-
-  console.log(priceHistory);
 
   return (
     <section className="px-6 md:px-20 py-24">
