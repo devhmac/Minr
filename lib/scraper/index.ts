@@ -69,7 +69,11 @@ export async function scrapeUrl(url: string) {
 
     const description = extractDescription($);
 
-    const category = extractCategory($("#wayfinding-breadcrumbs_feature_div"));
+    const category = extractCategory(
+      $("#wayfinding-breadcrumbs_feature_div")
+        .children("ul")
+        .children("li:last")
+    );
 
     // ALSO WANT - stars, # reviews and category
     console.log("dont forget to delete these test values");

@@ -45,7 +45,14 @@ export function extractDescription($: any) {
 
 export const extractCategory = (...elements: any) => {
   for (const element of elements) {
-    console.log("element in category", element.text().trim());
+    console.log("here is raw eleemnt", element);
+    console.log(
+      "element in category",
+      element
+        .text()
+        .replace(/[\s›]+/g, " ")
+        .trim()
+    );
   }
 };
 

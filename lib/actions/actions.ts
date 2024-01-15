@@ -18,16 +18,18 @@ export async function scrapeAndSaveProduct(productUrl: string) {
   try {
     const scrapedProduct = await scrapeUrl(productUrl);
     if (!scrapedProduct) return;
-    console.log(scrapedProduct);
+    // console.log(scrapedProduct);
 
     dbConnect();
     let product = scrapedProduct;
-    const existingProduct = await Product.findOne({ url: scrapedProduct.url });
+    const existingProduct =
+      (await Product.findOne({ url: scrapedProduct.url })) ||
+      (await Product.findOne({ title: scrapedProduct.title }));
 
     // if product already exists we need to create an updated version
     if (existingProduct) {
       console.log("------EXISTING PRODUCT FOUND-----");
-      console.log("------Current Price History", existingProduct.priceHistory);
+      // console.log("------Current Price History", existingProduct.priceHistory);
       //update the price history on the prod with the new current price
 
       const updatedPriceHistory: any = [
