@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 import {
+  extractCategory,
   extractCurr,
   extractDescription,
   extractPrice,
@@ -68,6 +69,8 @@ export async function scrapeUrl(url: string) {
 
     const description = extractDescription($);
 
+    const category = extractCategory($("#wayfinding-breadcrumbs_feature_div"));
+
     // ALSO WANT - stars, # reviews and category
     console.log("dont forget to delete these test values");
     const scrapedData = {
@@ -89,7 +92,7 @@ export async function scrapeUrl(url: string) {
       highestPrice: 10, //Number(originalPrice) || Number(currPrice),
       averagePrice: 10, //Number(currPrice) || Number(originalPrice),
     };
-    console.log(scrapedData);
+    // console.log(scrapedData);
     return scrapedData;
   } catch (error: any) {
     throw new Error(`Failed to scrape on Error: ${error.message}`);

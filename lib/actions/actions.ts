@@ -41,7 +41,6 @@ export async function scrapeAndSaveProduct(productUrl: string) {
           ]),
         },
       ];
-      console.log("------new Price History", updatedPriceHistory);
 
       product = {
         ...scrapedProduct,
@@ -59,8 +58,6 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         },
       ];
 
-      console.log("FIRST PRICE HISTORY HERE", firstPriceHistory);
-
       product = { ...scrapedProduct, priceHistory: firstPriceHistory };
     }
 
@@ -74,8 +71,8 @@ export async function scrapeAndSaveProduct(productUrl: string) {
       { upsert: true, new: true }
     );
 
-    console.log("What we're attempting to update", product);
-    console.log("new product", newProduct);
+    // console.log("What we're attempting to update", product);
+    // console.log("new product", newProduct);
 
     revalidatePath(`/products/${newProduct._id}`);
 

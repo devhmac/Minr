@@ -4,6 +4,7 @@ import { PriceHistoryItem, Product } from "@/types";
 export function extractPrice(...elements: any) {
   for (const element of elements) {
     const priceText = element.text().trim();
+    console.log("price text pre extract", priceText);
 
     // remove all non digit characters (and keep .), we just want price
     if (priceText) {
@@ -41,6 +42,12 @@ export function extractDescription($: any) {
   // If no matching elements were found, return an empty string
   return "";
 }
+
+export const extractCategory = (...elements: any) => {
+  for (const element of elements) {
+    console.log("element in category", element.text().trim());
+  }
+};
 
 export const getLowestPrice = (priceList: PriceHistoryItem[]) => {
   let lowest = priceList[0];
