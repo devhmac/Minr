@@ -89,7 +89,7 @@ export async function scrapeUrl(url: string) {
       discountRate: Number(discount),
       reviewsCount: 50,
       stars: 4,
-      category: "default",
+      category: category,
       outOfStock,
       description,
       lowestPrice: 10, //Number(currPrice) || Number(originalPrice),

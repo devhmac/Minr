@@ -43,17 +43,24 @@ export function extractDescription($: any) {
   return "";
 }
 
-export const extractCategory = (...elements: any) => {
-  for (const element of elements) {
-    console.log("here is raw eleemnt", element);
-    console.log(
-      "element in category",
-      element
-        .text()
-        .replace(/[\s›]+/g, " ")
-        .trim()
-    );
-  }
+export const extractCategory = (element: any) => {
+  const category = element
+    .text()
+    .replace(/[\s›]+/g, " ")
+    .trim();
+  console.log(category);
+  return category || "Category Unknown";
+
+  // for (const element of elements) {
+  //   console.log("here is raw eleemnt", element);
+  //   console.log(
+  //     "element in category",
+  //     element
+  //       .text()
+  //       .replace(/[\s›]+/g, " ")
+  //       .trim()
+  //   );
+  // }
 };
 
 export const getLowestPrice = (priceList: PriceHistoryItem[]) => {

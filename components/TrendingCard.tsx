@@ -34,7 +34,7 @@ const TrendingCard = ({ product }: Props) => {
           {product.title}
         </h3>
         <div className="flex justify-between">
-          <p>Category</p>
+          <p>{product.category}</p>
           <p className="text-secondary">
             <span>{product.currency}</span>
             {product.currentPrice}
