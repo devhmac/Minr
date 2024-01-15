@@ -22,9 +22,8 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
     dbConnect();
     let product = scrapedProduct;
-    const existingProduct =
-      (await Product.findOne({ url: scrapedProduct.url })) ||
-      (await Product.findOne({ title: scrapedProduct.title }));
+    const existingProduct = await Product.findOne({ url: scrapedProduct.url });
+    // ||(await Product.findOne({ title: scrapedProduct.title }));
 
     // if product already exists we need to create an updated version
     if (existingProduct) {

@@ -27,12 +27,14 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
   return (
     <section className="px-6 md:px-20 py-24">
-      <h3 className="text-secondary text-semibold">{product.title}</h3>
-      <div className="flex flex-col lg:flex-row justify-center items-center md:gap-6 mt-6">
+      <h3 className="flex-1 text-secondary text-semibold">{product.title}</h3>
+
+      <p className="text-mediumEmph">Category: {product.category}</p>
+      <div className="flex flex-col lg:flex-row justify-center items-center md:gap-6 mt-6 mx-auto">
         <div className="justify-center items-center sm:px-auto sm:pt-5 pb-5 sm:max-w-xl lg:h-[400px] lg:w-1/3">
           {/* <div className="flex flex-col w-auto max-w-[500px] mx-auto lg:max-w-3xl lg:max-h-[400px] bg-red-300 items-center bg-white rounded-md mx-5"> */}
           {/* <div className="flex  items-center justify-center"> */}
-          <div className="justify-center items-center product-card_img-container bg-white h-full w-full max-h-[400px] max-w-auto min-w-[300px] min-h-auto overflow-hidden mb-2 px-2">
+          <div className="justify-center items-center product-card_img-container bg-white h-full w-full lg:max-h-[300px] max-w-auto min-w-[300px] min-h-auto overflow-hidden mb-2 px-2">
             <Image
               src={product.image}
               alt="Picture of Product"
@@ -41,19 +43,25 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               className="h-full w-auto bg-transparent max-h-[400px] max-w-[300px] object-contain rounded-md"
             />
           </div>
-          <Link
-            className=" text-mediumEmph cursor-pointer"
-            href={product.url}
-            title="To product url"
-          >
-            <button>Visit Product Page</button>
-          </Link>
+          <div className="flex flex-row justify-end gap-4">
+            <h3 className="flex-1 text-secondary text-semibold">
+              {product.category}
+            </h3>
+            <Link
+              className=" text-mediumEmph cursor-pointer searchbar-btn"
+              href={product.url}
+              title="To product url"
+              target="_blank"
+            >
+              <button>To Product</button>
+            </Link>
+          </div>
           {/* </div> */}
         </div>
 
         {/* <p> bro:{JSON.stringify(product)}</p> */}
 
-        <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border-2 border-lowestEmph rounded-[30px] mx-auto h-[200px] sm:max-w-xl sm:h-[250px] lg:max-w-3xl lg:h-[400px]">
+        <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border-2 border-lowestEmph rounded-[30px] h-[200px] sm:max-w-xl sm:h-[250px] lg:max-w-3xl lg:h-[400px]">
           <ProductLineChart data={chartData} />
         </div>
       </div>
@@ -85,14 +93,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
       {/* <div className="w-xl h-xl">
         <ScrapeTracker />
       </div> */}
-      <div className="flex justify-end">
-        <Link className="mx-2" href={product.url}>
-          Amazon
-        </Link>
-        <Link className="" href="/">
-          Back
-        </Link>
-      </div>
     </section>
   );
 };
