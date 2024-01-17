@@ -38,10 +38,10 @@ export async function scrapeUrl(url: string) {
       // $(".priceToPay span.a-price-whole"),
       // $(".a.size.base.a-color-price"),
       // $(".a-button-selected .a-color-base"),
-      // $("span .a-price")
+      $("span.a-price"),
       $(".priceToPay span.a-price-whole"),
-      $(".a.size.base.a-color-price"),
-      $(".a-button-selected .a-color-base")
+      $(".a.size.base.a-color-price")
+      // $(".a-button-selected .a-color-base")
     );
 
     const originalPrice = extractPrice(
