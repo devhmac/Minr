@@ -8,8 +8,10 @@ export function extractPrice(...elements: any) {
 
     // remove all non digit characters (and keep .), we just want price
     if (priceText) {
+      let repeatPriceCatch = priceText.split('$')
+      
       console.log("If Pricetxt exists", priceText.replace(/[^\d.]/g, ""));
-      return priceText.replace(/[^\d.]/g, "").substring(0, 5);
+      return priceText.replace(/[^\d.]/g, ""));
     }
   }
   return "";

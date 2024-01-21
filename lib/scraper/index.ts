@@ -34,6 +34,8 @@ export async function scrapeUrl(url: string) {
 
     const title = $(`#productTitle`).text().trim();
 
+    const currency = String(extractCurr($(".a-price-symbol")));
+
     const currPrice = extractPrice(
       // $(".priceToPay span.a-price-whole"),
       // $(".a.size.base.a-color-price"),
@@ -63,8 +65,6 @@ export async function scrapeUrl(url: string) {
 
     const imageUrls = Object.keys(JSON.parse(images));
 
-    const currency = String(extractCurr($(".a-price-symbol")));
-
     const discount = $(".savingsPercentage ").text().replace(/[-%]/g, "");
 
     const description = extractDescription($);
@@ -72,7 +72,7 @@ export async function scrapeUrl(url: string) {
     const category = extractCategory(
       $("#wayfinding-breadcrumbs_feature_div")
         .children("ul")
-        .children("li:last")
+        .children("li:first")
     );
 
     // ALSO WANT - stars, # reviews and category
@@ -82,7 +82,7 @@ export async function scrapeUrl(url: string) {
       currency: currency || "$",
       title,
       image: imageUrls[0],
-      currentPrice: 30, //Number(currPrice) || Number(originalPrice),
+      currentPrice: Number(currPrice) || Number(originalPrice) || 0,
       originalPrice: 10, //Number(originalPrice) || Number(currPrice),
 
       priceHistory: [],
