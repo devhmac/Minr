@@ -96,7 +96,7 @@ export async function scrapeUrl(url: string) {
       highestPrice: 10, //Number(originalPrice) || Number(currPrice),
       averagePrice: 10, //Number(currPrice) || Number(originalPrice),
     };
-    // console.log(scrapedData);
+    console.log(scrapedData);
     return scrapedData;
   } catch (error: any) {
     throw new Error(`Failed to scrape on Error: ${error.message}`);

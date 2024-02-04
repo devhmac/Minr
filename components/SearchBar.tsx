@@ -39,13 +39,10 @@ const SearchBar = () => {
       } else {
         setIsLinkValid(null);
       }
-
-      // setIsLinkValid(searchPrompt === "a" || searchPrompt === "");
     }, 200);
 
     return () => {
       clearTimeout(debounce);
-      // setIsLinkValid(false);
     };
   }, [searchPrompt]);
 
@@ -66,7 +63,6 @@ const SearchBar = () => {
       );
       return;
     }
-    // ? toast("wow its good")
 
     try {
       setIsloading(true);
