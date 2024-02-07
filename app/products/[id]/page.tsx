@@ -90,9 +90,9 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           currency={product.currency}
         />
       </div>
-      {/* <div className="w-xl h-xl">
+      <div className="w-xl h-xl mt-[2rem]">
         <ScrapeTracker />
-      </div> */}
+      </div>
     </section>
   );
 };
