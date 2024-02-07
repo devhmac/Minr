@@ -8,12 +8,14 @@ import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
 import TrendingCard from "@/components/TrendingCard";
 import Product from "@/lib/models/product.model";
+import PocBanner from "@/components/PocBanner";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
 
   return (
     <>
+      <PocBanner />
       <section className="px-6 md:px-20 py-24 text-secondary">
         <ToastContainer />
         <div className="flex max-xl:flex-col-reverse xl:gap-16">
