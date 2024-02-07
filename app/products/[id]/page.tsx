@@ -26,7 +26,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const chartData = priceHistoryChartEtl(priceHistory);
 
   return (
-    <section className="px-6 md:px-20 py-24">
+    <section className="px-6 md:px-20 py-16">
       <h3 className="flex-1 text-secondary text-semibold">{product.title}</h3>
 
       <p className="text-mediumEmph">Category: {product.category}</p>
