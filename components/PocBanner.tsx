@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
+
 export default function PocBanner() {
+  const [visible, setVisible] = useState(true);
+
   return (
-    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 rounded-md ">
+    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 rounded-md md:w-3/4 sm:m-auto">
       <div
         className="absolute left-[mPocBanner';m,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
