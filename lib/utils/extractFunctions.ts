@@ -85,12 +85,3 @@ export const getAveragePrice = (priceList: PriceHistoryItem[]) => {
   return parseFloat(average.toFixed(2));
 };
 
-export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
-  let chartData = priceHistory.map((val, i) => ({
-    price: val.price,
-    average: val.average,
-    date: val.date.toISOString().split("T")[0],
-  }));
-
-  return chartData;
-};
