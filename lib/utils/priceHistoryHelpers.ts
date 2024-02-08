@@ -12,19 +12,23 @@ export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
 };
 
 export const scrapeHealthEtl = (priceHistory: PriceHistoryItem[]) => {
-  const scrapeHealth: ScrapeStatus[] = [];
+  const scrapeHistory: ScrapeStatus[] = [];
   let success: number = 0;
   let fail: number = 0;
 
-  // switch to a backwards loop actually and take first 30 or something
+  // switch to a backwards c-style loop and take first 30 or something
 
   priceHistory.forEach((val) => {
     let scrapeSucceeded: boolean = val.price > 0 ? true : false;
     scrapeSucceeded ? success++ : fail++;
-    scrapeHealth.push({
+    scrapeHistory.push({
       color: scrapeSucceeded ? "emerald" : "rose",
       tooltip: scrapeSucceeded ? "Success" : "Scrape Failed",
     });
   });
-  return scrapeHealth;
+
+  let uptime =
+    fail === 0 ? 100 : Math.round((success / (success + fail)) * 100);
+
+  return { uptime, scrapeHistory };
 };
