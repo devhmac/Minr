@@ -3,14 +3,10 @@ import { X } from "lucide-react";
 import { useState } from "react";
 
 export default function PocBanner() {
-  const [visible, setVisible] = useState(true);
+  // const [visible, setVisible] = useState(true);
 
   return (
-    <div
-      className={`${
-        !visible ? "hidden" : ""
-      }relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 rounded-md md:w-3/4 sm:m-auto`}
-    >
+    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50  px-6 py-2.5 sm:px-3.5 sm:before:flex-1 rounded-md md:w-3/4 sm:mx-auto mt-6">
       <div
         className="absolute left-[mPocBanner';m,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
@@ -45,12 +41,12 @@ export default function PocBanner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          As a project POC we are currently only reliably scraping from
-          Amazon.com & .ca
+          As a project POC we are currently only reliably scraping from{" "}
+          <strong className="font-semibold">Amazon.com & .ca</strong>
         </p>
       </div>
       <div className="flex flex-1 justify-end">
-        <button
+        {/* <button
           type="button"
           className="-m-3 p-3 focus-visible:outline-offset-[-px]"
           onClick={() => setVisible(false)}
@@ -58,8 +54,7 @@ export default function PocBanner() {
           <span className="sr-only">Dismiss</span>
           <X className="text-gray-900 h-5 w-5" />
 
-          {/* <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" /> */}
-        </button>
+        </button> */}
       </div>
     </div>
   );

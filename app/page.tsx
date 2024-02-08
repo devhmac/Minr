@@ -16,7 +16,7 @@ const Page = async () => {
   return (
     <>
       <PocBanner />
-      <section className="px-6 md:px-20 py-24 text-secondary">
+      <section className="px-6 md:px-20 py-20 text-secondary">
         <ToastContainer />
         <div className="flex max-xl:flex-col-reverse xl:gap-16">
           <div className="flex flex-col justify-center">
