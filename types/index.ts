@@ -44,3 +44,8 @@ export type EmailProductInfo = {
   title: string;
   url: string;
 };
+
+export type ScrapeStatus = {
+  color: string;
+  tooltip: string;
+};

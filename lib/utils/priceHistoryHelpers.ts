@@ -1,4 +1,4 @@
-import { PriceHistoryItem } from "@/types";
+import { PriceHistoryItem, ScrapeStatus } from "@/types";
 import { type } from "os";
 
 export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
@@ -12,12 +12,7 @@ export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
 };
 
 export const scrapeHealthEtl = (priceHistory: PriceHistoryItem[]) => {
-  type scrapeStatus = {
-    color: string;
-    tooltip: string;
-  };
-
-  const scrapeHealth: scrapeStatus[] = [];
+  const scrapeHealth: ScrapeStatus[] = [];
   let success: number = 0;
   let fail: number = 0;
 
