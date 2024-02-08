@@ -5,7 +5,10 @@ import KpiCard from "@/components/dataViz/KpiCard";
 import { ScrapeTracker } from "@/components/dataViz/ScrapeTracker";
 import { getProductById } from "@/lib/actions/actions";
 import data from "@/lib/static/exampleData";
-import { priceHistoryChartEtl } from "@/lib/utils/extractFunctions";
+import {
+  priceHistoryChartEtl,
+  scrapeHealthEtl,
+} from "@/lib/utils/priceHistoryHelpers";
 import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,6 +27,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const { priceHistory } = product;
 
   const chartData = priceHistoryChartEtl(priceHistory);
+  const scrapeHealth = scrapeHealthEtl(priceHistory);
 
   return (
     <section className="px-6 md:px-20 py-16">
@@ -91,7 +95,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         />
       </div>
       <div className="w-xl h-xl mt-[2rem]">
-        <ScrapeTracker />
+        <ScrapeTracker scrapeHealth={scrapeHealth} />
       </div>
     </section>
   );

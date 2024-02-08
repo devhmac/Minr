@@ -35,7 +35,7 @@ const data: Tracker[] = [
 
 export const ScrapeTracker = () => (
   <Card className="max-w-sm mx-auto">
-    <Title>Status</Title>
+    <Title>Scrape Health</Title>
     <Text>Lena&apos;s Webshop &bull; May 2022</Text>
     <Flex justifyContent="end" className="mt-4">
       <Text>Uptime 92%</Text>
