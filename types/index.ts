@@ -1,3 +1,5 @@
+import { Color } from "@tremor/react";
+
 export type PriceHistoryItem = {
   price: number;
   average: number;
@@ -46,6 +48,6 @@ export type EmailProductInfo = {
 };
 
 export type ScrapeStatus = {
-  color: string;
+  color: Color;
   tooltip: string;
 };
