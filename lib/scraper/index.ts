@@ -6,7 +6,6 @@ import {
   extractDescription,
   extractPrice,
 } from "../utils/extractFunctions";
-import { toast } from "react-toastify";
 
 export async function scrapeUrl(url: string) {
   if (!url) return;
@@ -69,6 +68,8 @@ export async function scrapeUrl(url: string) {
     const discount = $(".savingsPercentage ").text().replace(/[-%]/g, "");
 
     const description = extractDescription($);
+
+    const brand = $("#bylineInfo");
 
     const category = extractCategory(
       $("#wayfinding-breadcrumbs_feature_div")
