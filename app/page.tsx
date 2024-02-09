@@ -8,7 +8,7 @@ import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
 import TrendingCard from "@/components/TrendingCard";
 import Product from "@/lib/models/product.model";
-import PocBanner from "@/components/PocBanner";
+import PocBanner from "@/components/ui/PocBanner";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
