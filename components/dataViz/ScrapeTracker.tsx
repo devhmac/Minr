@@ -45,11 +45,13 @@ export const ScrapeTracker = (props: Props) => {
   const { uptime, scrapeHistory } = props.scrapeHealth;
   return (
     <Card className="max-w-sm mx-auto">
-      <Title>Scrape Health</Title>
-      <span className="flex flex-row justify-end gap-2">
-        <CheckCircle2 className="text-emerald-400" />
-        <XCircle className="text-rose-400" />
-      </span>
+      <Title className="flex flex-row justify-between">
+        Scrape Health
+        <span className="flex flex-row justify-end gap-2">
+          <CheckCircle2 className="text-emerald-400" />
+          <XCircle className="text-rose-400" />
+        </span>
+      </Title>
       <Flex justifyContent="end" className="mt-4">
         <Text>Uptime {`${uptime}`}%</Text>
       </Flex>
