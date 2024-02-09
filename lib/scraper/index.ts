@@ -6,6 +6,7 @@ import {
   extractDescription,
   extractPrice,
 } from "../utils/extractFunctions";
+import { toast } from "react-toastify";
 
 export async function scrapeUrl(url: string) {
   if (!url) return;

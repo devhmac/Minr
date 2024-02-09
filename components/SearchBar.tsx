@@ -70,10 +70,21 @@ const SearchBar = () => {
       const productId: string = await scrapeAndSaveProduct(searchPrompt);
       setSearchPrompt("");
 
+      console.log("in scrape submit try, before redirect");
       router.push(`/products/${productId}`);
       // redirect(`/products/${productId}`);
     } catch (error) {
+      console.log("--------- in search bars catch function -----------");
       console.log(error);
+      toast.error(
+        "Sorry, the link was invalid. Please try again with a valid Amazon link",
+        {
+          position: "top-center",
+          closeOnClick: true,
+          pauseOnHover: true,
+          // className: "border-2px border-red-200",
+        }
+      );
     } finally {
       setIsloading(false);
     }

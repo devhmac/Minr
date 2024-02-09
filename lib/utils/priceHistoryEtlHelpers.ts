@@ -5,7 +5,8 @@ export const priceHistoryChartEtl = (priceHistory: PriceHistoryItem[]) => {
   let chartData = priceHistory.map((val) => ({
     price: val.price,
     average: val.average,
-    date: val.date.toISOString().split("T")[0],
+    // date: val.date.toISOString().split("T")[0],
+    date: val.date.toDateString(),
   }));
 
   return chartData;

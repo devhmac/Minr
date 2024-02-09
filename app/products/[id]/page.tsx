@@ -8,7 +8,7 @@ import data from "@/lib/static/exampleData";
 import {
   priceHistoryChartEtl,
   scrapeHealthEtl,
-} from "@/lib/utils/priceHistoryHelpers";
+} from "@/lib/utils/priceHistoryEtlHelpers";
 import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
