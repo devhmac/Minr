@@ -1,6 +1,6 @@
 import { Card, Title, Tracker, Flex, Text, Color } from "@tremor/react";
 import { ScrapeStatus } from "@/types";
-
+import { CheckCircle2, XCircle } from "lucide-react";
 interface Tracker {
   color: Color;
   tooltip: string;
@@ -46,7 +46,10 @@ export const ScrapeTracker = (props: Props) => {
   return (
     <Card className="max-w-sm mx-auto">
       <Title>Scrape Health</Title>
-      <Text>Lena&apos;s Webshop &bull; May 2022</Text>
+      <span className="flex flex-row justify-end gap-2">
+        <CheckCircle2 className="text-emerald-400" />
+        <XCircle className="text-rose-400" />
+      </span>
       <Flex justifyContent="end" className="mt-4">
         <Text>Uptime {`${uptime}`}%</Text>
       </Flex>
