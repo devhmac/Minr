@@ -8,7 +8,7 @@ export default ({ progress }: props) => (
 
   <ProgressBar
     value={progress}
-    color="teal"
+    color="emerald"
     className=" flex-1 min-w-[200px] p-3"
   />
   // </Card>

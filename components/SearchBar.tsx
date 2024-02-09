@@ -31,8 +31,8 @@ const SearchBar = () => {
 
   const [isLinkValid, setIsLinkValid] = useState<boolean | null>(null);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
-  const [isLoading, setIsloading] = useState<boolean>(false);
-  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [isLoading, setIsloading] = useState<boolean>(true);
+  const [uploadProgress, setUploadProgress] = useState<number>(50);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -75,7 +75,6 @@ const SearchBar = () => {
           position: "top-center",
           closeOnClick: true,
           pauseOnHover: true,
-          // className: "border-2px border-red-200",
         }
       );
       return;
@@ -120,10 +119,6 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
-              // console.log("state", searchPrompt);
-              // console.log("targetval", e.target.value);
-
-              // handleInputChange(e.target.value);
             }}
             placeholder="Enter your product link to get started..."
             className="searchbar-input "
