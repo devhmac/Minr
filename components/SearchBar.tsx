@@ -31,7 +31,7 @@ const SearchBar = () => {
 
   const [isLinkValid, setIsLinkValid] = useState<boolean | null>(null);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
-  const [isLoading, setIsloading] = useState<boolean>(true);
+  const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   useEffect(() => {
@@ -57,9 +57,9 @@ const SearchBar = () => {
           clearInterval(interval);
           return prev;
         }
-        return prev + 5;
+        return prev + 2;
       });
-    }, 200);
+    }, 25);
     return interval;
   };
 
@@ -96,12 +96,12 @@ const SearchBar = () => {
       console.log("--------- in search bars catch function -----------");
       console.log(error);
       toast.error(
-        "Sorry, something went wrong, Please check your link and try again.",
+        "Sorry, we were unable to scrape this link. Please confirm that it's valid and try again.",
         {
           position: "top-center",
           closeOnClick: true,
           pauseOnHover: true,
-          // className: "border-2px border-red-200",
+          theme: "colored",
         }
       );
     } finally {

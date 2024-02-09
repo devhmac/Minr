@@ -4,11 +4,12 @@ type props = {
   progress: number;
 };
 export default ({ progress }: props) => (
-  <Card className="max-w-sm mx-auto">
-    <Flex>
-      <Text>$ 9,012 &bull; 45%</Text>
-      <Text>$ 20,000</Text>
-    </Flex>
-    <ProgressBar value={progress} color="teal" className="mt-3" />
-  </Card>
+  // <Card className="max-w-sm mx-auto">
+
+  <ProgressBar
+    value={progress}
+    color="teal"
+    className=" flex-1 min-w-[200px] p-3"
+  />
+  // </Card>
 );
