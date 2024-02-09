@@ -91,11 +91,12 @@ const SearchBar = () => {
       clearInterval(progressInterval);
       setUploadProgress(100);
       router.push(`/products/${productId}`);
-    } catch (error) {
+    } catch (error: any) {
       console.log("--------- in search bars catch function -----------");
       console.log(error);
       toast.error(
-        "Sorry, we were unable to scrape this link. Please confirm that it's valid and try again.",
+        // "Sorry, we were unable to scrape this link. Please confirm that it's valid and try again."
+        error.message,
         {
           position: "top-center",
           closeOnClick: true,

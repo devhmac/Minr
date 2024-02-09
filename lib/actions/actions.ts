@@ -80,7 +80,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
     return newProduct._id.toString();
   } catch (error: any) {
     // console.log(`Failed to create/update product: ${error}`);
-    throw new Error(`Failed to create/update product: ${error.message}`);
+    throw new Error(`Failed to scrape product: ${error.message}`);
   }
 }
 

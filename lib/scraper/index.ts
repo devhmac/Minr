@@ -107,6 +107,6 @@ export async function scrapeUrl(url: string) {
 
     return scrapedData;
   } catch (error: any) {
-    throw new Error(`Scraper on Error: ${error.message}`);
+    throw new Error(`Scraper issue: ${error.message}`);
   }
 }
