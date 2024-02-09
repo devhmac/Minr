@@ -31,8 +31,8 @@ const SearchBar = () => {
 
   const [isLinkValid, setIsLinkValid] = useState<boolean | null>(null);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
-  const [isLoading, setIsloading] = useState<boolean>(true);
-  const [uploadProgress, setUploadProgress] = useState<number>(50);
+  const [isLoading, setIsloading] = useState<boolean>(false);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
