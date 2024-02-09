@@ -23,7 +23,7 @@ export const scrapeHealthEtl = (priceHistory: PriceHistoryItem[]) => {
     scrapeSucceeded ? success++ : fail++;
     scrapeHistory.push({
       color: scrapeSucceeded ? "emerald" : "rose",
-      tooltip: scrapeSucceeded ? "Success" : "Scrape Failed",
+      tooltip: val.date.toDateString(),
     });
   });
 
