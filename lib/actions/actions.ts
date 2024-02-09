@@ -79,7 +79,8 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
     return newProduct._id.toString();
   } catch (error) {
-    console.log(`Failed to create/update product: ${error}`);
+    // console.log(`Failed to create/update product: ${error}`);
+    throw new Error(`Failed to create/update product: ${error}`);
   }
 }
 
