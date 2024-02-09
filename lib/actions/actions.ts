@@ -78,9 +78,9 @@ export async function scrapeAndSaveProduct(productUrl: string) {
     revalidatePath(`/products/${newProduct._id}`);
 
     return newProduct._id.toString();
-  } catch (error) {
+  } catch (error: any) {
     // console.log(`Failed to create/update product: ${error}`);
-    throw new Error(`Failed to create/update product: ${error}`);
+    throw new Error(`Failed to create/update product: ${error.message}`);
   }
 }
 

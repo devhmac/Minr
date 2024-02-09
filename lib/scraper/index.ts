@@ -78,7 +78,7 @@ export async function scrapeUrl(url: string) {
     );
 
     // ALSO WANT - stars, # reviews and category
-    console.log("dont forget to delete these test values");
+    console.log("dont forget to delete these test values (in scraper)");
     const scrapedData = {
       url,
       currency: currency || "$",
@@ -99,8 +99,14 @@ export async function scrapeUrl(url: string) {
       averagePrice: 10, //Number(currPrice) || Number(originalPrice),
     };
     console.log(scrapedData);
+
+    if (!scrapedData.image || !scrapedData.title) {
+      throw new Error("Were unable to retrieve nessesary details");
+      return;
+    }
+
     return scrapedData;
   } catch (error: any) {
-    throw new Error(`Failed to scrape on Error: ${error.message}`);
+    throw new Error(`Scraper on Error: ${error.message}`);
   }
 }
