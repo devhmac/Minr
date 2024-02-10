@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProgressBar from "./ui/ProgressBar";
+import { amazonAsinUrl } from "../lib/utils/linkParsing";
 
 const isValidAmazonLink = (url: string) => {
   try {
@@ -34,7 +35,11 @@ const SearchBar = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
+  const [test, setTest] = useState<string>("");
+
   useEffect(() => {
+    setTest(amazonAsinUrl(searchPrompt));
+    console.log(test);
     const debounce = setTimeout(() => {
       if (searchPrompt !== "") {
         setIsLinkValid(isValidAmazonLink(searchPrompt)!);
@@ -86,8 +91,6 @@ const SearchBar = () => {
       //scrape linked product
       const productId: string = await scrapeAndSaveProduct(searchPrompt);
       setSearchPrompt("");
-
-      console.log("in scrape submit try, before redirect");
       clearInterval(progressInterval);
       setUploadProgress(100);
       router.push(`/products/${productId}`);
@@ -125,7 +128,6 @@ const SearchBar = () => {
             className="searchbar-input "
           />
         )}
-
         <button
           type="submit"
           className="searchbar-btn"
