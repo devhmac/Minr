@@ -38,8 +38,8 @@ const SearchBar = () => {
   const [test, setTest] = useState<string>("");
 
   useEffect(() => {
-    setTest(amazonAsinUrl(searchPrompt));
-    console.log(test);
+    // setTest(amazonAsinUrl(searchPrompt));
+    // console.log(test);
     const debounce = setTimeout(() => {
       if (searchPrompt !== "") {
         setIsLinkValid(isValidAmazonLink(searchPrompt)!);
