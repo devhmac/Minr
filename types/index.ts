@@ -16,6 +16,7 @@ export type Product = {
   currency: string;
   image: string;
   title: string;
+  numScrapes: number;
   currentPrice: number;
   originalPrice: number;
   priceHistory: PriceHistoryItem[] | [];
@@ -36,6 +37,7 @@ export type ScrapedData = {
   currency: string;
   title: string;
   image: string;
+  numScrapes: number;
   currentPrice: number;
   originalPrice: number;
   priceHistory: [];

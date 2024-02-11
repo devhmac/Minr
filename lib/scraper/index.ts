@@ -85,9 +85,9 @@ export async function scrapeUrl(url: string) {
       currency: currency || "$",
       title,
       image: imageUrls[0],
+      numScrapes: 1,
       currentPrice: Number(currPrice) || Number(originalPrice) || 0,
       originalPrice: Number(originalPrice) || Number(currPrice) || 0,
-
       priceHistory: [],
       discountRate: Number(discount),
       reviewsCount: 50,

@@ -9,14 +9,18 @@ import {
   getAveragePrice,
   getHighestPrice,
   getLowestPrice,
+  extractShortUrl,
 } from "../utils/extractFunctions";
 import { redirect } from "next/navigation";
 
 export async function scrapeAndSaveProduct(productUrl: string) {
   if (!productUrl) return;
 
+  console.log("Incoming URL:", productUrl);
+  console.log("shortened URL:", extractShortUrl(productUrl));
+
   try {
-    const scrapedProduct = await scrapeUrl(productUrl);
+    const scrapedProduct = await scrapeUrl(extractShortUrl(productUrl));
     if (!scrapedProduct) return;
 
     dbConnect();
@@ -48,6 +52,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         lowestPrice: getLowestPrice(updatedPriceHistory),
         highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
+        numScrapes: existingProduct.numScrapes++,
       };
     } else {
       // if no existing product create first price history
@@ -58,7 +63,10 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         },
       ];
 
-      product = { ...scrapedProduct, priceHistory: firstPriceHistory };
+      product = {
+        ...scrapedProduct,
+        priceHistory: firstPriceHistory,
+      };
     }
 
     const newProduct = await Product.findOneAndUpdate(
@@ -78,7 +86,6 @@ export async function scrapeAndSaveProduct(productUrl: string) {
 
     return newProduct._id.toString();
   } catch (error: any) {
-    // console.log(`Failed to create/update product: ${error}`);
     throw new Error(`Failed to scrape product: ${error.message}`);
   }
 }
