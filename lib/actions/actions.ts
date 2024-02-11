@@ -18,7 +18,6 @@ export async function scrapeAndSaveProduct(productUrl: string) {
   try {
     const scrapedProduct = await scrapeUrl(productUrl);
     if (!scrapedProduct) return;
-    // console.log(scrapedProduct);
 
     dbConnect();
     let product = scrapedProduct;

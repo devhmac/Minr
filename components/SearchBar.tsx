@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProgressBar from "./ui/ProgressBar";
-import { amazonAsinUrl } from "../lib/utils/linkParsing";
 
 const isValidAmazonLink = (url: string) => {
   try {
@@ -34,8 +33,6 @@ const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-
-  const [test, setTest] = useState<string>("");
 
   useEffect(() => {
     const debounce = setTimeout(() => {
