@@ -91,6 +91,7 @@ export const extractShortUrl = (url: string) => {
 
   for (let i = 0; i < splitUrl.length; i++) {
     if (splitUrl[i - 1] === "dp") {
+      shortenedUrlpieces.push(splitUrl[i]);
       // splitUrl[i].includes("?ref=") ? shortenedUrlpieces[ :
       return shortenedUrlpieces.join("/");
     }
