@@ -31,6 +31,25 @@ export type Product = {
   users?: User[];
 };
 
+export type ScrapedData = {
+  url: string;
+  currency: string;
+  title: string;
+  image: string;
+  currentPrice: number;
+  originalPrice: number;
+  priceHistory: [];
+  highestPrice: number;
+  lowestPrice: number;
+  averagePrice: number;
+  discountRate: number;
+  description: string;
+  category: string;
+  reviewsCount: number;
+  stars: number;
+  isOutOfStock: Boolean;
+};
+
 export type NotificationType =
   | "WELCOME"
   | "CHANGE_OF_STOCK"

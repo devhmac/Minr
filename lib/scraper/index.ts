@@ -6,6 +6,7 @@ import {
   extractDescription,
   extractPrice,
 } from "../utils/extractFunctions";
+import { ScrapedData } from "@/types";
 
 export async function scrapeUrl(url: string) {
   if (!url) return;
@@ -54,7 +55,7 @@ export async function scrapeUrl(url: string) {
       $(".a-size-base.a-color-price")
     );
 
-    const outOfStock =
+    const isOutOfStock =
       $("#availability span").text().trim().toLowerCase() ===
       "current unavailable";
 
@@ -67,11 +68,11 @@ export async function scrapeUrl(url: string) {
 
     const discount = $(".savingsPercentage ").text().replace(/[-%]/g, "");
 
-    const description = extractDescription($);
+    const description: string = extractDescription($);
 
     const brand = $("#bylineInfo");
 
-    const category = extractCategory(
+    const category: string = extractCategory(
       $("#wayfinding-breadcrumbs_feature_div")
         .children("ul")
         .children("li:first")
@@ -79,20 +80,20 @@ export async function scrapeUrl(url: string) {
 
     // ALSO WANT - stars, # reviews and category
     console.log("dont forget to delete these test values (in scraper)");
-    const scrapedData = {
+    const scrapedData: ScrapedData = {
       url,
       currency: currency || "$",
       title,
       image: imageUrls[0],
       currentPrice: Number(currPrice) || Number(originalPrice) || 0,
-      originalPrice: 10, //Number(originalPrice) || Number(currPrice),
+      originalPrice: Number(originalPrice) || Number(currPrice) || 0,
 
       priceHistory: [],
       discountRate: Number(discount),
       reviewsCount: 50,
       stars: 4,
       category: category,
-      outOfStock,
+      isOutOfStock,
       description,
       lowestPrice: 10, //Number(currPrice) || Number(originalPrice),
       highestPrice: 10, //Number(originalPrice) || Number(currPrice),
