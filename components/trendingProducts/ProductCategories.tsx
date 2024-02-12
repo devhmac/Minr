@@ -14,15 +14,28 @@ const ProductCategories = ({ products }: Props) => {
 
   let distinctCats: CategoryMap = {};
   const newCategories = products.forEach((product) => {
+    // distinctCats[product.category] = 0 + distinctCats[product.category] || 1;
+
     if (distinctCats[product.category]) return distinctCats[product.category]++;
     return (distinctCats[product.category] = 1);
   });
   console.log(distinctCats);
   // categories.unshift("All");
 
-  // for (let i = 0; i < products.length; i++) {
-  //   if (distinctCats[products[i].category])
-  // }
+  let categoriesWithCount = Object.keys(distinctCats).map((cat) => ({
+    category: cat,
+    count: distinctCats[cat],
+  }));
+
+  console.log(categoriesWithCount);
+  // let test = Array.from(distinctCats, ([name, value]) => ({{name, value}}))
+
+  let myMap = new Map().set("a", 1).set("b", 2);
+  console.log(myMap);
+
+  const result = Array.from(myMap).map(([name, value]) => ({ name, value }));
+
+  console.log(result);
 
   return (
     <div className="flex flex-row gap-2">
