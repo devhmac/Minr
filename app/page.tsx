@@ -7,8 +7,8 @@ import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
 import TrendingCard from "@/components/TrendingCard";
-import Product from "@/lib/models/product.model";
 import PocBanner from "@/components/ui/PocBanner";
+import ProductCategories from "@/components/trendingProducts/ProductCategories";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -48,6 +48,7 @@ const Page = async () => {
 
       <section className="trending-section">
         <h2 className="section-text text-center"> Trending Products</h2>
+        <ProductCategories products={allProducts} />
 
         <div className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center ">
           {allProducts?.map((item, i) => {
