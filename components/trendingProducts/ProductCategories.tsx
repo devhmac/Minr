@@ -31,6 +31,8 @@ const ProductCategories = ({ products }: Props) => {
     .sort((a, b) => b.count - a.count)
     .splice(0, 6);
 
+  topCategories.push({ category: "All", count: 1 });
+
   console.log(topCategories);
   // let test = Array.from(distinctCats, ([name, value]) => ({{name, value}}))
 
