@@ -31,7 +31,10 @@ const ProductCategories = ({ products }: Props) => {
     <div className="flex flex-row gap-2 justify-center">
       {topCategories.map(({ category }) => {
         return (
-          <button key={category} className="text-center border-2">
+          <button
+            key={category}
+            className="text-center bg-transparent hover:bg-primary text-mediumEmph font-semibold hover:text-white py-2 px-4 borderhover:border-transparent rounded "
+          >
             {category}
           </button>
         );
