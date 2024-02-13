@@ -1,5 +1,5 @@
 "use client";
-import { X } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function PocBanner() {
@@ -31,6 +31,7 @@ export default function PocBanner() {
           }}
         />
       </div>
+      <AlertCircle className="text-gray-900 h-5 w-5 shrink-0" />
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="text-sm leading-6 text-gray-900">
           <strong className="font-semibold">Web scraping is fickle.</strong>
@@ -45,6 +46,7 @@ export default function PocBanner() {
           <strong className="font-semibold">Amazon.com & .ca</strong>
         </p>
       </div>
+
       <div className="flex flex-1 justify-end">
         {/* <button
           type="button"
