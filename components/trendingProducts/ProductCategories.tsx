@@ -5,41 +5,38 @@ type Props = {
 };
 
 const ProductCategories = ({ products }: Props) => {
-  const categories = [
-    "All",
-    ...new Set(products.map((product) => product.category)),
-  ];
+  // const categories = [
+  //   "All",
+  //   ...new Set(products.map((product) => product.category)),
+  // ];
 
   type CategoryMap = { [key: string]: number };
 
-  let distinctCats: CategoryMap = {};
-  const newCategories = products.forEach((product) => {
-    // distinctCats[product.category] = 0 + distinctCats[product.category] || 1;
+  let categoryHash: CategoryMap = {};
+  products.forEach((product) => {
+    categoryHash[product.category] =
+      0 + categoryHash[product.category] + 1 || 1;
 
-    if (distinctCats[product.category]) return distinctCats[product.category]++;
-    return (distinctCats[product.category] = 1);
+    // if (distinctCats[product.category]) return distinctCats[product.category]++;
+    // return (distinctCats[product.category] = 1);
   });
-  console.log(distinctCats);
+  console.log(categoryHash);
   // categories.unshift("All");
 
-  let categoriesWithCount = Object.keys(distinctCats).map((cat) => ({
-    category: cat,
-    count: distinctCats[cat],
-  }));
+  let topCategories = Object.keys(categoryHash)
+    .map((cat) => ({
+      category: cat,
+      count: categoryHash[cat],
+    }))
+    .sort((a, b) => b.count - a.count)
+    .splice(0, 6);
 
-  console.log(categoriesWithCount);
+  console.log(topCategories);
   // let test = Array.from(distinctCats, ([name, value]) => ({{name, value}}))
-
-  let myMap = new Map().set("a", 1).set("b", 2);
-  console.log(myMap);
-
-  const result = Array.from(myMap).map(([name, value]) => ({ name, value }));
-
-  console.log(result);
 
   return (
     <div className="flex flex-row gap-2">
-      {categories.map((category: string) => {
+      {topCategories.map(({ category }) => {
         return <p className="text-center border-2">{category}</p>;
       })}
     </div>
