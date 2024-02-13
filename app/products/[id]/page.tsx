@@ -85,12 +85,12 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         /> */}
         <KpiCard
           title={"Highest Price"}
-          price={product.highestPrice}
+          value={product.highestPrice}
           currency={product.currency}
         />
         <KpiCard
           title={"Lowest Price"}
-          price={product.lowestPrice}
+          value={product.lowestPrice}
           currency={product.currency}
         />
       </div>

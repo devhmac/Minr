@@ -41,11 +41,11 @@ const Page = async () => {
             </p>
             {/* <SearchBar /> */}
             <div className="flex flex-row gap-5 justify-center mt-12">
-              <KpiCard title={"Products Tracked"} price={10} size="small" />
-              <KpiCard title={"Total Scrapes"} price={5} size="small" />
+              <KpiCard title={"Products Tracked:"} value={10} size="small" />
+              <KpiCard title={"Total Scrapes:"} value={5} size="small" />
               <KpiCard
-                title={"Uptime or last hour?"}
-                price={1000}
+                title={"Scraper Status:"}
+                value={"Online"}
                 size="small"
               />
             </div>

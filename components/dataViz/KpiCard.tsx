@@ -1,20 +1,20 @@
 import { Card, Metric, Text } from "@tremor/react";
 
 type Props = {
-  price: number;
+  value: number | string;
   currency?: string;
   title: string;
   size?: string;
 };
 
-const KpiCard = ({ title, price, currency, size }: Props) => {
+const KpiCard = ({ title, value, currency, size }: Props) => {
   let classList =
     size && size === "small" ? "kpiCardSizeSmall flex-1" : "kpiCardSize flex-1";
 
   return (
     <Card className={classList} decoration="top" decorationColor="indigo">
       <Text>{title}</Text>
-      <Metric>{currency ? `${currency} ${price}` : price}</Metric>
+      <Metric>{currency ? `${currency} ${value}` : value}</Metric>
     </Card>
   );
 };
