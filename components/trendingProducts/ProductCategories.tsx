@@ -7,6 +7,8 @@ type Props = {
 const ProductCategories = ({ products }: Props) => {
   type CategoryCounts = { [key: string]: number };
 
+  if (!products || products.length === 0) return <p></p>;
+
   const categoryCounts: CategoryCounts = products.reduce(
     (acc: CategoryCounts, product) => {
       acc[product.category] = (acc[product.category] || 0) + 1;
@@ -14,9 +16,6 @@ const ProductCategories = ({ products }: Props) => {
     },
     {}
   );
-
-  console.log(categoryCounts);
-  // categories.unshift("All");
 
   let topCategories = Object.keys(categoryCounts)
     .map((cat) => ({
@@ -28,12 +27,14 @@ const ProductCategories = ({ products }: Props) => {
 
   topCategories.push({ category: "All", count: 1 });
 
-  // let test = Array.from(distinctCats, ([name, value]) => ({{name, value}}))
-
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row gap-2 justify-center">
       {topCategories.map(({ category }) => {
-        return <p className="text-center border-2">{category}</p>;
+        return (
+          <button key={category} className="text-center border-2">
+            {category}
+          </button>
+        );
       })}
     </div>
   );

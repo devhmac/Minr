@@ -86,17 +86,34 @@ export const getAveragePrice = (priceList: PriceHistoryItem[]) => {
 };
 
 export const extractShortUrl = (url: string) => {
-  const splitUrl = url.split("/");
-  const shortenedUrlpieces = [];
+  // Old approach
+  // const splitUrl = url.split("/");
+  // const shortenedUrlpieces = [];
+  // for (let i = 0; i < splitUrl.length; i++) {
+  //   if (splitUrl[i - 1] === "dp") {
+  //     shortenedUrlpieces.push(splitUrl[i]);
+  //     // splitUrl[i].includes("?ref=") ? shortenedUrlpieces[ :
+  //     return shortenedUrlpieces.join("/");
+  //   }
+  //   shortenedUrlpieces.push(splitUrl[i]); //
+  // }
+  // return url;
 
-  for (let i = 0; i < splitUrl.length; i++) {
-    if (splitUrl[i - 1] === "dp") {
-      shortenedUrlpieces.push(splitUrl[i]);
-      // splitUrl[i].includes("?ref=") ? shortenedUrlpieces[ :
-      return shortenedUrlpieces.join("/");
-    }
-    shortenedUrlpieces.push(splitUrl[i]); //
+  const regex = /\/dp\/([^\/?#]+)/;
+
+  // Execute the regular expression on the URL
+  const match = url.match(regex);
+
+  // If a match is found
+  if (match) {
+    // Extract the matched substring
+    const id = match[1];
+
+    // Find the index of the matched substring in the URL
+    const index = url.indexOf(id);
+
+    // Return the base URL up to the end of the matched substring
+    return url.slice(0, index + id.length);
   }
-
   return url;
 };

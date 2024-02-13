@@ -9,6 +9,8 @@ import data from "@/lib/static/exampleData";
 import TrendingCard from "@/components/TrendingCard";
 import PocBanner from "@/components/ui/PocBanner";
 import ProductCategories from "@/components/trendingProducts/ProductCategories";
+import ProductList from "@/components/trendingProducts/ProductList";
+import KpiCard from "@/components/dataViz/KpiCard";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -37,7 +39,16 @@ const Page = async () => {
               Empower your growth with A self-serve platform for your online
               marketplace pricing and performance data.
             </p>
-            <SearchBar />
+            {/* <SearchBar /> */}
+            <div className="flex flex-row gap-5 justify-center mt-12">
+              <KpiCard title={"Products Tracked"} price={10} size="small" />
+              <KpiCard title={"Total Scrapes"} price={5} size="small" />
+              <KpiCard
+                title={"Uptime or last hour?"}
+                price={1000}
+                size="small"
+              />
+            </div>
           </div>
           {/* <MainCarousel /> */}
           <div className="relative sm:px-10 py-5 sm:pt-20 pb-5  w-full border-2 border-lowestEmph rounded-[30px] mx-auto max-w-[250px] h-[150px] sm:max-w-xl sm:h-[200px] xl:max-w-3xl xl:h-[500px] ">
@@ -45,16 +56,13 @@ const Page = async () => {
           </div>
         </div>
       </section>
-
+      <div className=" mx-auto md:w-3/4">
+        <SearchBar />
+      </div>
       <section className="trending-section">
         <h2 className="section-text text-center"> Trending Products</h2>
         <ProductCategories products={allProducts} />
-
-        <div className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center ">
-          {allProducts?.map((item, i) => {
-            return <TrendingCard key={i} product={item} />;
-          })}
-        </div>
+        <ProductList products={allProducts} />
       </section>
     </>
   );

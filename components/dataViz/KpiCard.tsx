@@ -2,17 +2,21 @@ import { Card, Metric, Text } from "@tremor/react";
 
 type Props = {
   price: number;
-  currency: string;
+  currency?: string;
   title: string;
+  size?: string;
 };
 
-export default ({ title, price, currency }: Props) => (
-  <Card
-    className="kpiCardSize flex-1"
-    decoration="top"
-    decorationColor="indigo"
-  >
-    <Text>{title}</Text>
-    <Metric>{`${currency} ${price}`}</Metric>
-  </Card>
-);
+const KpiCard = ({ title, price, currency, size }: Props) => {
+  let classList =
+    size && size === "small" ? "kpiCardSizeSmall flex-1" : "kpiCardSize flex-1";
+
+  return (
+    <Card className={classList} decoration="top" decorationColor="indigo">
+      <Text>{title}</Text>
+      <Metric>{currency ? `${currency} ${price}` : price}</Metric>
+    </Card>
+  );
+};
+
+export default KpiCard;

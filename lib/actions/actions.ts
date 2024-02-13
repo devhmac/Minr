@@ -52,7 +52,7 @@ export async function scrapeAndSaveProduct(productUrl: string) {
         lowestPrice: getLowestPrice(updatedPriceHistory),
         highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
-        numScrapes: existingProduct.numScrapes++,
+        numScrapes: existingProduct.numScrapes + 1,
       };
     } else {
       // if no existing product create first price history
