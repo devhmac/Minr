@@ -5,35 +5,29 @@ type Props = {
 };
 
 const ProductCategories = ({ products }: Props) => {
-  // const categories = [
-  //   "All",
-  //   ...new Set(products.map((product) => product.category)),
-  // ];
+  type CategoryCounts = { [key: string]: number };
 
-  type CategoryMap = { [key: string]: number };
+  const categoryCounts: CategoryCounts = products.reduce(
+    (acc: CategoryCounts, product) => {
+      acc[product.category] = (acc[product.category] || 0) + 1;
+      return acc;
+    },
+    {}
+  );
 
-  let categoryHash: CategoryMap = {};
-  products.forEach((product) => {
-    categoryHash[product.category] =
-      0 + categoryHash[product.category] + 1 || 1;
-
-    // if (distinctCats[product.category]) return distinctCats[product.category]++;
-    // return (distinctCats[product.category] = 1);
-  });
-  console.log(categoryHash);
+  console.log(categoryCounts);
   // categories.unshift("All");
 
-  let topCategories = Object.keys(categoryHash)
+  let topCategories = Object.keys(categoryCounts)
     .map((cat) => ({
       category: cat,
-      count: categoryHash[cat],
+      count: categoryCounts[cat],
     }))
     .sort((a, b) => b.count - a.count)
     .splice(0, 6);
 
   topCategories.push({ category: "All", count: 1 });
 
-  console.log(topCategories);
   // let test = Array.from(distinctCats, ([name, value]) => ({{name, value}}))
 
   return (
