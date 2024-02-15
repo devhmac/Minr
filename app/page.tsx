@@ -6,7 +6,6 @@ import { getAllProducts } from "@/lib/actions/actions";
 import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
-import TrendingCard from "@/components/TrendingCard";
 import PocBanner from "@/components/ui/PocBanner";
 import ProductCategories from "@/components/trendingProducts/ProductCategories";
 import ProductList from "@/components/trendingProducts/ProductList";

@@ -121,3 +121,13 @@ export const getProductById = async (id: string) => {
     console.log(error);
   }
 };
+
+export const getProductsByCategory = async (category: string) => {
+  try {
+    dbConnect();
+    const products: ProductType[] = await Product.find({ category: category });
+    return products;
+  } catch (error: any) {
+    throw new Error(`Failed to get products ${error.message}`);
+  }
+};
