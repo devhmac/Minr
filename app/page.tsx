@@ -2,7 +2,7 @@ import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { getAllProducts } from "@/lib/actions/actions";
+import { getAllProducts, getProductsCount } from "@/lib/actions/actions";
 import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
@@ -13,6 +13,7 @@ import KpiCard from "@/components/dataViz/KpiCard";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
+  const count = getProductsCount();
 
   return (
     <>

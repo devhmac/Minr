@@ -131,3 +131,14 @@ export const getProductsByCategory = async (category: string) => {
     throw new Error(`Failed to get products ${error.message}`);
   }
 };
+
+export const getProductsCount = async () => {
+  try {
+    dbConnect();
+    const productCount: number = await Product.countDocuments();
+    console.log(productCount);
+    return productCount;
+  } catch (error: any) {
+    throw new Error(`Failed to get products ${error.message}`);
+  }
+};
