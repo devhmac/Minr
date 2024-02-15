@@ -2,7 +2,11 @@ import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { getAllProducts, getProductsCount } from "@/lib/actions/actions";
+import {
+  getAllProducts,
+  getProductsCount,
+  getScrapeCount,
+} from "@/lib/actions/actions";
 import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
@@ -13,7 +17,8 @@ import KpiCard from "@/components/dataViz/KpiCard";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
-  const count = getProductsCount();
+  const productCount = await getProductsCount();
+  // const scrapeCount = await getScrapeCount();
 
   return (
     <>
@@ -41,7 +46,11 @@ const Page = async () => {
             </p>
             {/* <SearchBar /> */}
             <div className="flex flex-row gap-5 justify-center mt-12">
-              <KpiCard title={"Products Tracked:"} value={10} size="small" />
+              <KpiCard
+                title={"Products Tracked:"}
+                value={productCount}
+                size="small"
+              />
               <KpiCard title={"Total Scrapes:"} value={5} size="small" />
               <KpiCard
                 title={"Scraper Status:"}
