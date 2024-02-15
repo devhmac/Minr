@@ -1,6 +1,6 @@
 import { Product } from "@/types";
 import React from "react";
-import TrendingCard from "../TrendingCard";
+import TrendingCard from "./TrendingCard";
 
 type Props = {
   products: Product[];
