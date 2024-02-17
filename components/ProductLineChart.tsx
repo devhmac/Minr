@@ -9,14 +9,6 @@ import {
   YAxis,
 } from "recharts";
 
-// will have to change this later once I decide on actually data titles
-// type Props = {
-//   data: {
-//     average: number;
-//     today: number;
-//   }[];
-// };
-
 type Props = {
   data: {
     price: number;

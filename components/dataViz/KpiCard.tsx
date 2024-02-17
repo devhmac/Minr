@@ -14,7 +14,7 @@ const KpiCard = ({ title, value, currency, size }: Props) => {
   return (
     <Card className={classList} decoration="top" decorationColor="indigo">
       <Text>{title}</Text>
-      <Metric>{currency ? `${currency} ${value}` : value}</Metric>
+      <Metric>{currency ? `${currency}${value}` : value}</Metric>
     </Card>
   );
 };

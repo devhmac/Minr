@@ -36,16 +36,17 @@ const ProductCategories = ({ products: data, categorySelection }: Props) => {
 
   // const topCategories = ["Category 1", "category 2", "Category 3"];
   return (
-    <div className=" gap-2 mx-auto text-center">
+    <div className=" gap-2 mx-auto text-center text-mediumEmph">
+      {" "}
+      Top Categories:
       {topCategories.map(({ category }) => {
         return (
           <button
             key={category}
-            className={` hover:bg-primary text-mediumEmph font-semibold hover:text-white py-2 px-4 mx-0.5 borderhover:border-transparent rounded ${
+            className={` hover:bg-primary  font hover:text-white py-2 px-4 mx-0.5 borderhover:border-transparent rounded ${
               category === selectedCategory ? "bg-primary text-white" : ""
             }`}
             onClick={(e) => {
-              e.preventDefault();
               setSelectedCategory(category);
               categorySelection(category);
             }}

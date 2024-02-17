@@ -10,10 +10,13 @@ type Props = {
 const ProductList = async ({ products }: Props) => {
   const categorySelection = async (category: string) => {
     "use server";
+    console.log(category);
     return category;
   };
-  const category = await categorySelection("test");
-  console.log("testing me category: ", category);
+
+  const selectedCat = categorySelection;
+  console.log("test", selectedCat);
+  // console.log("testing me category: ", category);
   return (
     <>
       <ProductCategories
