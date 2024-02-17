@@ -1,3 +1,4 @@
+// "use client";
 import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,11 @@ type Props = {
 };
 
 const TrendingCard = ({ product }: Props) => {
-  return (
+  // const [product, setProduct] = useState(data);
+
+  return !product ? (
+    <p>Loading...</p>
+  ) : (
     <Link
       href={`/products/${product._id}`}
       title={product.title}

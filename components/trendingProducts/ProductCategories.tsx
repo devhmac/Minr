@@ -1,10 +1,14 @@
+"use client";
 import { Product } from "@/types";
 
 type Props = {
-  products: Product[];
+  products: string;
+  categorySelection: any;
 };
 
-const ProductCategories = ({ products }: Props) => {
+const ProductCategories = ({ products: data, categorySelection }: Props) => {
+  const products: Product[] = JSON.parse(data);
+
   type CategoryCounts = { [key: string]: number };
 
   if (!products || products.length === 0) return <p></p>;
@@ -25,15 +29,19 @@ const ProductCategories = ({ products }: Props) => {
     .sort((a, b) => b.count - a.count)
     .splice(0, 6);
 
-  topCategories.push({ category: "All", count: 1 });
+  topCategories = [{ category: "All", count: 1 }, ...topCategories];
 
+  // const topCategories = ["Category 1", "category 2", "Category 3"];
   return (
-    <div className="flex flex-row gap-2 justify-center">
+    <div className=" flex-row gap-2 justify-center mx-auto text-center">
       {topCategories.map(({ category }) => {
         return (
           <button
             key={category}
-            className="text-center bg-transparent hover:bg-primary text-mediumEmph font-semibold hover:text-white py-2 px-4 borderhover:border-transparent rounded "
+            className="  bg-transparent hover:bg-primary text-mediumEmph font-semibold hover:text-white py-2 px-4 borderhover:border-transparent rounded "
+            onClick={(e) => {
+              e.target;
+            }}
           >
             {category}
           </button>

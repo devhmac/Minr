@@ -21,7 +21,7 @@ const ProductsWrapper = ({ products }: Props) => {
   return (
     <>
       <h2 className="section-text text-center"> Trending Products</h2>
-      <ProductCategories products={products} />
+      {/* <ProductCategories products={products} /> */}
       <ProductList products={products} />
     </>
   );
