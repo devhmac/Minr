@@ -44,11 +44,10 @@ const ProductCategories = ({ products: data, categories }: Props) => {
 
   topCategories = [{ category: "All", count: 1 }, ...topCategories];
 
-  // const topCategories = ["Category 1", "category 2", "Category 3"];
   return (
     <div className=" gap-2 mx-auto text-center text-mediumEmph">
       {" "}
-      Top Categories:
+      Popular Categories:
       {topCategories.map(({ category }) => {
         return (
           <button
@@ -59,7 +58,7 @@ const ProductCategories = ({ products: data, categories }: Props) => {
             onClick={(e) => {
               setSelectedCategory(category);
               // router.push(`/?category=${category}`, { scroll: false });
-              router.push(`/?category=${category}`, {
+              router.push(`/?category=${encodeURIComponent(category)}`, {
                 scroll: false,
               });
             }}

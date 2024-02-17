@@ -12,16 +12,14 @@ const ProductList = async ({ products }: Props) => {
   const categorySelection = async (category: string) => {
     "use server";
     // console.log(category);
-    const manyprods = getProductsByCategory(category);
+    const clientSelectedProducts = getProductsByCategory(category);
     // console.log(manyprods);
-    return category;
+    return clientSelectedProducts;
   };
 
   const selectedCat = categorySelection;
 
   const categories = await getCategories();
-  console.log(categories);
-  // console.log("testing me category: ", category);
   return (
     <>
       <ProductCategories
