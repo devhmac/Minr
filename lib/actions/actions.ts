@@ -127,8 +127,13 @@ export const getCategories = async () => {
     dbConnect();
     const categoriesWithCounts: any = await Product.aggregate([
       { $group: { _id: "$category", count: { $sum: 1 } } },
-      // { $group: { _id: "$category", count: { $sum: 1 } } },
       { $project: { _id: 0, category: "$_id", count: 1 } },
+      {
+        $sort: {
+          count: -1, // Sort by count in descending order
+          category: 1, // Then sort by category in ascending order
+        },
+      },
     ]);
     return categoriesWithCounts;
   } catch (error: any) {

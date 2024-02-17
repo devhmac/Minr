@@ -20,6 +20,8 @@ const ProductCategories = ({ products: data, categories }: Props) => {
     JSON.parse(categories);
   if (!products || products.length === 0) return <p></p>;
 
+  let topCategories = currentCategories.splice(0, 6);
+
   // type CategoryCounts = { [key: string]: number };
   // const categoryCounts: CategoryCounts = products.reduce(
   //   (acc: CategoryCounts, product) => {
@@ -28,9 +30,9 @@ const ProductCategories = ({ products: data, categories }: Props) => {
   //   },
   //   {}
   // );
-  const topCategories = useMemo(() => {
-    return currentCategories.sort((a, b) => b.count - a.count).splice(0, 6);
-  }, currentCategories);
+  // const topCategories = useMemo(() => {
+  //   return currentCategories.sort((a, b) => b.count - a.count).splice(0, 6);
+  // }, currentCategories);
 
   // let topCategories = Object.keys(categoryCounts)
   //   .map((cat) => ({
@@ -40,7 +42,7 @@ const ProductCategories = ({ products: data, categories }: Props) => {
   //   .sort((a, b) => b.count - a.count)
   //   .splice(0, 6);
 
-  // topCategories = [{ category: "All", count: 1 }, ...topCategories];
+  topCategories = [{ category: "All", count: 1 }, ...topCategories];
 
   // const topCategories = ["Category 1", "category 2", "Category 3"];
   return (
@@ -56,7 +58,10 @@ const ProductCategories = ({ products: data, categories }: Props) => {
             }`}
             onClick={(e) => {
               setSelectedCategory(category);
-              router.push(`/?category=${category}`, { scroll: false });
+              // router.push(`/?category=${category}`, { scroll: false });
+              router.push(`/?category=${category}`, {
+                scroll: false,
+              });
             }}
           >
             {category}
