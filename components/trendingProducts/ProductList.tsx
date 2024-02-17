@@ -2,7 +2,7 @@ import { Product } from "@/types";
 import React from "react";
 import TrendingCard from "./TrendingCard";
 import ProductCategories from "./ProductCategories";
-import { getProductsByCategory } from "@/lib/actions/actions";
+import { getCategories, getProductsByCategory } from "@/lib/actions/actions";
 
 type Props = {
   products: Product[];
@@ -18,12 +18,15 @@ const ProductList = async ({ products }: Props) => {
   };
 
   const selectedCat = categorySelection;
+
+  const categories = await getCategories();
+  console.log(categories);
   // console.log("testing me category: ", category);
   return (
     <>
       <ProductCategories
         products={JSON.stringify(products)}
-        categorySelection={categorySelection}
+        categories={JSON.stringify(categories)}
       />
 
       <div className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center ">

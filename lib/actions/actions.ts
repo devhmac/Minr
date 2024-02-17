@@ -122,6 +122,20 @@ export const getProductById = async (id: string) => {
   }
 };
 
+export const getCategories = async () => {
+  try {
+    dbConnect();
+    const categoriesWithCounts: any = await Product.aggregate([
+      { $group: { _id: "$category", count: { $sum: 1 } } },
+      // { $group: { _id: "$category", count: { $sum: 1 } } },
+      { $project: { _id: 0, category: "$_id", count: 1 } },
+    ]);
+    return categoriesWithCounts;
+  } catch (error: any) {
+    throw new Error(`Failed to get products ${error.message}`);
+  }
+};
+
 export const getProductsByCategory = async (category: string) => {
   try {
     dbConnect();
