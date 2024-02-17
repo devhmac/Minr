@@ -77,7 +77,7 @@ module.exports = {
           background: {
             muted: "#131A2B", // custom
             subtle: "#1f2937", // gray-800
-            DEFAULT: "rgba(255, 255, 255, 0.05)", // gray-900
+            DEFAULT: "rgba(255, 255, 255, 0.01)", // gray-900
             // DEFAULT: "#111827", // gray-900
             emphasis: "#d1d5db", // gray-300
           },
