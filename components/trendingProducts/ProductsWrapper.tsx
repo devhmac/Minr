@@ -10,6 +10,9 @@ type Props = {
 
 const ProductsWrapper = ({ products }: Props) => {
   // const [category, setCategory] = useState<string>("All");
+  // const [productList, setProductList] = useState<Product[] | []>([]);
+
+  // setProductList(products);
 
   const setCategoryCallback = (category: string) => {
     // setCategory(category);

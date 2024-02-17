@@ -71,9 +71,9 @@ const Page = async () => {
       </div>
       <section className="trending-section">
         <ProductsWrapper products={allProducts} />
-        <h2 className="section-text text-center"> Trending Products</h2>
+        {/* <h2 className="section-text text-center"> Trending Products</h2>
         <ProductCategories products={allProducts} />
-        <ProductList products={allProducts} />
+        <ProductList products={allProducts} /> */}
       </section>
     </>
   );
