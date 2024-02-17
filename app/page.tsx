@@ -14,6 +14,7 @@ import PocBanner from "@/components/ui/PocBanner";
 import ProductCategories from "@/components/trendingProducts/ProductCategories";
 import ProductList from "@/components/trendingProducts/ProductList";
 import KpiCard from "@/components/dataViz/KpiCard";
+import ProductsWrapper from "@/components/trendingProducts/ProductsWrapper";
 
 const Page = async () => {
   const allProducts = await getAllProducts();
@@ -69,6 +70,7 @@ const Page = async () => {
         <SearchBar />
       </div>
       <section className="trending-section">
+        <ProductsWrapper products={allProducts} />
         <h2 className="section-text text-center"> Trending Products</h2>
         <ProductCategories products={allProducts} />
         <ProductList products={allProducts} />
