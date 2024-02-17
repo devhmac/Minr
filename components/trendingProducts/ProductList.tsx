@@ -2,6 +2,7 @@ import { Product } from "@/types";
 import React from "react";
 import TrendingCard from "./TrendingCard";
 import ProductCategories from "./ProductCategories";
+import { getProductsByCategory } from "@/lib/actions/actions";
 
 type Props = {
   products: Product[];
@@ -10,12 +11,13 @@ type Props = {
 const ProductList = async ({ products }: Props) => {
   const categorySelection = async (category: string) => {
     "use server";
-    console.log(category);
+    // console.log(category);
+    const manyprods = getProductsByCategory(category);
+    // console.log(manyprods);
     return category;
   };
 
   const selectedCat = categorySelection;
-  console.log("test", selectedCat);
   // console.log("testing me category: ", category);
   return (
     <>

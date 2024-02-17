@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import {
   getAllProducts,
+  getProductsByCategory,
   getProductsCount,
   getScrapeCount,
 } from "@/lib/actions/actions";
@@ -16,8 +17,15 @@ import ProductList from "@/components/trendingProducts/ProductList";
 import KpiCard from "@/components/dataViz/KpiCard";
 import ProductsWrapper from "@/components/trendingProducts/ProductsWrapper";
 
-const Page = async () => {
-  const allProducts = await getAllProducts();
+const Page = async ({ searchParams }: any) => {
+  console.log("searchparams", searchParams);
+
+  const allProducts =
+    !searchParams["category"] || searchParams["category"] === "All"
+      ? await getAllProducts()
+      : await getProductsByCategory(searchParams["category"]);
+
+  // const allProducts = await getAllProducts();
   const productCount = await getProductsCount();
   // const scrapeCount = await getScrapeCount();
 

@@ -1,6 +1,7 @@
 "use client";
 import { Product } from "@/types";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   products: string;
@@ -8,6 +9,7 @@ type Props = {
 };
 
 const ProductCategories = ({ products: data, categorySelection }: Props) => {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState("All");
   console.log(selectedCategory);
 
@@ -49,6 +51,7 @@ const ProductCategories = ({ products: data, categorySelection }: Props) => {
             onClick={(e) => {
               setSelectedCategory(category);
               categorySelection(category);
+              router.push(`/?category=${category}`, { scroll: false });
             }}
           >
             {category}
