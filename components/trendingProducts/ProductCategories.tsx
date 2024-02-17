@@ -1,5 +1,6 @@
 "use client";
 import { Product } from "@/types";
+import { useState } from "react";
 
 type Props = {
   products: string;
@@ -7,12 +8,14 @@ type Props = {
 };
 
 const ProductCategories = ({ products: data, categorySelection }: Props) => {
-  const products: Product[] = JSON.parse(data);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  console.log(selectedCategory);
 
-  type CategoryCounts = { [key: string]: number };
+  const products: Product[] = JSON.parse(data);
 
   if (!products || products.length === 0) return <p></p>;
 
+  type CategoryCounts = { [key: string]: number };
   const categoryCounts: CategoryCounts = products.reduce(
     (acc: CategoryCounts, product) => {
       acc[product.category] = (acc[product.category] || 0) + 1;
@@ -33,14 +36,18 @@ const ProductCategories = ({ products: data, categorySelection }: Props) => {
 
   // const topCategories = ["Category 1", "category 2", "Category 3"];
   return (
-    <div className=" flex-row gap-2 justify-center mx-auto text-center">
+    <div className=" gap-2 mx-auto text-center">
       {topCategories.map(({ category }) => {
         return (
           <button
             key={category}
-            className="  bg-transparent hover:bg-primary text-mediumEmph font-semibold hover:text-white py-2 px-4 borderhover:border-transparent rounded "
+            className={` hover:bg-primary text-mediumEmph font-semibold hover:text-white py-2 px-4 mx-0.5 borderhover:border-transparent rounded ${
+              category === selectedCategory ? "bg-primary text-white" : ""
+            }`}
             onClick={(e) => {
-              e.target;
+              e.preventDefault();
+              setSelectedCategory(category);
+              categorySelection(category);
             }}
           >
             {category}

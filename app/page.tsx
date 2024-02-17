@@ -72,7 +72,7 @@ const Page = async () => {
       <section className="trending-section">
         {/* <ProductsWrapper products={allProducts} /> */}
         <h2 className="section-text text-center"> Trending Products</h2>
-        <ProductCategories products={JSON.stringify(allProducts)} />
+        {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
         <ProductList products={allProducts} />
       </section>
     </>
