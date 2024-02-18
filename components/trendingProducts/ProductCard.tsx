@@ -8,7 +8,7 @@ type Props = {
   product: Product;
 };
 
-const TrendingCard = ({ product }: Props) => {
+const ProductCard = ({ product }: Props) => {
   // const [product, setProduct] = useState(data);
 
   return !product ? (
@@ -50,4 +50,4 @@ const TrendingCard = ({ product }: Props) => {
   );
 };
 
-export default TrendingCard;
+export default ProductCard;

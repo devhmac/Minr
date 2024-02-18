@@ -1,8 +1,9 @@
 import { Product } from "@/types";
 import React from "react";
-import TrendingCard from "./TrendingCard";
+import ProductCard from "./ProductCard";
 import ProductCategories from "./ProductCategories";
 import { getCategories, getProductsByCategory } from "@/lib/actions/actions";
+import CardSkeleton from "./CardSkeleton";
 
 type Props = {
   products: Product[];
@@ -16,9 +17,7 @@ const ProductList = async ({ products }: Props) => {
     // console.log(manyprods);
     return clientSelectedProducts;
   };
-
-  const selectedCat = categorySelection;
-
+  // products = [];
   const categories = await getCategories();
   return (
     <>
@@ -26,11 +25,12 @@ const ProductList = async ({ products }: Props) => {
         products={JSON.stringify(products)}
         categories={JSON.stringify(categories)}
       />
-
       <div className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center ">
-        {products?.map((item, i) => {
-          return <TrendingCard key={i} product={item || null} />;
-        })}
+        {!products || products.length === 0
+          ? Array.from({ length: 5 }, (_, index) => <CardSkeleton />)
+          : products?.map((item, i) => {
+              return <ProductCard key={i} product={item || null} />;
+            })}
       </div>
     </>
   );

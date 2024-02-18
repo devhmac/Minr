@@ -19,8 +19,6 @@ import ProductsWrapper from "@/components/trendingProducts/ProductsWrapper";
 import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
 
 const Page = async ({ searchParams }: any) => {
-  console.log("searchparams", searchParams);
-
   const allProducts =
     !searchParams["category"] || searchParams["category"] === "All"
       ? await getAllProducts()
@@ -79,7 +77,7 @@ const Page = async ({ searchParams }: any) => {
         <SearchBar />
       </div>
       <ProductsFadeIn>
-        <section className="trending-section h-screen">
+        <section className="trending-section min-h-screen">
           {/* <ProductsWrapper products={allProducts} /> */}
           <h2 className="section-text text-center"> Trending Products</h2>
           {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}

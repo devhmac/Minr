@@ -32,12 +32,12 @@ const ProductLineChart = (props: Props) => {
           bottom: 0,
         }}
       >
-        {data[0].date && data[data.length - 1].date ? (
+        {/* {data[0].date && data[data.length - 1].date ? (
           <XAxis
             dataKey="date"
             ticks={[data[0].date, data[data.length - 1].date]}
           />
-        ) : null}
+        ) : null} */}
         <Tooltip
           formatter={(value, name, props) => [`${value}`, props.payload.date]}
           labelFormatter={(value) => `Date: ${value}`}
