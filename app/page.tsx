@@ -16,6 +16,7 @@ import ProductCategories from "@/components/trendingProducts/ProductCategories";
 import ProductList from "@/components/trendingProducts/ProductList";
 import KpiCard from "@/components/dataViz/KpiCard";
 import ProductsWrapper from "@/components/trendingProducts/ProductsWrapper";
+import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
 
 const Page = async ({ searchParams }: any) => {
   console.log("searchparams", searchParams);
@@ -79,9 +80,11 @@ const Page = async ({ searchParams }: any) => {
       </div>
       <section className="trending-section">
         {/* <ProductsWrapper products={allProducts} /> */}
-        <h2 className="section-text text-center"> Trending Products</h2>
-        {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
-        <ProductList products={allProducts} />
+        <ProductsFadeIn>
+          <h2 className="section-text text-center"> Trending Products</h2>
+          {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
+          <ProductList products={allProducts} />
+        </ProductsFadeIn>
       </section>
     </>
   );
