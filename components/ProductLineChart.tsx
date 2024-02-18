@@ -7,6 +7,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  Text,
 } from "recharts";
 
 type Props = {

@@ -78,14 +78,14 @@ const Page = async ({ searchParams }: any) => {
       <div className=" mx-auto md:w-3/4">
         <SearchBar />
       </div>
-      <section className="trending-section">
-        {/* <ProductsWrapper products={allProducts} /> */}
-        <ProductsFadeIn>
+      <ProductsFadeIn>
+        <section className="trending-section h-screen">
+          {/* <ProductsWrapper products={allProducts} /> */}
           <h2 className="section-text text-center"> Trending Products</h2>
           {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
           <ProductList products={allProducts} />
-        </ProductsFadeIn>
-      </section>
+        </section>
+      </ProductsFadeIn>
     </>
   );
 };
