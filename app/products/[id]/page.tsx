@@ -31,9 +31,20 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
   return (
     <section className="px-6 md:px-20 py-16">
-      <h3 className="flex-1 text-secondary text-semibold">{product.title}</h3>
-
-      <p className="text-mediumEmph">Category: {product.category}</p>
+      <h3 className="md:mx-9 flex-1 text-secondary text-semibold">
+        {product.title}
+      </h3>
+      <div className="flex flex-row justify-between items-end mt-2 md:mx-9">
+        <p className="text-mediumEmph">Category: {product.category}</p>
+        <Link
+          className=" text-mediumEmph cursor-pointer searchbar-btn"
+          href={product.url}
+          title="To product url"
+          target="_blank"
+        >
+          <button>To Product</button>
+        </Link>
+      </div>
       <div className="flex flex-col lg:flex-row justify-center items-center md:gap-6 mt-6 mx-auto">
         <div className="justify-center items-center sm:px-auto sm:pt-5 pb-5 sm:max-w-xl lg:h-[400px] lg:w-1/3">
           {/* <div className="flex flex-col w-auto max-w-[500px] mx-auto lg:max-w-3xl lg:max-h-[400px] bg-red-300 items-center bg-white rounded-md mx-5"> */}

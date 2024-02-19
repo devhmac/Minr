@@ -25,6 +25,7 @@ const ProductList = async ({ products }: Props) => {
         products={JSON.stringify(products)}
         categories={JSON.stringify(categories)}
       />
+      {/* Actually want to change this, if none then do a none found, if loading do this */}
       <div className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center ">
         {!products || products.length === 0
           ? Array.from({ length: 5 }, (_, index) => <CardSkeleton />)
