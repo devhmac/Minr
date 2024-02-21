@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import {
   getAllProducts,
+  getCategories,
   getProductsByCategory,
   getProductsCount,
   getScrapeCount,
@@ -23,6 +24,8 @@ const Page = async ({ searchParams }: any) => {
     !searchParams["category"] || searchParams["category"] === "All"
       ? await getAllProducts()
       : await getProductsByCategory(searchParams["category"]);
+
+  const categories: { category: string; count: number } = await getCategories();
 
   // const allProducts = await getAllProducts();
   const productCount = await getProductsCount();
@@ -79,9 +82,11 @@ const Page = async ({ searchParams }: any) => {
       <ProductsFadeIn>
         <section className="trending-section min-h-screen">
           {/* <ProductsWrapper products={allProducts} /> */}
-          <h2 className="section-text text-center"> Trending Products</h2>
           {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
-          <ProductList products={allProducts} />
+          <ProductList
+            products={JSON.stringify(allProducts)}
+            categories={JSON.stringify(categories)}
+          />
         </section>
       </ProductsFadeIn>
     </>
