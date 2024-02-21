@@ -4,21 +4,19 @@ import { useState, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
-  products: string;
   categories: string;
 };
 
-const ProductCategories = ({ products: data, categories }: Props) => {
+const ProductCategories = ({ categories }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || "All"
   );
 
-  const products: Product[] = JSON.parse(data);
   const currentCategories: { category: string; count: number }[] =
     JSON.parse(categories);
-  if (!products || products.length === 0) return <p></p>;
+  if (!currentCategories || currentCategories.length === 0) return <p></p>;
 
   let topCategories = currentCategories.splice(0, 6);
 
