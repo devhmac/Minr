@@ -5,9 +5,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   categories: string;
+  productTransitionHandler: () => void;
 };
 
-const ProductCategories = ({ categories }: Props) => {
+const ProductCategories = ({ categories, productTransitionHandler }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
@@ -35,6 +36,7 @@ const ProductCategories = ({ categories }: Props) => {
             }`}
             onClick={(e) => {
               setSelectedCategory(category);
+              productTransitionHandler();
               // router.push(`/?category=${category}`, { scroll: false });
               router.push(`/?category=${encodeURIComponent(category)}`, {
                 scroll: false,

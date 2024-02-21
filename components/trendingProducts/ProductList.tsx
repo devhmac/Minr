@@ -25,7 +25,7 @@ const ProductList = ({
     opacity: 1,
   });
 
-  const productTranstionHandler = () => {
+  const productTransitionHandler = () => {
     setProductTransition({ y: 100, opacity: 0 });
     setTimeout(() => {
       setProductTransition({ y: 0, opacity: 1 });
@@ -37,7 +37,10 @@ const ProductList = ({
     <>
       <h2 className="section-text text-center"> Trending Products</h2>
 
-      <ProductCategories categories={JSON.stringify(categories)} />
+      <ProductCategories
+        categories={JSON.stringify(categories)}
+        productTransitionHandler={productTransitionHandler}
+      />
       {/* Actually want to change this, if none then do a none found, if loading do this */}
       {!products || products.length === 0 ? (
         <div className="text-center">
@@ -47,6 +50,7 @@ const ProductList = ({
       ) : (
         <motion.div
           animate={productTransition}
+          transition={{ duration: 0.2, delayChildren: 0.4 }}
           className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center "
         >
           {products?.map((item, i) => {
