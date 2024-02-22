@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
-  categories: string;
+  categories: string[];
 };
 
 const ProductCategories = ({ categories }: Props) => {
@@ -15,18 +15,12 @@ const ProductCategories = ({ categories }: Props) => {
     searchParams.get("category") || "All"
   );
 
-  const currentCategories: { category: string; count: number }[] =
-    JSON.parse(categories);
-  if (!currentCategories || currentCategories.length === 0) return <p></p>;
-
-  let topCategories = currentCategories.splice(0, 6);
-
-  topCategories = [{ category: "All", count: 1 }, ...topCategories];
+  if (!categories || categories.length === 0) return <p></p>;
 
   return (
     <div className=" gap-2 mx-auto text-center text-mediumEmph">
       <p className="mb-4">Popular Categories</p>
-      {topCategories.map(({ category }) => {
+      {categories.map((category) => {
         return (
           <button
             key={category}

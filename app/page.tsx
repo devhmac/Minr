@@ -20,7 +20,7 @@ import ProductsWrapper from "@/components/trendingProducts/ProductsWrapper";
 import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
 
 const Page = async ({ searchParams }: any) => {
-  const allProducts =
+  const products =
     !searchParams["category"] || searchParams["category"] === "All"
       ? await getAllProducts()
       : await getProductsByCategory(searchParams["category"]);
@@ -84,7 +84,7 @@ const Page = async ({ searchParams }: any) => {
           {/* <ProductsWrapper products={allProducts} /> */}
           {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
           <ProductList
-            products={JSON.stringify(allProducts)}
+            products={JSON.stringify(products)}
             categories={JSON.stringify(categories)}
           />
         </section>
