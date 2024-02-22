@@ -17,36 +17,24 @@ const ProductList = ({
   products: productsJson,
   categories: categoriesJson,
 }: Props) => {
-  console.count("counter");
+  console.count("Product List counter");
   const products: Product[] = JSON.parse(productsJson);
   const categories: { category: string; count: number }[] =
     JSON.parse(categoriesJson);
   const searchParams = useSearchParams();
-
-  const [productTransition, setProductTransition] = useState({
-    y: 0,
-    opacity: 1,
-  });
-
-  const productTransitionHandler = () => {
-    setProductTransition({ y: 100, opacity: 0 });
-    setTimeout(() => {
-      setProductTransition({ y: 0, opacity: 1 });
-      // No interativity on current filter
-    }, 400);
-  };
+  const selectedCategory = searchParams.get("category");
 
   return (
     <>
-      <h2 className="section-text text-center">
-        {" "}
-        Trending Products, {searchParams}
-      </h2>
-
-      <ProductCategories
-        categories={JSON.stringify(categories)}
-        productTransitionHandler={productTransitionHandler}
-      />
+      {(selectedCategory === "All" || !selectedCategory) && (
+        <h2 className="section-text text-center">Trending Products</h2>
+      )}
+      {selectedCategory && selectedCategory !== "All" && (
+        <h2 className="section-text text-center">
+          Trending Products: {selectedCategory}
+        </h2>
+      )}
+      <ProductCategories categories={JSON.stringify(categories)} />
       {/* Actually want to change this, if none then do a none found, if loading do this */}
       {!products || products.length === 0 ? (
         <div className="text-center">
@@ -56,7 +44,7 @@ const ProductList = ({
       ) : (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={productTransition}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center "
           key={searchParams.toString()}

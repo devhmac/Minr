@@ -5,10 +5,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   categories: string;
-  productTransitionHandler: () => void;
 };
 
-const ProductCategories = ({ categories, productTransitionHandler }: Props) => {
+const ProductCategories = ({ categories }: Props) => {
+  console.count("Product categories counter");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
@@ -25,8 +25,7 @@ const ProductCategories = ({ categories, productTransitionHandler }: Props) => {
 
   return (
     <div className=" gap-2 mx-auto text-center text-mediumEmph">
-      {" "}
-      Popular Categories:
+      <p className="mb-4">Popular Categories</p>
       {topCategories.map(({ category }) => {
         return (
           <button
@@ -36,8 +35,6 @@ const ProductCategories = ({ categories, productTransitionHandler }: Props) => {
             }`}
             onClick={(e) => {
               setSelectedCategory(category);
-              // productTransitionHandler();
-              // router.push(`/?category=${category}`, { scroll: false });
               router.push(`/?category=${encodeURIComponent(category)}`, {
                 scroll: false,
               });
