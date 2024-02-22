@@ -31,12 +31,12 @@ const ProductCategories = ({ categories, productTransitionHandler }: Props) => {
         return (
           <button
             key={category}
-            className={` hover:bg-primary  font hover:text-white py-2 px-4 mx-0.5 borderhover:border-transparent rounded ${
+            className={` hover:bg-primary  font hover:text-white py-2 px-4 m-0.5 borderhover:border-transparent rounded ${
               category === selectedCategory ? "bg-primary text-white" : ""
             }`}
             onClick={(e) => {
               setSelectedCategory(category);
-              productTransitionHandler();
+              // productTransitionHandler();
               // router.push(`/?category=${category}`, { scroll: false });
               router.push(`/?category=${encodeURIComponent(category)}`, {
                 scroll: false,

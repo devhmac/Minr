@@ -7,6 +7,7 @@ import { getCategories, getProductsByCategory } from "@/lib/actions/actions";
 import CardSkeleton from "./CardSkeleton";
 import { Ghost } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 type Props = {
   products: string;
   categories: string;
@@ -16,9 +17,11 @@ const ProductList = ({
   products: productsJson,
   categories: categoriesJson,
 }: Props) => {
+  console.count("counter");
   const products: Product[] = JSON.parse(productsJson);
   const categories: { category: string; count: number }[] =
     JSON.parse(categoriesJson);
+  const searchParams = useSearchParams();
 
   const [productTransition, setProductTransition] = useState({
     y: 0,
@@ -35,7 +38,10 @@ const ProductList = ({
 
   return (
     <>
-      <h2 className="section-text text-center"> Trending Products</h2>
+      <h2 className="section-text text-center">
+        {" "}
+        Trending Products, {searchParams}
+      </h2>
 
       <ProductCategories
         categories={JSON.stringify(categories)}
@@ -49,9 +55,11 @@ const ProductList = ({
         </div>
       ) : (
         <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={productTransition}
-          transition={{ duration: 0.2, delayChildren: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center "
+          key={searchParams.toString()}
         >
           {products?.map((item, i) => {
             return <ProductCard key={i} product={item || null} />;
