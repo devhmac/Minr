@@ -18,17 +18,16 @@ const ProductList = ({
   categories: categoriesJson,
 }: Props) => {
   console.count("Product List counter");
-  console.log(categoriesJson);
   const products: Product[] = JSON.parse(productsJson);
   const categories: { category: string; count: number }[] =
     JSON.parse(categoriesJson);
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category");
 
+  // move this to the server
   let topCategories = categories.splice(0, 6);
   topCategories = [{ category: "All", count: 1 }, ...topCategories];
   const trendingCategories = topCategories.map((category) => category.category);
-  console.log(trendingCategories);
 
   return (
     <>
