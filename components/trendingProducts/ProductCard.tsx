@@ -3,6 +3,7 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Bookmark from "./Bookmark";
 
 type Props = {
   product: Product;
@@ -21,10 +22,11 @@ const ProductCard = ({ product }: Props) => {
     >
       <div className="product-card_img-container bg-white h-full w-full ">
         {product.discountRate > 0 ? (
-          <p className="absolute bg-primary text-secondary justify-center py-1 px-1.5 rounded-md left-1/2 -translate-x-1/2 border-gray-200 border">
+          <p className="absolute bg-primary text-secondary py-1 px-1.5 rounded-md left-1/2 -translate-x-1/2 border-gray-200 border">
             {product.discountRate}% Off
           </p>
         ) : null}
+
         <Image
           src={product.image}
           alt="product image"
@@ -32,6 +34,9 @@ const ProductCard = ({ product }: Props) => {
           height="200"
           className="h-full w-auto bg-transparent max-h-[200px] max-w-auto object-contain rounded-md "
         />
+        <div className="absolute bottom-[2%] right-[2%] ">
+          <Bookmark productId={product._id!.toString()} />
+        </div>
       </div>
 
       <div className="flex flex-col gap-2">
