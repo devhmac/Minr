@@ -15,7 +15,7 @@ const ProductCategories = ({ categories }: Props) => {
     searchParams.get("category") || "All"
   );
 
-  if (!categories || categories.length === 0) return <p></p>;
+  if (!categories || categories.length === 0) return <></>;
 
   return (
     <div className=" gap-2 mx-auto text-center text-mediumEmph">

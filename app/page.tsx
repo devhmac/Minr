@@ -14,9 +14,8 @@ import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
 import PocBanner from "@/components/ui/PocBanner";
 import ProductCategories from "@/components/trendingProducts/ProductCategories";
-import ProductList from "@/components/trendingProducts/ProductList";
+import TrendingProducts from "@/components/trendingProducts/TrendingProducts";
 import KpiCard from "@/components/dataViz/KpiCard";
-import ProductsWrapper from "@/components/trendingProducts/ProductsWrapper";
 import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
 
 const Page = async ({ searchParams }: any) => {
@@ -83,7 +82,7 @@ const Page = async ({ searchParams }: any) => {
         <section className="trending-section min-h-screen">
           {/* <ProductsWrapper products={allProducts} /> */}
           {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
-          <ProductList
+          <TrendingProducts
             products={JSON.stringify(products)}
             categories={JSON.stringify(categories)}
           />

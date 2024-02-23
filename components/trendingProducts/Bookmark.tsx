@@ -12,9 +12,12 @@ const Bookmark = ({ productId }: { productId: string }) => {
     <div title="Bookmark Product" onClick={clickhandler}>
       {/* Bookmark */}
       {/* <BookmarkCheck /> */}
-      <BookmarkIcon className="text-zinc-400 bg-white hover:bg-primary rounded-md h-7 w-7 p-1 hover:text-mediumEmph" />
+      <BookmarkIcon className="text-zinc-600 bg-white hover:bg-primary rounded-md h-7 w-7 p-1 hover:text-mediumEmph " />
     </div>
   );
 };
 
 export default Bookmark;
+
+// fill-primary
+// strokeWidth={0}
