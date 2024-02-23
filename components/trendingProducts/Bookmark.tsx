@@ -10,6 +10,26 @@ const Bookmark = ({ productId }: { productId: string }) => {
     e.stopPropagation();
     setIsBookmarked((prev) => {
       // if !prev is true, send bookmark increment to database, if false remove bookmark increment
+      console.log("adding to local store");
+      const currentBookmarks = JSON.parse(
+        localStorage.getItem("bookmarks") || "{}"
+      );
+      currentBookmarks[productId] = true;
+      console.log(currentBookmarks);
+
+      localStorage.setItem("bookmarks", JSON.stringify(currentBookmarks));
+      // console.log(currentBookmarks);
+
+      // !currentBookmarks
+      //   ? localStorage.setItem(
+      //       "bookmarks",
+      //       JSON.stringify({ [productId]: true })
+      //     )
+      //   : localStorage.setItem(
+      //       "bookmarks",
+      //       JSON.stringify((currentBookmarks[productId] = true))
+      //     );
+
       return !prev;
     });
   };
@@ -19,7 +39,6 @@ const Bookmark = ({ productId }: { productId: string }) => {
       {isBookmarked ? (
         <BookmarkCheck className="text-zinc-700 bg-white fill-primary  rounded-md h-7 w-7 p-1   " />
       ) : (
-        // <BookmarkIcon className="text-zinc-600 bg-white hover:bg-primary rounded-md h-7 w-7 p-1 hover:fill-white   " />
         <BookmarkIcon className="text-zinc-600 bg-white  rounded-md h-7 w-7 p-1 hover:fill-zinc-400   " />
       )}
     </div>
