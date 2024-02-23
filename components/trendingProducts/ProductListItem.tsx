@@ -9,7 +9,7 @@ type Props = {
   product: Product;
 };
 
-const ProductCard = ({ product }: Props) => {
+const ProductListItem = ({ product }: Props) => {
   // const [product, setProduct] = useState(data);
 
   return !product ? (
@@ -55,4 +55,4 @@ const ProductCard = ({ product }: Props) => {
   );
 };
 
-export default ProductCard;
+export default ProductListItem;

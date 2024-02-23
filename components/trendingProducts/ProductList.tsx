@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./ProductCard";
+import ProductListItem from "./ProductListItem";
 import { Product } from "@/types";
 
 type props = {
@@ -8,7 +8,7 @@ type props = {
 
 const ProductList = ({ products }: props) => {
   return products?.map((item) => {
-    return <ProductCard key={item._id} product={item || null} />;
+    return <ProductListItem key={item._id} product={item || null} />;
   });
 };
 
