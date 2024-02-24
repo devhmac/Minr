@@ -38,6 +38,7 @@ const Dashboard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
+      viewport={{ once: true }}
       className="flex flex-wrap gap-x-5 gap-y-5 text-mediumEmph  justify-center"
     >
       <ProductList products={products} />
