@@ -178,3 +178,21 @@ export const getScrapeCount = async () => {
     throw new Error(`Failed to get products ${error.message}`);
   }
 };
+
+export const getProductsByIdList = async (
+  productIds: string[],
+  clientOrServer?: "client" | "server"
+) => {
+  try {
+    dbConnect();
+    const products = await Product.find({ _id: { $in: productIds } });
+
+    if (clientOrServer === "client") {
+      return JSON.stringify(products);
+    } else {
+      return <ProductType[]>products;
+    }
+  } catch (error: any) {
+    throw new Error(`Failed to get products ${error.message}`);
+  }
+};
