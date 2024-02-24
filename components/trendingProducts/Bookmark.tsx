@@ -2,44 +2,29 @@
 import { BookmarkCheck, BookmarkIcon } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import React, { useEffect, useState } from "react";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 
 const Bookmark = ({ productId }: { productId: string }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [bookmarks, setBookmarks] = useState<{ [key: string]: Boolean } | {}>(
-    {}
+  const [bookmarks, setBookmarks] = useState<{ [key: string]: Boolean } | null>(
+    null
   );
+  const { setItem, getItem } = useLocalStorage("bookmarks");
 
   useEffect(() => {
-    const localStoreBookmarks: { [key: string]: boolean } = JSON.parse(
-      localStorage.getItem("bookmarks") || "{}"
-    );
+    const localStoreBookmarks = getItem();
     setBookmarks(localStoreBookmarks);
-    if (localStoreBookmarks[productId]) {
+    if (localStoreBookmarks && localStoreBookmarks[productId]) {
       setIsBookmarked(true);
     }
   }, []);
-
-  // useEffect(() => {
-  //   const newBookmarks = { ...bookmarks };
-  //   if (isBookmarked) {
-  //     newBookmarks[productId] = true;
-  //   } else {
-  //     delete newBookmarks[productId];
-  //   }
-  //   localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
-  //   setBookmarks(newBookmarks);
-  // }, [isBookmarked]);
-  // console.log("state", bookmarks);
-  // console.log("localStore", localStorage.getItem("bookmarks"));
 
   const clickhandler = (e: any) => {
     console.log(productId, " clicked");
     e.preventDefault();
     e.stopPropagation();
 
-    const currentBookmarks: { [key: string]: boolean } = JSON.parse(
-      localStorage.getItem("bookmarks") || "{}"
-    );
+    const currentBookmarks = getItem();
     const newBookmarks = { ...currentBookmarks };
 
     if (!isBookmarked) {
@@ -47,7 +32,7 @@ const Bookmark = ({ productId }: { productId: string }) => {
     } else {
       delete newBookmarks[productId];
     }
-    localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
+    setItem(newBookmarks);
     setBookmarks(newBookmarks);
     setIsBookmarked((prev) => !prev);
   };
@@ -55,9 +40,9 @@ const Bookmark = ({ productId }: { productId: string }) => {
   return (
     <div title="Bookmark Product" onClick={clickhandler}>
       {isBookmarked ? (
-        <BookmarkCheck className="text-zinc-700 bg-white fill-primary  rounded-md h-7 w-7 p-1   " />
+        <BookmarkCheck className="text-zinc-700 bg-white fill-primary rounded-md h-8 w-8 p-1 " />
       ) : (
-        <BookmarkIcon className="text-zinc-600 bg-white  rounded-md h-7 w-7 p-1 hover:fill-zinc-400   " />
+        <BookmarkIcon className="text-zinc-600 bg-white  rounded-md h-8 w-8 p-1 hover:fill-zinc-400   " />
       )}
     </div>
   );
