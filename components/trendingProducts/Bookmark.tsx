@@ -1,34 +1,40 @@
 "use client";
 import { BookmarkCheck, BookmarkIcon } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Bookmark = ({ productId }: { productId: string }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarks, setBookmarks] = useState<{ [key: string]: Boolean } | {}>(
+    {}
+  );
+
+  useEffect(() => {
+    const localStoreBookmarks: { [key: string]: Boolean } = JSON.parse(
+      localStorage.getItem("bookmarks") || "{}"
+    );
+    setBookmarks(localStoreBookmarks);
+    if (localStoreBookmarks[productId]) {
+      setIsBookmarked(true);
+    }
+  }, []);
 
   const clickhandler = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setIsBookmarked((prev) => {
-      // if !prev is true, send bookmark increment to database, if false remove bookmark increment
       console.log("adding to local store");
-      const currentBookmarks = JSON.parse(
-        localStorage.getItem("bookmarks") || "{}"
-      );
-      currentBookmarks[productId] = true;
-      console.log(currentBookmarks);
+      if (!prev === true) {
+        const newBookmarks = { ...bookmarks, [productId]: true };
+        // currentBookmarks[productId] = true;
+        setBookmarks(newBookmarks);
 
-      localStorage.setItem("bookmarks", JSON.stringify(currentBookmarks));
-      // console.log(currentBookmarks);
-
-      // !currentBookmarks
-      //   ? localStorage.setItem(
-      //       "bookmarks",
-      //       JSON.stringify({ [productId]: true })
-      //     )
-      //   : localStorage.setItem(
-      //       "bookmarks",
-      //       JSON.stringify((currentBookmarks[productId] = true))
-      //     );
+        localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
+      } else {
+        const newBookmarks = { ...bookmarks };
+        delete newBookmarks[productId];
+        setBookmarks(newBookmarks);
+        localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
+      }
 
       return !prev;
     });
