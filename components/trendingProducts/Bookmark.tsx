@@ -9,7 +9,7 @@ const Bookmark = ({ productId }: { productId: string }) => {
   );
 
   useEffect(() => {
-    const localStoreBookmarks: { [key: string]: Boolean } = JSON.parse(
+    const localStoreBookmarks: { [key: string]: boolean } = JSON.parse(
       localStorage.getItem("bookmarks") || "{}"
     );
     setBookmarks(localStoreBookmarks);

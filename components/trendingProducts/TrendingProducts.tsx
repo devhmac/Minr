@@ -63,4 +63,3 @@ const TrendingProducts = ({
 };
 
 export default TrendingProducts;
-// Array.from({ length: 5 }, (_, index) => <CardSkeleton />)
