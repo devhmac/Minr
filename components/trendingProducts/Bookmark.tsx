@@ -19,20 +19,37 @@ const Bookmark = ({ productId }: { productId: string }) => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   const newBookmarks = { ...bookmarks };
+  //   if (isBookmarked) {
+  //     newBookmarks[productId] = true;
+  //   } else {
+  //     delete newBookmarks[productId];
+  //   }
+  //   localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
+  //   setBookmarks(newBookmarks);
+  // }, [isBookmarked]);
+  // console.log("state", bookmarks);
+  // console.log("localStore", localStorage.getItem("bookmarks"));
+
   const clickhandler = (e: any) => {
+    console.log(productId, " clicked");
     e.preventDefault();
     e.stopPropagation();
-    setIsBookmarked((prev) => {
-      const newBookmarks = { ...bookmarks };
-      if (!prev) {
-        newBookmarks[productId] = true;
-      } else {
-        delete newBookmarks[productId];
-      }
-      setBookmarks(newBookmarks);
-      localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
-      return !prev;
-    });
+
+    const currentBookmarks: { [key: string]: boolean } = JSON.parse(
+      localStorage.getItem("bookmarks") || "{}"
+    );
+    const newBookmarks = { ...currentBookmarks };
+
+    if (!isBookmarked) {
+      newBookmarks[productId] = true;
+    } else {
+      delete newBookmarks[productId];
+    }
+    localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
+    setBookmarks(newBookmarks);
+    setIsBookmarked((prev) => !prev);
   };
 
   return (
