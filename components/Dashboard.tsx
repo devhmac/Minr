@@ -4,35 +4,33 @@ import { Product } from "@/types";
 import React, { useEffect, useState } from "react";
 import ProductList from "./trendingProducts/ProductList";
 import { motion } from "framer-motion";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 
 const Dashboard = () => {
-  const [bookmarks, setBookmarks] = useState<{ [key: string]: boolean } | {}>(
-    {}
+  const [bookmarks, setBookmarks] = useState<{ [key: string]: boolean } | null>(
+    null
   );
   const [products, setProducts] = useState([]);
+  const { setItem, getItem } = useLocalStorage("bookmarks");
 
-  useEffect(() => {
-    const localStoreBookmarks: { [key: string]: boolean } = JSON.parse(
-      localStorage.getItem("bookmarks") || "{}"
-    );
-
-    const ids = Object.keys(localStoreBookmarks);
-    console.log(ids);
-    const fetchBookmarkedProducts = async (ids: string[]) => {
+  const fetchBookmarkedProducts = async (ids: string[]) => {
+    try {
       const bookmarkedProducts = (await getProductsByIdList(
         ids,
         "client"
       )) as string;
-      console.log(bookmarkedProducts);
       setProducts(JSON.parse(bookmarkedProducts));
-      // setProducts(bookmarkedProducts);
-    };
-    if (ids.length > 0) {
-      fetchBookmarkedProducts(ids);
-      // setProducts(JSON.parse(bookmarkedProducts));
+    } catch (error: any) {
+      console.error("Error fetching bookmarked products:", error.message);
     }
-    // setBookmarks(localStoreBookmarks);
+  };
+  useEffect(() => {
+    const localStoreBookmarks = getItem();
+    if (localStoreBookmarks) {
+      fetchBookmarkedProducts(Object.keys(localStoreBookmarks));
+    }
   }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
