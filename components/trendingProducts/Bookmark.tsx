@@ -22,19 +22,14 @@ const Bookmark = ({ productId }: { productId: string }) => {
     e.preventDefault();
     e.stopPropagation();
     setIsBookmarked((prev) => {
-      console.log("adding to local store");
-      if (!prev === true) {
-        const newBookmarks = { ...bookmarks, [productId]: true };
-        // currentBookmarks[productId] = true;
-        setBookmarks(newBookmarks);
-
-        localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
+      const newBookmarks = { ...bookmarks };
+      if (!prev) {
+        newBookmarks[productId] = true;
       } else {
-        const newBookmarks = { ...bookmarks };
         delete newBookmarks[productId];
-        setBookmarks(newBookmarks);
-        localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
       }
+      setBookmarks(newBookmarks);
+      localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
 
       return !prev;
     });
