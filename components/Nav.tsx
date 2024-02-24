@@ -13,7 +13,13 @@ const Nav = () => {
         </Link>
         <div className="flex items-center justify-between gap-4 ">
           <Search className="w-5 h-5 text-secondary" />
-          <Star className="w-5 h-5 text-secondary" />
+          <Link
+            href={"/dashboard"}
+            title="My Bookmarks"
+            className="hover:bg-lowEmph "
+          >
+            <Star className="w-5 h-5 text-secondary" />
+          </Link>
           <User className="w-5 h-5 text-secondary" />
         </div>
       </nav>

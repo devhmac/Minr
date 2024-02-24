@@ -14,7 +14,7 @@ type Props = {
   categories: string;
 };
 
-const TrendingProducts = ({
+const TrendingProductsContainer = ({
   products: productsJson,
   categories: categoriesJson,
 }: Props) => {
@@ -62,4 +62,4 @@ const TrendingProducts = ({
   );
 };
 
-export default TrendingProducts;
+export default TrendingProductsContainer;

@@ -13,8 +13,7 @@ import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
 import data from "@/lib/static/exampleData";
 import PocBanner from "@/components/ui/PocBanner";
-import ProductCategories from "@/components/trendingProducts/ProductCategories";
-import TrendingProducts from "@/components/trendingProducts/TrendingProducts";
+import TrendingProductsContainer from "@/components/trendingProducts/TrendingProductsContainer";
 import KpiCard from "@/components/dataViz/KpiCard";
 import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
 
@@ -82,7 +81,7 @@ const Page = async ({ searchParams }: any) => {
         <section className="trending-section min-h-screen">
           {/* <ProductsWrapper products={allProducts} /> */}
           {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
-          <TrendingProducts
+          <TrendingProductsContainer
             products={JSON.stringify(products)}
             categories={JSON.stringify(categories)}
           />

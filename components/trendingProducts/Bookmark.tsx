@@ -1,5 +1,6 @@
 "use client";
 import { BookmarkCheck, BookmarkIcon } from "lucide-react";
+import { revalidatePath } from "next/cache";
 import React, { useEffect, useState } from "react";
 
 const Bookmark = ({ productId }: { productId: string }) => {
@@ -30,7 +31,6 @@ const Bookmark = ({ productId }: { productId: string }) => {
       }
       setBookmarks(newBookmarks);
       localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
-
       return !prev;
     });
   };
