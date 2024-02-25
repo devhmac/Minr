@@ -34,7 +34,7 @@ const Bookmark = ({ productId }: { productId: string }) => {
   return (
     <div title="Bookmark Product" onClick={clickhandler}>
       {isBookmarked ? (
-        <BookmarkCheck className="text-zinc-700 bg-white fill-[#B1ABE6] rounded-md h-8 w-8 p-1 " />
+        <BookmarkCheck className="text-zinc-700 bg-white fill-[#B1ABE6] rounded-md h-8 w-8 p-1 hover:fill-zinc-200" />
       ) : (
         <BookmarkIcon className="text-zinc-600 bg-white  rounded-md h-8 w-8 p-1 hover:fill-zinc-400   " />
       )}
