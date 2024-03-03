@@ -196,3 +196,13 @@ export const getProductsByIdList = async (
     throw new Error(`Failed to get products ${error.message}`);
   }
 };
+
+export const searchProducts = async (input: string) => {
+  try {
+    dbConnect();
+    const products = await Product.find({ title: /input/ });
+    return products;
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};

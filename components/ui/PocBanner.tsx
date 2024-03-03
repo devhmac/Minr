@@ -2,11 +2,7 @@
 import { AlertCircle } from "lucide-react";
 import { Children, useState } from "react";
 
-export default function PocBanner({
-  children,
-}: {
-  children: React.ReactNode | null;
-}) {
+export default function PocBanner({ children }: { children: React.ReactNode }) {
   // const [visible, setVisible] = useState(true);
 
   return (
