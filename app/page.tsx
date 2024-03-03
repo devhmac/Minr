@@ -32,7 +32,7 @@ const Page = async ({ searchParams }: any) => {
   return (
     <>
       <PocBanner />
-      <section className="px-6 md:px-20 py-20 text-secondary">
+      <section className="px-6 md:px-20 py-10 text-secondary">
         <ToastContainer />
         <div className="flex max-xl:flex-col-reverse xl:gap-16">
           <div className="flex flex-col justify-center">
@@ -75,6 +75,10 @@ const Page = async ({ searchParams }: any) => {
         </div>
       </section>
       <div className=" mx-auto md:w-3/4">
+        <h2 className="section-text text-center">
+          Search for a product, or enter a new link to get started...
+        </h2>
+
         <SearchBar />
       </div>
       <ProductsFadeIn>

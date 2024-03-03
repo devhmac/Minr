@@ -3,6 +3,7 @@ import ComparisonKpiCard from "@/components/dataViz/ComparisonKpiCard";
 import ExampleModule from "@/components/dataViz/ExampleModule";
 import KpiCard from "@/components/dataViz/KpiCard";
 import { ScrapeTracker } from "@/components/dataViz/ScrapeTracker";
+import PocBanner from "@/components/ui/PocBanner";
 import { getProductById } from "@/lib/actions/actions";
 import data from "@/lib/static/exampleData";
 import {
@@ -31,6 +32,12 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
   return (
     <section className="px-6 md:px-20 py-16">
+      {product.numScrapes <= 1 ? (
+        <PocBanner>
+          <strong>You are this products first scrape</strong> - Check back to
+          see your price trends.
+        </PocBanner>
+      ) : null}
       <h3 className="md:mx-9 flex-1 text-secondary text-semibold">
         {product.title}
       </h3>

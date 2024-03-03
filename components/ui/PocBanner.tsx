@@ -1,12 +1,16 @@
 "use client";
 import { AlertCircle } from "lucide-react";
-import { useState } from "react";
+import { Children, useState } from "react";
 
-export default function PocBanner() {
+export default function PocBanner({
+  children,
+}: {
+  children: React.ReactNode | null;
+}) {
   // const [visible, setVisible] = useState(true);
 
   return (
-    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50  px-6 py-2.5 sm:px-3.5 sm:before:flex-1 rounded-md md:w-3/4 sm:mx-auto mt-6">
+    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50  px-6 py-2.5 sm:px-3.5 sm:before:flex-1 rounded-md md:w-3/4 sm:mx-auto my-3">
       <div
         className="absolute left-[mPocBanner';m,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
@@ -34,30 +38,26 @@ export default function PocBanner() {
       <AlertCircle className="text-gray-900 h-5 w-5 shrink-0" />
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="text-sm leading-6 text-gray-900">
-          <strong className="font-semibold">Web scraping is fickle.</strong>
-          <svg
-            viewBox="0 0 2 2"
-            className="mx-2 inline h-0.5 w-0.5 fill-current"
-            aria-hidden="true"
-          >
-            <circle cx={1} cy={1} r={1} />
-          </svg>
-          As a project POC we are currently only reliably scraping from{" "}
-          <strong className="font-semibold">Amazon.com & .ca</strong>
+          {children ? (
+            children
+          ) : (
+            <>
+              <strong className="font-semibold">Web scraping is fickle.</strong>
+              <svg
+                viewBox="0 0 2 2"
+                className="mx-2 inline h-0.5 w-0.5 fill-current"
+                aria-hidden="true"
+              >
+                <circle cx={1} cy={1} r={1} />
+              </svg>
+              As a project POC we are currently only reliably scraping from{" "}
+              <strong className="font-semibold">Amazon.com & .ca</strong>
+            </>
+          )}
         </p>
       </div>
 
-      <div className="flex flex-1 justify-end">
-        {/* <button
-          type="button"
-          className="-m-3 p-3 focus-visible:outline-offset-[-px]"
-          onClick={() => setVisible(false)}
-        >
-          <span className="sr-only">Dismiss</span>
-          <X className="text-gray-900 h-5 w-5" />
-
-        </button> */}
-      </div>
+      <div className="flex flex-1 justify-end"></div>
     </div>
   );
 }
