@@ -195,6 +195,9 @@
   .searchbar-btn {
     @apply bg-lowestEmph border border-gray-900 rounded-lg shadow-xs px-5 py-3 text-secondary text-base font-semibold hover:opacity-90 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40 max-h-[50px] border-lowestEmph border-2;
   }
+  .searchbar-btn-activated {
+    @apply;
+  }
 
   .kpiCardSize {
     @apply max-w-[240px] min-w-[127px] h-[110px] border-primary;
