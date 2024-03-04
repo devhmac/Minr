@@ -136,12 +136,13 @@ const SearchBar = () => {
             className="searchbar-input "
           />
         )}
+
         <button
           type="submit"
-          className="searchbar-btn"
+          className="searchbar-btn "
           disabled={searchPrompt === "" || isLinkValid !== true}
         >
-          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
+          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Scrape"}
           {/* <ProgressBar progress={uploadProgress} /> */}
         </button>
       </form>
