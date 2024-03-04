@@ -146,35 +146,21 @@ const SearchBar = () => {
         )}
 
         <div className="relative inline-flex group">
-          {searchPrompt === "" || isLinkValid !== true ? (
-            <button className="searchbar-btn" disabled={true}>
-              Scrape
-            </button>
-          ) : (
-            <>
-              <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r  from-primary via-[#ff44ecb6] to-[#44BCFF]  rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-              <button
-                title="Scrape your product"
-                className="relative transition-all duration-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 searchbar-btn"
-                disabled={searchPrompt === "" || isLinkValid !== true}
-              >
-                {isLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  "Scrape"
-                )}
-              </button>
-            </>
+          {searchPrompt === "" || isLinkValid !== true ? null : (
+            <div className="btn-gradient-bg"></div>
           )}
+          <button
+            title="Scrape your product"
+            className="relative transition-all duration-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 searchbar-btn"
+            disabled={searchPrompt === "" || isLinkValid !== true}
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              "Scrape"
+            )}
+          </button>
         </div>
-
-        {/* <button
-          type="submit"
-          className="searchbar-btn "
-          disabled={searchPrompt === "" || isLinkValid !== true}
-        >
-          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Scrape"}
-        </button> */}
       </form>
 
       {searchPrompt !== "" && isLinkValid === false && (

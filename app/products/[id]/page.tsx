@@ -38,18 +38,13 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           see your price trends.
         </PocBanner>
       ) : null}
-      <h3 className="md:mx-9 flex-1 text-secondary text-semibold border-b border-lowEmph pb-5 mt-5">
+      <h3 className="md:mx-9 flex-1 text-secondary text-semibold mt-5">
         {product.title}
       </h3>
-      <div className="flex flex-row justify-between items-end mt-2 md:mx-9 ">
+      <div className="flex flex-row justify-between items-end mt-2 md:mx-9 border-b border-lowEmph pb-5 mt-5 ">
         <p className="text-mediumEmph">Category: {product.category}</p>
-        <Link
-          className=" text-mediumEmph cursor-pointer searchbar-btn"
-          href={product.url}
-          title="To product url"
-          target="_blank"
-        >
-          <button>To Product</button>
+        <Link href={product.url} title="To product url" target="_blank">
+          <button className="searchbar-btn ">To Product</button>
         </Link>
       </div>
       <div className="flex flex-col lg:flex-row justify-center items-center md:gap-6 mt-6 mx-auto">

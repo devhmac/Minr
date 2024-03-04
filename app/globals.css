@@ -195,8 +195,8 @@
   .searchbar-btn {
     @apply bg-lowestEmph border border-gray-900 rounded-lg shadow-xs px-5 py-3 text-secondary text-base font-semibold hover:opacity-90 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40 max-h-[50px] border-lowestEmph border-2;
   }
-  .searchbar-btn-activated {
-    @apply;
+  .btn-gradient-bg {
+    @apply absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r  from-primary via-[#ff44ecb6] to-[#44BCFF] rounded-md blur-lg group-hover:opacity-100 group-hover:-inset-0.5 group-hover:duration-200;
   }
 
   .kpiCardSize {
