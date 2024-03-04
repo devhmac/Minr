@@ -3,9 +3,9 @@ import { scrapeAndSaveProduct } from "@/lib/actions/actions";
 import { Product } from "@/types";
 import { Loader2 } from "lucide-react";
 // import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProgressBar from "./ui/ProgressBar";
 
@@ -28,6 +28,7 @@ const isValidAmazonLink = (url: string) => {
 
 const SearchBar = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [isLinkValid, setIsLinkValid] = useState<boolean | null>(null);
   const [searchPrompt, setSearchPrompt] = useState<string>("");
@@ -38,6 +39,9 @@ const SearchBar = () => {
     const debounce = setTimeout(() => {
       if (searchPrompt !== "") {
         setIsLinkValid(isValidAmazonLink(searchPrompt)!);
+        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+          scroll: false,
+        });
       } else {
         setIsLinkValid(null);
       }

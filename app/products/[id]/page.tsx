@@ -38,10 +38,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           see your price trends.
         </PocBanner>
       ) : null}
-      <h3 className="md:mx-9 flex-1 text-secondary text-semibold">
+      <h3 className="md:mx-9 flex-1 text-secondary text-semibold border-b border-lowEmph pb-5 mt-5">
         {product.title}
       </h3>
-      <div className="flex flex-row justify-between items-end mt-2 md:mx-9">
+      <div className="flex flex-row justify-between items-end mt-2 md:mx-9 ">
         <p className="text-mediumEmph">Category: {product.category}</p>
         <Link
           className=" text-mediumEmph cursor-pointer searchbar-btn"

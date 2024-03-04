@@ -8,6 +8,7 @@ import {
   getProductsByCategory,
   getProductsCount,
   getScrapeCount,
+  searchProducts,
 } from "@/lib/actions/actions";
 import Image from "next/image";
 import ProductLineChart from "@/components/ProductLineChart";
@@ -18,10 +19,21 @@ import KpiCard from "@/components/dataViz/KpiCard";
 import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
 
 const Page = async ({ searchParams }: any) => {
-  const products =
-    !searchParams["category"] || searchParams["category"] === "All"
-      ? await getAllProducts()
-      : await getProductsByCategory(searchParams["category"]);
+  console.log(searchParams);
+  let products = [];
+  if (
+    Object.keys(searchParams).length === 0 ||
+    searchParams["category"] === "All"
+  ) {
+    products = await getAllProducts();
+  } else if (searchParams["search"]) {
+    products = await searchProducts(searchParams["search"]);
+  } else if (searchParams["category"]) {
+    products = await getProductsByCategory(searchParams["category"]);
+  }
+  // Object.keys(searchParams).length === 0 || searchParams["category"] === "All"
+  //   ? await getAllProducts()
+  //   : await getProductsByCategory(searchParams["category"]);
 
   const categories: { category: string; count: number } = await getCategories();
 
