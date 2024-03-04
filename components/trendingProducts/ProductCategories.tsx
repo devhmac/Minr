@@ -5,17 +5,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   categories: string[];
+  searchMode: boolean;
 };
 
-const ProductCategories = ({ categories }: Props) => {
+const ProductCategories = ({ categories, searchMode }: Props) => {
   console.count("Product categories counter");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
-    searchParams.get("category" || "All")
+    searchParams.get("category") ? searchParams.get("category") : null
   );
   if (searchParams.get("search")) {
-    // setSelectedCategory("All");
+    // setSelectedCategory("");
   }
 
   if (!categories || categories.length === 0) return <></>;
