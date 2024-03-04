@@ -200,7 +200,6 @@ export const getProductsByIdList = async (
 export const searchProducts = async (input: string) => {
   try {
     dbConnect();
-    console.log(input);
     const products = await Product.find({
       title: { $regex: input, $options: "i" },
     }).limit(15);

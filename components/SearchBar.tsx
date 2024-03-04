@@ -41,7 +41,9 @@ const SearchBar = () => {
     const debounce = setTimeout(() => {
       if (searchPrompt !== "") {
         const link = isValidAmazonLink(searchPrompt);
-        link
+        // setIsLinkValid(link!);
+
+        link === false && searchPrompt.includes("amazon.c")
           ? setIsLinkValid(link!)
           : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
               scroll: false,
@@ -132,7 +134,7 @@ const SearchBar = () => {
             onChange={(e) => {
               setSearchPrompt(e.target.value);
             }}
-            placeholder="Enter your product link to get started..."
+            placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
           />
         )}
@@ -142,7 +144,7 @@ const SearchBar = () => {
 
           <button
             title="Get quote now"
-            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-[rgba(18, 18, 18, 1)] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border-lowEmph border-2"
+            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-lowEmph font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border-lowEmph border-2"
             role="button"
             disabled={true}
           >
