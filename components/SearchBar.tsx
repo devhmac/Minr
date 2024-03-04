@@ -147,12 +147,7 @@ const SearchBar = () => {
 
         <div className="relative inline-flex group">
           {searchPrompt === "" || isLinkValid !== true ? (
-            <button
-              title="Scrape your product"
-              className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-gray-400 transition-all duration-200 bg-lowEmph font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 "
-              role="button"
-              disabled={searchPrompt === "" || isLinkValid !== true}
-            >
+            <button className="searchbar-btn" disabled={true}>
               Scrape
             </button>
           ) : (
@@ -160,7 +155,7 @@ const SearchBar = () => {
               <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r  from-primary via-[#ff44ecb6] to-[#44BCFF]  rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
               <button
                 title="Scrape your product"
-                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-secondary transition-all duration-200 bg-lowEmph font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border-lowEmph border-2"
+                className="relative inline-flex items-center justify-center px-5 py-3 font-bold text-secondary transition-all duration-200 bg-lowEmph focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border-lowestEmph border-2 max-h-[50px] text-base rounded-lg"
                 role="button"
                 disabled={searchPrompt === "" || isLinkValid !== true}
               >
