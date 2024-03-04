@@ -1,6 +1,6 @@
 import MainCarousel from "@/components/MainCarousel";
 import SearchBar from "@/components/SearchBar";
-import React, { useState } from "react";
+import React from "react";
 import { ToastContainer } from "react-toastify";
 import {
   getAllProducts,

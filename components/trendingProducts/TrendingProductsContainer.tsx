@@ -1,7 +1,6 @@
 "use client";
 import { Product } from "@/types";
 import React, { useState } from "react";
-import ProductCard from "./ProductListItem";
 import ProductCategories from "./ProductCategories";
 import { getCategories, getProductsByCategory } from "@/lib/actions/actions";
 import CardSkeleton from "./CardSkeleton";

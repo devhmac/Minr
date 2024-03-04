@@ -43,7 +43,11 @@ const SearchBar = () => {
           scroll: false,
         });
       } else {
+        console.log("in the else which should rip if no search entered");
         setIsLinkValid(null);
+        router.push("/", {
+          scroll: false,
+        });
       }
     }, 200);
 
