@@ -31,23 +31,28 @@ const SearchBar = () => {
   const searchParams = useSearchParams();
 
   const [isLinkValid, setIsLinkValid] = useState<boolean | null>(null);
-  const [searchPrompt, setSearchPrompt] = useState<string>("");
+  const [searchPrompt, setSearchPrompt] = useState<string>(
+    searchParams.get("search") || ""
+  );
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       if (searchPrompt !== "") {
-        setIsLinkValid(isValidAmazonLink(searchPrompt)!);
-        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-          scroll: false,
-        });
+        const link = isValidAmazonLink(searchPrompt);
+        link
+          ? setIsLinkValid(link!)
+          : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+              scroll: false,
+            });
       } else {
-        console.log("in the else which should rip if no search entered");
         setIsLinkValid(null);
-        router.push("/", {
-          scroll: false,
-        });
+        uploadProgress === 0
+          ? router.push("/", {
+              scroll: false,
+            })
+          : null;
       }
     }, 200);
 

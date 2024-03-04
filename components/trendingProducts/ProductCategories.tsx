@@ -12,8 +12,11 @@ const ProductCategories = ({ categories }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
-    searchParams.get("category") || "All"
+    searchParams.get("category" || "All")
   );
+  if (searchParams.get("search")) {
+    // setSelectedCategory("All");
+  }
 
   if (!categories || categories.length === 0) return <></>;
 
