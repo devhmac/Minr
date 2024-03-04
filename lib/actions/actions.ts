@@ -201,10 +201,10 @@ export const searchProducts = async (input: string) => {
   try {
     dbConnect();
     const products = await Product.find({
-      title: { $regex: input, $options: "i" },
+      title: { $regex: `${input}`, $options: "i" },
     }).limit(15);
     return products;
   } catch (err: any) {
-    throw new Error(err.message);
+    return null;
   }
 };

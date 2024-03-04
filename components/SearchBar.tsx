@@ -16,8 +16,8 @@ const isValidAmazonLink = (url: string) => {
 
     if (
       hostname.includes("amazon.com") ||
-      hostname.includes("amazon.") ||
-      hostname.endsWith("amazon")
+      hostname.includes("amazon.")
+      // hostname.endsWith("amazon")
     ) {
       return true;
     }
@@ -39,23 +39,29 @@ const SearchBar = () => {
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if (searchPrompt !== "") {
-        const link = isValidAmazonLink(searchPrompt);
-        // setIsLinkValid(link!);
-
-        link === false && searchPrompt.includes("amazon.c")
-          ? setIsLinkValid(link!)
-          : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-              scroll: false,
-            });
-      } else {
+      if (searchPrompt === "") {
         setIsLinkValid(null);
+
         uploadProgress === 0
           ? router.push("/", {
               scroll: false,
             })
           : null;
+        return;
       }
+
+      const link = isValidAmazonLink(searchPrompt);
+
+      if (link) {
+        setIsLinkValid(link!);
+        return;
+      }
+
+      link === false && searchPrompt.includes("amazon.c")
+        ? setIsLinkValid(link!)
+        : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+            scroll: false,
+          });
     }, 200);
 
     return () => {
@@ -140,16 +146,32 @@ const SearchBar = () => {
         )}
 
         <div className="relative inline-flex group">
-          <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r  from-primary via-[#ff44ecb6] to-[#44BCFF]  rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-
-          <button
-            title="Get quote now"
-            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-lowEmph font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border-lowEmph border-2"
-            role="button"
-            disabled={true}
-          >
-            Scrape
-          </button>
+          {searchPrompt === "" || isLinkValid !== true ? (
+            <button
+              title="Scrape your product"
+              className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-gray-400 transition-all duration-200 bg-lowEmph font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 "
+              role="button"
+              disabled={searchPrompt === "" || isLinkValid !== true}
+            >
+              Scrape
+            </button>
+          ) : (
+            <>
+              <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r  from-primary via-[#ff44ecb6] to-[#44BCFF]  rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+              <button
+                title="Scrape your product"
+                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-secondary transition-all duration-200 bg-lowEmph font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border-lowEmph border-2"
+                role="button"
+                disabled={searchPrompt === "" || isLinkValid !== true}
+              >
+                {isLoading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Scrape"
+                )}
+              </button>
+            </>
+          )}
         </div>
 
         {/* <button
