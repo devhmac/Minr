@@ -15,6 +15,7 @@ const ProductCategories = ({ categories }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || null
   );
+  const searchActive = searchParams.get("search") ? true : false;
 
   if (!categories || categories.length === 0) return <></>;
 
@@ -22,7 +23,7 @@ const ProductCategories = ({ categories }: Props) => {
     if (searchParams.get("search")) {
       setSelectedCategory(null);
     }
-  }, [searchParams.get("search") ? true : false]);
+  }, [searchActive]);
 
   return (
     <div className=" gap-2 mx-auto text-center text-mediumEmph">

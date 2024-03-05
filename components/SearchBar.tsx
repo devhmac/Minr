@@ -36,10 +36,12 @@ const SearchBar = () => {
   );
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  let categoryActive = searchParams.get("category") ? true : false;
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if (searchPrompt === "") {
+      // if(categoryActive) {
+      if (searchPrompt === "" && !categoryActive) {
         setIsLinkValid(null);
 
         uploadProgress === 0
@@ -47,6 +49,10 @@ const SearchBar = () => {
               scroll: false,
             })
           : null;
+        return;
+      }
+      if (categoryActive) {
+        setSearchPrompt("");
         return;
       }
 
@@ -67,7 +73,13 @@ const SearchBar = () => {
     return () => {
       clearTimeout(debounce);
     };
-  }, [searchPrompt]);
+  }, [searchPrompt, categoryActive]);
+
+  // useEffect(() => {
+  //   if (searchParams.get("category")) {
+  //     setSearchPrompt("");
+  //   }
+  // }, [categoryActive]);
 
   // for progress bar
   const startSimulatedProgress = () => {
@@ -139,6 +151,7 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
+              categoryActive = false;
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
