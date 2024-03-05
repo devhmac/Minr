@@ -74,7 +74,7 @@ const SearchBar = () => {
         : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
             scroll: false,
           });
-    }, 200);
+    }, 300);
 
     return () => {
       clearTimeout(debounce);
