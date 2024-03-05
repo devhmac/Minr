@@ -1,6 +1,6 @@
 "use client";
 import { Product } from "@/types";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
@@ -8,18 +8,21 @@ type Props = {
   searchMode: boolean;
 };
 
-const ProductCategories = ({ categories, searchMode }: Props) => {
+const ProductCategories = ({ categories }: Props) => {
   console.count("Product categories counter");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
-    searchParams.get("category") ? searchParams.get("category") : null
+    searchParams.get("category") || null
   );
-  if (searchParams.get("search")) {
-    // setSelectedCategory("");
-  }
 
   if (!categories || categories.length === 0) return <></>;
+
+  useEffect(() => {
+    if (searchParams.get("search")) {
+      setSelectedCategory(null);
+    }
+  }, [searchParams.get("search") ? true : false]);
 
   return (
     <div className=" gap-2 mx-auto text-center text-mediumEmph">
