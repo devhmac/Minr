@@ -51,6 +51,12 @@ const SearchBar = () => {
           : null;
         return;
       }
+      if (searchPrompt) {
+        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+          scroll: false,
+        });
+        categoryActive = false;
+      }
       if (categoryActive) {
         setSearchPrompt("");
         return;
@@ -151,7 +157,6 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
-              categoryActive = false;
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
