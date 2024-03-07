@@ -14,7 +14,7 @@ const Nav = () => {
         <div className="flex items-center justify-between gap-4 ">
           <Search className="w-5 h-5 text-secondary" />
           <Link
-            href={"/dashboard"}
+            href={"/bookmarks"}
             title="My Bookmarks"
             className="hover:bg-lowEmph "
           >

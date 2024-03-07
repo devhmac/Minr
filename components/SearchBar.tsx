@@ -37,14 +37,17 @@ const SearchBar = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   let categoryActive = searchParams.get("category") ? true : false;
-  console.log("category active outside of useeffect", categoryActive);
+  // console.log("category active outside of useeffect", categoryActive);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      // if(categoryActive) {
       console.log("category active inside of useeffect", categoryActive);
       console.log("search prompt in use effect", searchPrompt);
       if (categoryActive && searchPrompt === "") {
+        return;
+      }
+      if (categoryActive && searchPrompt) {
+        setSearchPrompt("");
         return;
       }
       if (searchPrompt) {
@@ -53,10 +56,7 @@ const SearchBar = () => {
         });
         // categoryActive = false;
       }
-      if (categoryActive && searchPrompt) {
-        setSearchPrompt("");
-        return;
-      }
+
       if (searchPrompt === "" && !categoryActive) {
         setIsLinkValid(null);
         uploadProgress === 0
@@ -79,12 +79,13 @@ const SearchBar = () => {
         setIsLinkValid(link!);
         return;
       }
-
-      link === false && searchPrompt.includes("amazon.c")
-        ? setIsLinkValid(link!)
-        : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-            scroll: false,
-          });
+      if (searchPrompt && !categoryActive) {
+        link === false && searchPrompt.includes("amazon.c")
+          ? setIsLinkValid(link!)
+          : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+              scroll: false,
+            });
+      }
     }, 300);
 
     return () => {
@@ -168,7 +169,6 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
-              categoryActive = false;
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
