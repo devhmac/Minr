@@ -37,13 +37,28 @@ const SearchBar = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   let categoryActive = searchParams.get("category") ? true : false;
+  console.log("category active outside of useeffect", categoryActive);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       // if(categoryActive) {
+      console.log("category active inside of useeffect", categoryActive);
+      console.log("search prompt in use effect", searchPrompt);
+      if (categoryActive && searchPrompt === "") {
+        return;
+      }
+      if (searchPrompt) {
+        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+          scroll: false,
+        });
+        // categoryActive = false;
+      }
+      if (categoryActive && searchPrompt) {
+        setSearchPrompt("");
+        return;
+      }
       if (searchPrompt === "" && !categoryActive) {
         setIsLinkValid(null);
-
         uploadProgress === 0
           ? router.push("/", {
               scroll: false,
@@ -51,16 +66,12 @@ const SearchBar = () => {
           : null;
         return;
       }
-      if (searchPrompt) {
-        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-          scroll: false,
-        });
-        categoryActive = false;
-      }
-      if (categoryActive) {
-        setSearchPrompt("");
-        return;
-      }
+      // if (searchPrompt) {
+      //   router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+      //     scroll: false,
+      //   });
+      //   categoryActive = false;
+      // }
 
       const link = isValidAmazonLink(searchPrompt);
 
@@ -157,6 +168,7 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
+              categoryActive = false;
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
