@@ -1,6 +1,12 @@
+"use client";
 import { createContext, useState } from "react";
 
-const searchIntentContext = createContext<null | {}>(null);
+type SearchIntent = {
+  searchIntent: boolean | null;
+  setSearchIntent: React.Dispatch<React.SetStateAction<null>>;
+};
+
+export const searchIntentContext = createContext<SearchIntent | null>(null);
 
 export const SearchIntentProvider = ({
   children,

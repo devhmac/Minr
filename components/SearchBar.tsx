@@ -4,10 +4,11 @@ import { Product } from "@/types";
 import { Loader2 } from "lucide-react";
 // import { redirect } from "next/navigation";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProgressBar from "./ui/ProgressBar";
+import { searchIntentContext } from "@/context/SearchIntentContext";
 
 const isValidAmazonLink = (url: string) => {
   try {
@@ -35,7 +36,8 @@ const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState<string>(
     searchParams.get("search") || ""
   );
-  const [searchIntent, setSearchIntent] = useState<boolean>(false);
+
+  const { searchIntent, setSearchIntent } = useContext(searchIntentContext);
 
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);

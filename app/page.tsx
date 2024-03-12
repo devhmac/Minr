@@ -17,6 +17,7 @@ import PocBanner from "@/components/ui/PocBanner";
 import TrendingProductsContainer from "@/components/trendingProducts/TrendingProductsContainer";
 import KpiCard from "@/components/dataViz/KpiCard";
 import ProductsFadeIn from "@/components/animations/ProductsFadeIn";
+import { SearchIntentProvider } from "@/context/SearchIntentContext";
 
 const Page = async ({ searchParams }: any) => {
   console.log(searchParams);
@@ -86,23 +87,25 @@ const Page = async ({ searchParams }: any) => {
           </div>
         </div>
       </section>
-      <div className=" mx-auto md:w-3/4">
-        <h2 className="section-text text-center">
-          Search for a product, or enter a new link to get started...
-        </h2>
+      <SearchIntentProvider>
+        <div className=" mx-auto md:w-3/4">
+          <h2 className="section-text text-center">
+            Search for a product, or enter a new link to get started...
+          </h2>
 
-        <SearchBar />
-      </div>
-      <ProductsFadeIn>
-        <section className="trending-section min-h-screen">
-          {/* <ProductsWrapper products={allProducts} /> */}
-          {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
-          <TrendingProductsContainer
-            products={JSON.stringify(products)}
-            categories={JSON.stringify(categories)}
-          />
-        </section>
-      </ProductsFadeIn>
+          <SearchBar />
+        </div>
+        <ProductsFadeIn>
+          <section className="trending-section min-h-screen">
+            {/* <ProductsWrapper products={allProducts} /> */}
+            {/* <ProductCategories products={JSON.stringify(allProducts)} /> */}
+            <TrendingProductsContainer
+              products={JSON.stringify(products)}
+              categories={JSON.stringify(categories)}
+            />
+          </section>
+        </ProductsFadeIn>
+      </SearchIntentProvider>
     </>
   );
 };
