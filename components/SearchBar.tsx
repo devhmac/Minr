@@ -27,6 +27,7 @@ const isValidAmazonLink = (url: string) => {
 };
 
 const SearchBar = () => {
+  console.count("SearchBar Rerender");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -34,6 +35,7 @@ const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState<string>(
     searchParams.get("search") || ""
   );
+  const [searchIntent, setSearchIntent] = useState<boolean>(false);
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   let categoryActive = searchParams.get("category") ? true : false;
@@ -43,8 +45,8 @@ const SearchBar = () => {
     const debounce = setTimeout(() => {
       console.log("category active inside of useeffect", categoryActive);
       console.log("search prompt in use effect", searchPrompt);
-
-      if (searchPrompt && !categoryActive) {
+      console.log("search intent in use effect", searchIntent);
+      if (searchPrompt && searchIntent && !categoryActive) {
         const link = isValidAmazonLink(searchPrompt);
         if (link) {
           setIsLinkValid(link!);
@@ -57,15 +59,16 @@ const SearchBar = () => {
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (searchPrompt && categoryActive) {
+      } else if (searchPrompt && searchIntent && categoryActive) {
         // setSearchPrompt("");
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (categoryActive && searchPrompt) {
-        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-          scroll: false,
-        });
+      } else if (categoryActive && !searchIntent && searchPrompt) {
+        setSearchPrompt("");
+        // router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+        //   scroll: false,
+        // });
       } else if (searchPrompt === "" && !categoryActive) {
         setIsLinkValid(null);
         uploadProgress === 0
@@ -197,6 +200,7 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
+              setSearchIntent(true);
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
