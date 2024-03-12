@@ -36,16 +36,22 @@ const SearchBar = () => {
     searchParams.get("search") || ""
   );
   const [searchIntent, setSearchIntent] = useState<boolean>(false);
+
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   let categoryActive = searchParams.get("category") ? true : false;
-  // console.log("category active outside of useeffect", categoryActive);
+  console.log("category active outside of useeffect", categoryActive);
+
+  console.log("search intent outside", searchIntent);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       console.log("category active inside of useeffect", categoryActive);
       console.log("search prompt in use effect", searchPrompt);
       console.log("search intent in use effect", searchIntent);
+
+      if (categoryActive) setSearchIntent(false);
+
       if (searchPrompt && searchIntent && !categoryActive) {
         const link = isValidAmazonLink(searchPrompt);
         if (link) {
@@ -59,12 +65,12 @@ const SearchBar = () => {
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (searchPrompt && searchIntent && categoryActive) {
+      } else if (searchIntent && categoryActive) {
         // setSearchPrompt("");
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (categoryActive && !searchIntent && searchPrompt) {
+      } else if (categoryActive && searchPrompt) {
         setSearchPrompt("");
         // router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
         //   scroll: false,
@@ -122,7 +128,7 @@ const SearchBar = () => {
     return () => {
       clearTimeout(debounce);
     };
-  }, [searchPrompt, categoryActive]);
+  }, [searchPrompt, categoryActive, searchIntent]);
 
   // useEffect(() => {
   //   if (searchParams.get("category")) {
@@ -200,6 +206,7 @@ const SearchBar = () => {
             value={searchPrompt}
             onChange={(e) => {
               setSearchPrompt(e.target.value);
+              // setSearchIntent(true);
               setSearchIntent(true);
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
