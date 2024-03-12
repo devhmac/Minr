@@ -1,7 +1,8 @@
 "use client";
 import { Product } from "@/types";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { searchIntentContext } from "@/context/SearchIntentContext";
 
 type Props = {
   categories: string[];
@@ -15,6 +16,8 @@ const ProductCategories = ({ categories }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || null
   );
+  const { searchIntent, setSearchIntent } = useContext(searchIntentContext);
+
   const searchActive = searchParams.get("search") ? true : false;
 
   if (!categories || categories.length === 0) return <></>;
@@ -37,6 +40,7 @@ const ProductCategories = ({ categories }: Props) => {
             }`}
             onClick={(e) => {
               setSelectedCategory(category);
+              setSearchIntent(false);
               router.push(`/?category=${encodeURIComponent(category)}`, {
                 scroll: false,
               });

@@ -44,20 +44,19 @@ const SearchBar = () => {
   let categoryActive = searchParams.get("category") ? true : false;
   console.log("category active outside of useeffect", categoryActive);
 
-  // console.log("search intent outside", searchIntent);
+  console.log("search intent outside", searchIntent);
   // if (categoryActive) setSearchIntent(false);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       console.log("category active inside of useeffect", categoryActive);
       console.log("search prompt in use effect", searchPrompt);
-      let test = true;
       // if (categoryActive) test = false;
       // console.log("search intent in use effect", searchIntent);
 
       // if (categoryActive) setSearchIntent(false);
 
-      if (searchPrompt && !categoryActive) {
+      if (searchIntent && !categoryActive) {
         const link = isValidAmazonLink(searchPrompt);
         if (link) {
           setIsLinkValid(link!);
@@ -70,11 +69,13 @@ const SearchBar = () => {
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (test && categoryActive) {
+      } else if (!searchIntent && categoryActive) {
+        setSearchPrompt("");
+        return;
         // setSearchPrompt("");
-        router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-          scroll: false,
-        });
+        // router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
+        //   scroll: false,
+        // });
       } else if (categoryActive && searchPrompt) {
         setSearchPrompt("");
         // router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
