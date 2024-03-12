@@ -42,17 +42,20 @@ const SearchBar = () => {
   let categoryActive = searchParams.get("category") ? true : false;
   console.log("category active outside of useeffect", categoryActive);
 
-  console.log("search intent outside", searchIntent);
+  // console.log("search intent outside", searchIntent);
+  // if (categoryActive) setSearchIntent(false);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       console.log("category active inside of useeffect", categoryActive);
       console.log("search prompt in use effect", searchPrompt);
-      console.log("search intent in use effect", searchIntent);
+      let test = true;
+      // if (categoryActive) test = false;
+      // console.log("search intent in use effect", searchIntent);
 
-      if (categoryActive) setSearchIntent(false);
+      // if (categoryActive) setSearchIntent(false);
 
-      if (searchPrompt && searchIntent && !categoryActive) {
+      if (searchPrompt && !categoryActive) {
         const link = isValidAmazonLink(searchPrompt);
         if (link) {
           setIsLinkValid(link!);
@@ -65,7 +68,7 @@ const SearchBar = () => {
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (searchIntent && categoryActive) {
+      } else if (test && categoryActive) {
         // setSearchPrompt("");
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
@@ -205,9 +208,11 @@ const SearchBar = () => {
             type="text"
             value={searchPrompt}
             onChange={(e) => {
-              setSearchPrompt(e.target.value);
-              // setSearchIntent(true);
               setSearchIntent(true);
+              setSearchPrompt(e.target.value);
+              console.log(categoryActive);
+              // setSearchIntent(true);
+              // setSearchIntent(true);
             }}
             placeholder="Search for your product name, or enter a full amazon product link..."
             className="searchbar-input "
