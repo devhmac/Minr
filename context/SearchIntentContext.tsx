@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 type SearchIntent = {
   searchIntent: boolean | null;
-  setSearchIntent: React.Dispatch<React.SetStateAction<null>>;
+  setSearchIntent: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const searchIntentContext = createContext<SearchIntent | null>(null);
@@ -13,7 +13,7 @@ export const SearchIntentProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [searchIntent, setSearchIntent] = useState(null);
+  const [searchIntent, setSearchIntent] = useState(false);
 
   return (
     <searchIntentContext.Provider value={{ searchIntent, setSearchIntent }}>

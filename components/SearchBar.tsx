@@ -48,40 +48,25 @@ const SearchBar = () => {
   // if (categoryActive) setSearchIntent(false);
 
   useEffect(() => {
+    if (!searchIntent && categoryActive && searchPrompt) {
+      setSearchPrompt("");
+      return;
+    }
+
     const debounce = setTimeout(() => {
       console.log("category active inside of useeffect", categoryActive);
       console.log("search prompt in use effect", searchPrompt);
-      // if (categoryActive) test = false;
-      // console.log("search intent in use effect", searchIntent);
 
-      // if (categoryActive) setSearchIntent(false);
-
-      if (searchIntent && !categoryActive) {
+      if (searchIntent && searchPrompt !== "") {
         const link = isValidAmazonLink(searchPrompt);
         if (link) {
-          setIsLinkValid(link!);
+          setIsLinkValid(link);
           return;
         }
-
-        // link === false && searchPrompt.includes("amazon.c");
-        //       ? setIsLinkValid(link!)
-
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
           scroll: false,
         });
-      } else if (!searchIntent && categoryActive) {
-        setSearchPrompt("");
-        return;
-        // setSearchPrompt("");
-        // router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-        //   scroll: false,
-        // });
-      } else if (categoryActive && searchPrompt) {
-        setSearchPrompt("");
-        // router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-        //   scroll: false,
-        // });
-      } else if (searchPrompt === "" && !categoryActive) {
+      } else if (searchPrompt === "" && searchIntent) {
         setIsLinkValid(null);
         uploadProgress === 0
           ? router.push("/", {
@@ -89,46 +74,7 @@ const SearchBar = () => {
             })
           : null;
         return;
-      } else if (searchPrompt === "" && categoryActive) {
-        return;
       }
-
-      // if (categoryActive && searchPrompt === "") {
-      //   return;
-      // }
-      // if (categoryActive && searchPrompt) {
-      //   setSearchPrompt("");
-      //   return;
-      // }
-      // if (searchPrompt) {
-      //   router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-      //     scroll: false,
-      //   });
-      // }
-
-      // if (searchPrompt === "" && !categoryActive) {
-      //   setIsLinkValid(null);
-      //   uploadProgress === 0
-      //     ? router.push("/", {
-      //         scroll: false,
-      //       })
-      //     : null;
-      //   return;
-      // }
-
-      //   const link = isValidAmazonLink(searchPrompt);
-
-      //   if (link) {
-      //     setIsLinkValid(link!);
-      //     return;
-      //   }
-      //   if (searchPrompt && !categoryActive) {
-      //     link === false && searchPrompt.includes("amazon.c")
-      //       ? setIsLinkValid(link!)
-      //       : router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
-      //           scroll: false,
-      //         });
-      //   }
     }, 300);
 
     return () => {
