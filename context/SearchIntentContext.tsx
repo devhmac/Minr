@@ -2,11 +2,16 @@
 import { createContext, useState } from "react";
 
 type SearchIntent = {
-  searchIntent: boolean | null;
+  searchIntent: boolean;
   setSearchIntent: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const searchIntentContext = createContext<SearchIntent | null>(null);
+const defaultVal = {
+  searchIntent: false,
+  setSearchIntent: (searchIntent: boolean) => {},
+};
+
+export const searchIntentContext = createContext(defaultVal);
 
 export const SearchIntentProvider = ({
   children,
