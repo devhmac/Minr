@@ -164,16 +164,21 @@ export const getProductsCount = async () => {
 export const getScrapeCount = async () => {
   try {
     dbConnect();
-    const scrapes: any = await Product.find({}).select("numScrapes");
-    let scrapeCount = scrapes.reduce((acc, a) => {
-      // if (a["numScrapes"]) {
-      //   acc + a.numScrapes;
-      // }
-      console.log(acc);
-    });
-    // console.log(scrapes);
-    console.log(scrapeCount);
-    // return productCount;
+
+    const result = await Product.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalNumScrapes: { $sum: "$numScrapes" },
+        },
+      },
+    ]);
+
+    if (result.length > 0) {
+      return result[0].totalNumScrapes;
+    } else {
+      return 0; // No documents found
+    }
   } catch (error: any) {
     throw new Error(`Failed to get products ${error.message}`);
   }
@@ -205,6 +210,6 @@ export const searchProducts = async (input: string) => {
     }).limit(15);
     return products;
   } catch (err: any) {
-    return null;
+    return [];
   }
 };

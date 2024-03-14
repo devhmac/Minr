@@ -33,24 +33,7 @@ export default function PocBanner({ children }: { children: React.ReactNode }) {
       </div>
       <AlertCircle className="text-gray-900 h-5 w-5 shrink-0" />
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="text-sm leading-6 text-gray-900">
-          {children ? (
-            children
-          ) : (
-            <>
-              <strong className="font-semibold">Web scraping is fickle.</strong>
-              <svg
-                viewBox="0 0 2 2"
-                className="mx-2 inline h-0.5 w-0.5 fill-current"
-                aria-hidden="true"
-              >
-                <circle cx={1} cy={1} r={1} />
-              </svg>
-              As a project POC we are currently only reliably scraping from{" "}
-              <strong className="font-semibold">Amazon.com & .ca</strong>
-            </>
-          )}
-        </p>
+        <p className="text-sm leading-6 text-gray-900">{children}</p>
       </div>
 
       <div className="flex flex-1 justify-end"></div>

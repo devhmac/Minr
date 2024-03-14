@@ -32,19 +32,20 @@ const Page = async ({ searchParams }: any) => {
   } else if (searchParams["category"]) {
     products = await getProductsByCategory(searchParams["category"]);
   }
-  // Object.keys(searchParams).length === 0 || searchParams["category"] === "All"
-  //   ? await getAllProducts()
-  //   : await getProductsByCategory(searchParams["category"]);
 
   const categories: { category: string; count: number } = await getCategories();
 
   // const allProducts = await getAllProducts();
   const productCount = await getProductsCount();
-  // const scrapeCount = await getScrapeCount();
+  const scrapeCount = await getScrapeCount();
 
   return (
     <>
-      <PocBanner />
+      <PocBanner>
+        <strong className="font-semibold">Web scraping is fickle. </strong>
+        As a project POC we are currently only reliably scraping from{" "}
+        <strong className="font-semibold"> Amazon.com & .ca</strong>
+      </PocBanner>
       <section className="px-6 md:px-20 py-10 text-secondary">
         <ToastContainer />
         <div className="flex max-xl:flex-col-reverse xl:gap-16">
@@ -66,14 +67,17 @@ const Page = async ({ searchParams }: any) => {
               Empower your growth with A self-serve platform for your online
               marketplace pricing and performance data.
             </p>
-            {/* <SearchBar /> */}
             <div className="flex flex-row gap-5 justify-center mt-12">
               <KpiCard
                 title={"Products Tracked:"}
                 value={productCount}
                 size="small"
               />
-              <KpiCard title={"Total Scrapes:"} value={5} size="small" />
+              <KpiCard
+                title={"Total Scrapes:"}
+                value={scrapeCount}
+                size="small"
+              />
               <KpiCard
                 title={"Scraper Status:"}
                 value={"Online"}
