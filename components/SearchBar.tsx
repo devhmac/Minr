@@ -17,10 +17,12 @@ const isValidAmazonLink = (url: string) => {
 
     if (
       hostname.includes("amazon.com") ||
-      hostname.includes("amazon.")
+      hostname.includes("amazon.ca")
       // hostname.endsWith("amazon")
     ) {
       return true;
+    } else {
+      return false;
     }
   } catch (error) {
     return false;
@@ -42,9 +44,9 @@ const SearchBar = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   let categoryActive = searchParams.get("category") ? true : false;
-  console.log("category active outside of useeffect", categoryActive);
 
-  console.log("search intent outside", searchIntent);
+  //nasty robot regex for url prediction
+  const urlPattern = /(?:\/{2,}|www\.|\.\w{2,})/;
   // if (categoryActive) setSearchIntent(false);
 
   useEffect(() => {
@@ -58,9 +60,15 @@ const SearchBar = () => {
       console.log("search prompt in use effect", searchPrompt);
 
       if (searchIntent && searchPrompt !== "") {
+        console.log(urlPattern.test(searchPrompt));
         const link = isValidAmazonLink(searchPrompt);
-        if (link) {
-          setIsLinkValid(link);
+        if (
+          link ||
+          searchPrompt.includes("amazon.") ||
+          urlPattern.test(searchPrompt)
+        ) {
+          setIsLinkValid(link!);
+          console.log(isLinkValid);
           return;
         }
         router.push(`/?search=${encodeURIComponent(searchPrompt)}`, {
@@ -193,8 +201,8 @@ const SearchBar = () => {
         duration-500 
         ease-out opacity-100"
         >
-          <span className="underline">Link invalid:</span> Sorry, we are
-          currently only scraping valid amazon product links
+          <span className="underline">Link invalid:</span> Ensure the valid
+          amazon link includes the prefix https://
         </p>
       )}
     </>
