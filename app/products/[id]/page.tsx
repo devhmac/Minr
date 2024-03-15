@@ -97,6 +97,11 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           currency={product.currency}
         /> */}
         <KpiCard
+          title={"Average Price"}
+          value={product.averagePrice}
+          currency={product.currency}
+        />
+        <KpiCard
           title={"Highest Price"}
           value={product.highestPrice}
           currency={product.currency}

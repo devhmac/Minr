@@ -11,7 +11,7 @@ const Nav = () => {
           <Image src="/minr_logo.png" height={25} width={25} alt="Minr Logo" />
           <p className="text-xl text-primary font-semibold">Minr</p>
         </Link>
-        <div className="flex items-center justify-between gap-4 h-full  hover:bg-lowEmph hover:h-full ">
+        <div className="flex items-center justify-between gap-4 h-full px-2  hover:bg-lowEmph hover:h-full hover:rounded ">
           <Link
             href={"/bookmarks"}
             title="My Bookmarks"

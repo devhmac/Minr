@@ -11,27 +11,6 @@ const data: Tracker[] = [
   { color: "emerald", tooltip: "Operational" },
   { color: "emerald", tooltip: "Operational" },
   { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "rose", tooltip: "Downtime" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "gray", tooltip: "Maintenance" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "emerald", tooltip: "Operational" },
-  { color: "yellow", tooltip: "Degraded" },
-  { color: "emerald", tooltip: "Operational" },
 ];
 
 type Props = {
@@ -44,7 +23,7 @@ type Props = {
 export const ScrapeTracker = (props: Props) => {
   const { uptime, scrapeHistory } = props.scrapeHealth;
   return (
-    <Card className="max-w-sm mx-auto">
+    <Card className=" w-full mx-auto">
       <Title className="flex flex-row justify-between">
         Scrape Health
         <span className="flex flex-row justify-end gap-2">
@@ -53,7 +32,9 @@ export const ScrapeTracker = (props: Props) => {
         </span>
       </Title>
       <Flex justifyContent="end" className="mt-4">
-        <Text>Uptime {`${uptime}`}%</Text>
+        <Text>
+          Total Scrapes: {scrapeHistory.length}, Uptime: {uptime}%
+        </Text>
       </Flex>
       <Tracker data={scrapeHistory} className="mt-2" />
     </Card>
