@@ -23,7 +23,7 @@ type Props = {
 export const ScrapeTracker = (props: Props) => {
   const { uptime, scrapeHistory } = props.scrapeHealth;
   return (
-    <Card className=" w-full mx-auto">
+    <Card className="">
       <Title className="flex flex-row justify-between">
         Scrape Health
         <span className="flex flex-row justify-end gap-2">
